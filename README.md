@@ -1,2 +1,2 @@
 # Projektarbyte
-- Das ist die Projektarbeit von Sebastian, Ben und Fynn
+Das ist die Projektarbeit von Sebastian, Ben und Fynn
