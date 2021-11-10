@@ -2,7 +2,7 @@ import javax.swing.*;
 
 public class Add_Product extends JFrame {
 		
-	private JButton back;
+	private JButton back, cancel;
 	private JTextArea nproduct;
 		
 	public Add_Product() {
@@ -15,7 +15,11 @@ public class Add_Product extends JFrame {
 		
 		// add Back Button
 		back = new JButton("Back");
-		back.setBounds(300, 500, 200, 50);
+		back.setBounds(200, 500, 200, 50);
+
+		// add JButton for Cancel
+		cancel = new JButton("Cancel");
+		cancel.setBounds(450, 500, 200, 50);
 		
 		// add JTextArea for Name of Product
 		nproduct = new JTextArea();
@@ -23,8 +27,10 @@ public class Add_Product extends JFrame {
 		
 		// add ActionListener
 		back.addActionListener(a -> {this.dispose(); new Main();});
-		
+		cancel.addActionListener(a -> {System.exit(0);});
+
 		// add Items to JFrame
+		this.add(cancel);
 		this.add(back);
 		this.add(nproduct);
 	}
