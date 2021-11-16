@@ -1,9 +1,9 @@
 import javax.swing.*;
 
-public class Add_Product extends JFrame {
+public class Delete_Product extends JFrame {
     JButton close, back;
-    public Add_Product() {
-    super("Verwaltungsprogramm - Add Product");
+    public Delete_Product() {
+    super("Verwaltungsprogramm - Delete Produkt");
     this.setBounds(400, 100, 800, 600);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setLayout(null);
@@ -24,9 +24,7 @@ public class Add_Product extends JFrame {
     // add JButtons to JFrame
     this.add(close);
     this.add(back);
-  }
-  public static void main(String[] args) {
-    new Add_Product();
-  }
-}
+  } // end of main
+
+} // end of class Delete_Product
 
