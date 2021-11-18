@@ -4,7 +4,7 @@ import java.io.*;
 public class Add_Product extends JFrame  {
     JButton close, back, add;
     JTextArea nproduct, cproduct;
-    JLabel name;
+    JLabel name, category;
     public Add_Product() {
     super("Verwaltungsprogramm - Add Product");
     this.setBounds(400, 100, 800, 600);
@@ -32,18 +32,29 @@ public class Add_Product extends JFrame  {
     nproduct = new JTextArea("Name: ");
     nproduct.setBounds(210, 47, 100, 20);
     
+    // add JLabel for Category of Product
+    category = new JLabel("Category of Product:");
+    category.setBounds(100, 87, 100, 10);
+    
+    // add JTextArea for Category of product
+    cproduct = new JTextArea("Category: ");
+    cproduct.setBounds(210, 90, 100, 20);
+    
     // add Actionlisteners
     close.addActionListener(a -> {System.exit(0);});
     back.addActionListener(b -> {this.dispose(); new Main();});
     add.addActionListener(c -> {
-		try{File file = new File("");
+		try{
+			File file = new File("");
             JFileChooser fc = new JFileChooser();
             fc.showSaveDialog(null);
             file = fc.getSelectedFile();
             BufferedWriter bw = new BufferedWriter(new FileWriter(file));
             bw.write(nproduct.getText());
+            bw.write("\n");
+            bw.write(cproduct.getText());
             bw.flush();
-		}catch (IOException e) {System.out.println("Datei kann nicht erstellt werden");}
+		}catch (IOException e) {e.printStackTrace();}
 	});
     
     // add JButtons to JFrame
@@ -51,7 +62,9 @@ public class Add_Product extends JFrame  {
     this.add(back);
     this.add(add);
     this.add(name);
+	this.add(category);
     this.add(nproduct);
+    this.add(cproduct);
   }
 }
   
