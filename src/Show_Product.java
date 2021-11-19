@@ -31,21 +31,21 @@ public class Show_Product extends JFrame {
     close.addActionListener(a -> {System.exit(0);});
     back.addActionListener(b -> {this.dispose(); new Main();});
     show.addActionListener(c -> { 
-		try {
-				String textLine;
-				FileReader fr = new FileReader("");
-				JFileChooser fc = new JFileChooser();
-				BufferedReader reader = new BufferedReader(fr);
-			while((textLine=reader.readLine()) != null){
-				textLine = reader.readLine();
-				read.read(reader, "File");
-			}
-				reader.close();
+    try {
+        String textLine;
+        FileReader fr = new FileReader("");
+        JFileChooser fc = new JFileChooser();
+        BufferedReader reader = new BufferedReader(fr);
+      while((textLine=reader.readLine()) != null){
+        textLine = reader.readLine();
+        read.read(reader, "File");
+      }
+        reader.close();
 
-		}catch(IOException e){
-			e.printStackTrace();
-		}
-	});
+    }catch(IOException e){
+      e.printStackTrace();
+    }
+  });
     
     // add JButtons to JFrame
     this.add(close);

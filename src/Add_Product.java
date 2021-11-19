@@ -44,8 +44,8 @@ public class Add_Product extends JFrame  {
     close.addActionListener(a -> {System.exit(0);});
     back.addActionListener(b -> {this.dispose(); new Main();});
     add.addActionListener(c -> {
-		try{
-			File file = new File("");
+    try{
+      File file = new File("");
             JFileChooser fc = new JFileChooser();
             fc.showSaveDialog(null);
             file = fc.getSelectedFile();
@@ -54,15 +54,15 @@ public class Add_Product extends JFrame  {
             bw.write("\n");
             bw.write(cproduct.getText());
             bw.flush();
-		}catch (IOException e) {e.printStackTrace();}
-	});
+    }catch (IOException e) {e.printStackTrace();}
+  });
     
     // add JButtons to JFrame
     this.add(close);
     this.add(back);
     this.add(add);
     this.add(name);
-	this.add(category);
+  this.add(category);
     this.add(nproduct);
     this.add(cproduct);
   }
