@@ -4,8 +4,8 @@ import java.io.*;
 
 public class Show_Product extends JFrame {
      JButton close, back, show;
-     JScrollPane pane;
      JTextArea read;
+     JScrollPane pane;
     public Show_Product() {
     super("Verwaltungsprogramm - Show Product");
     this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -15,22 +15,23 @@ public class Show_Product extends JFrame {
     
     // add JButton for Cancel
     close = new JButton("Close");
-    close.setBounds(200, 500, 200, 50);
+    close.setBounds(200, 640, 200, 50);
     
     // add JButton for Cancel
     back = new JButton("Back");
-    back.setBounds(450, 500, 200, 50);
+    back.setBounds(450, 640, 200, 50);
     
     // add JButton for Show
     show = new JButton("Show");
-    show.setBounds(400, 200, 100, 50);
+    show.setBounds(400, 640, 100, 50);
     
     // add JTextArea for Reading
     read = new JTextArea();
-    read.setBounds(0, 0, 500, 500);
+    read.setBounds(0, 0, 1350, 500);
     
     // add JScrollPane
-    this.add(new JScrollPane(read), BorderLayout.EAST);
+    pane = new JScrollPane();
+    read.add(pane);
     
     // add Actionlisteners
     close.addActionListener(a -> {System.exit(0);});
@@ -58,6 +59,7 @@ public class Show_Product extends JFrame {
     this.add(back);
     this.add(show);
     this.add(read);
+    this.add(pane, BorderLayout.CENTER);
   } // end of main
 
 } // end of class Show_Product
