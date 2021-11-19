@@ -4,7 +4,7 @@ public class Delete_Product extends JFrame {
     JButton close, back;
     public Delete_Product() {
     super("Verwaltungsprogramm - Delete Produkt");
-    this.setBounds(400, 100, 800, 600);
+    this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setLayout(null);
     this.setVisible(true);

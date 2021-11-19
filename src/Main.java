@@ -9,7 +9,7 @@ public class Main extends JFrame {
     
     // add Main Frame
     super("Verwaltungsprogramm - Main");
-    this.setBounds(400, 100, 800, 600);
+    this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setLayout(null);
     this.setVisible(true);

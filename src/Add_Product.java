@@ -7,7 +7,7 @@ public class Add_Product extends JFrame  {
     JLabel name, category;
     public Add_Product() {
     super("Verwaltungsprogramm - Add Product");
-    this.setBounds(400, 100, 800, 600);
+    this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setLayout(null);
     this.setVisible(true);
@@ -62,7 +62,7 @@ public class Add_Product extends JFrame  {
     this.add(back);
     this.add(add);
     this.add(name);
-  this.add(category);
+	this.add(category);
     this.add(nproduct);
     this.add(cproduct);
   }
