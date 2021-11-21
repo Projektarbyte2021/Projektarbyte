@@ -24,7 +24,7 @@ public class Delete_Product extends JFrame {
     // add JButtons to JFrame
     this.add(close);
     this.add(back);
-  } // end of main
+  } 
 
-} // end of class Delete_Product
+} 
 

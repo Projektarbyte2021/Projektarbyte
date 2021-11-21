@@ -1,18 +1,30 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Main extends JFrame {
+public class Main {
   
   public JButton close, aproduct, dproduct, sproduct, simulation;
+  public JFrame f;
   
   public Main() {
+    String os = System.getProperty("os.name").toLowerCase();
+                                               
     
+           try {
+                if (os.indexOf("win") >= 0) {
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                } else if (os.indexOf("nix") >= 0 || os.indexOf("nux") >= 0) {
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                }
+            } catch(Exception e) {
+                System.err.println("Setting Look and Feel Failed");
+            }
     // add Main Frame
-    super("Verwaltungsprogramm - Main");
-    this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setLayout(null);
-    this.setVisible(true);
+    f = new JFrame("Verwaltungsprogramm - Main");
+    f.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    f.setLayout(null);
+    f.setVisible(true);
     
     // add JButton for Cancel
     close = new JButton("Close");
@@ -36,19 +48,17 @@ public class Main extends JFrame {
     
     // add ActionListener
     close.addActionListener(a -> {System.exit(0);});
-    aproduct.addActionListener(b -> {this.dispose(); new Add_Product();});
-    dproduct.addActionListener(c -> {this.dispose(); new Delete_Product();});
-    sproduct.addActionListener(d -> {this.dispose(); new Show_Product();});
+    aproduct.addActionListener(b -> {f.dispose(); new Add_Product();});
+    dproduct.addActionListener(c -> {f.dispose(); new Delete_Product();});
+    sproduct.addActionListener(d -> {f.dispose(); new Show_Product();});
     simulation.addActionListener(e -> {});
     
     // add Items to JFrame
-    this.add(close);
-    this.add(aproduct);
-    this.add(dproduct);
-    this.add(sproduct);
-    this.add(simulation);
-    
-    
+    f.add(close);
+    f.add(aproduct);
+    f.add(dproduct);
+    f.add(sproduct);
+    f.add(simulation);
   } 
   
   public static void main (String[] args) {
