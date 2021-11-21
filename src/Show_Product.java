@@ -3,17 +3,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 import java.net.URL;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Show_Product {
-	 JFrame f;
+   JFrame frame;
      JButton show, back, close;
      JTextArea read;
      JToolBar tbar;
+     FileFilter filter;
     public Show_Product() {
-	f = new JFrame("Verwaltungsprogramm - Show Product");
-    f.setExtendedState(JFrame.MAXIMIZED_BOTH);
-    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    f.setVisible(true);
+  frame = new JFrame("Verwaltungsprogramm - Show Product");
+    frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setVisible(true);
     
     // JButton for show
         URL iconURL1 = getClass().getResource("Open.png");
@@ -49,10 +52,13 @@ public class Show_Product {
     
     // add Actionlisteners
     close.addActionListener(a -> {System.exit(0);});
-    back.addActionListener(b -> {f.dispose(); new Main();});
-    show.addActionListener(c -> { 
+    back.addActionListener(b -> {frame.dispose(); new Main();});
+    show.addActionListener(c -> {               ;
+            filter = new FileNameExtensionFilter("Textdatei", "txt");
             JFileChooser fc = new JFileChooser();
-            int i = fc.showOpenDialog(f);
+            fc.addChoosableFileFilter(filter);   
+            int i = fc.showOpenDialog(frame);
+      
             if(i == JFileChooser.APPROVE_OPTION) {
                 File f = fc.getSelectedFile();
                 String filepath = f.getPath();
@@ -65,15 +71,15 @@ public class Show_Product {
                     read.setText(s2);
                     br.close();
                 }catch (Exception ex) {ex.printStackTrace();}
-			}
-	});
+      }
+  });
     
     // add JButtons to JFrame
     tbar.add(show);
     tbar.add(back);
     tbar.add(close);
-    f.add(new JScrollPane(read));
-    f.add(tbar, BorderLayout.NORTH);
+    frame.add(new JScrollPane(read));
+    frame.add(tbar, BorderLayout.NORTH);
   } 
 
 }
