@@ -2,10 +2,11 @@
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
+import java.net.URL;
 
 public class Show_Product {
 	 JFrame f;
-     JButton close, back, show;
+     JButton show, back, close;
      JTextArea read;
      JToolBar tbar;
     public Show_Product() {
@@ -14,14 +15,26 @@ public class Show_Product {
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     f.setVisible(true);
     
-    // add JButton for Cancel
-    close = new JButton("Close");
-    
-    // add JButton for Back
-    back = new JButton("Back");
-    
-    // add JButton for Show
-    show = new JButton("Show");
+    // JButton for show
+        URL iconURL1 = getClass().getResource("Open.png");
+        // iconURL is null when not found
+        ImageIcon icon1 = new ImageIcon(iconURL1);
+        show = new JButton(icon1);
+        show.setSize(100, 50);
+        
+        // JButton for back
+        URL iconURL2 = getClass().getResource("Back.png");
+        // iconURL is null when not found
+        ImageIcon icon2 = new ImageIcon(iconURL2);
+        back = new JButton(icon2);
+        back.setSize(100, 50);
+        
+        // JButton for Close
+        URL iconURL3 = getClass().getResource("Exit.png");
+        // iconURL is null when not found
+        ImageIcon icon3 = new ImageIcon(iconURL3);
+        close = new JButton(icon3);
+        close.setSize(100, 50);
     
     // add JTextArea for Reading
     read = new JTextArea();
@@ -56,12 +69,11 @@ public class Show_Product {
 	});
     
     // add JButtons to JFrame
-    tbar.add(close);
-    tbar.add(back);
     tbar.add(show);
+    tbar.add(back);
+    tbar.add(close);
     f.add(new JScrollPane(read));
     f.add(tbar, BorderLayout.NORTH);
   } 
 
-} 
-
+}
