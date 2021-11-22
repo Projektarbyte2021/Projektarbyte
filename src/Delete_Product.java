@@ -1,9 +1,11 @@
 import javax.swing.*;
 import java.io.*;
+import javax.swing.JLabel;
 
 public class Delete_Product extends JFrame {
     JButton close, back, alldelete;
-  JDialog dialog;
+    JDialog dialog;
+    JLabel successful;
     public Delete_Product() {
     super("Verwaltungsprogramm - Delete Produkt");
     this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -34,9 +36,6 @@ public class Delete_Product extends JFrame {
             BufferedWriter bw = new BufferedWriter(new FileWriter(file));
             bw.write("");
             bw.flush();
-        
-        dialog = new JDialog("Loeschen erfolgreich abgeschlossen!");
-        dialog.setSize(400, 300);
     }catch (IOException e) {e.printStackTrace();}});
     
     // add JButtons to JFrame
