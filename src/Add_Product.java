@@ -62,7 +62,7 @@ public class Add_Product extends JFrame  {
     this.add(back);
     this.add(add);
     this.add(name);
-	this.add(category);
+  this.add(category);
     this.add(nproduct);
     this.add(cproduct);
   }
