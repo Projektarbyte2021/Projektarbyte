@@ -40,6 +40,9 @@ public class Add_Product extends JFrame  {
     cproduct = new JTextArea("Category: ");
     cproduct.setBounds(210, 90, 100, 20);
     
+    /*JComboBox cproduct = new JComboBox(windowList);
+        cproduct.setBounds(550,225, 200,50);*/
+    
     // add Actionlisteners
     close.addActionListener(a -> {System.exit(0);});
     back.addActionListener(b -> {this.dispose(); new Main();});
@@ -47,7 +50,7 @@ public class Add_Product extends JFrame  {
     try{
       File file = new File("");
             JFileChooser fc = new JFileChooser();
-            fc.showSaveDialog(null);
+            fc.showSaveDialog(null); 
             file = fc.getSelectedFile();
             BufferedWriter bw = new BufferedWriter(new FileWriter(file));
             bw.write(nproduct.getText());
@@ -62,7 +65,7 @@ public class Add_Product extends JFrame  {
     this.add(back);
     this.add(add);
     this.add(name);
-  this.add(category);
+    this.add(category);
     this.add(nproduct);
     this.add(cproduct);
   }
