@@ -51,7 +51,7 @@ public class Main {
     aproduct.addActionListener(b -> {f.dispose(); new Add_Product();});
     dproduct.addActionListener(c -> {f.dispose(); new Delete_Product();});
     sproduct.addActionListener(d -> {f.dispose(); new Show_Product();});
-    simulation.addActionListener(e -> {});
+    simulation.addActionListener(e -> {f.dispose(); new Simulation();});
     
     // add Items to JFrame
     f.add(close);

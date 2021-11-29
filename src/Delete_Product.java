@@ -7,7 +7,7 @@ public class Delete_Product extends JFrame {
     JDialog dialog;
     JLabel successful;
     public Delete_Product() {
-    super("Verwaltungsprogramm - Delete Produkt");
+    super("Verwaltungsprogramm - Delete Product");
     this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setLayout(null);
