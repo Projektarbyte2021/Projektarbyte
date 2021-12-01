@@ -7,18 +7,13 @@ public class Main {
   public JFrame f;
   
   public Main() {
-    String os = System.getProperty("os.name").toLowerCase();
-                                               
     
-           try {
-                if (os.indexOf("win") >= 0) {
-                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                } else if (os.indexOf("nix") >= 0 || os.indexOf("nux") >= 0) {
-                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                }
+         try {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             } catch(Exception e) {
-                System.err.println("Setting Look and Feel Failed");
+                System.out.println("Setting Look and Feel Failed");  
             }
+    
     // add Main Frame
     f = new JFrame("Verwaltungsprogramm - Main");
     f.setExtendedState(JFrame.MAXIMIZED_BOTH);

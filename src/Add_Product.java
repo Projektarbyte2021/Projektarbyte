@@ -3,8 +3,8 @@ import java.io.*;
 
 public class Add_Product extends JFrame  {
     JButton close, back, add;
-    JTextArea nproduct, cproduct;
-    JLabel name, category;
+    JTextArea nproduct, cproduct, pproduct, iproduct;
+    JLabel name, category, price, info;
     public Add_Product() {
     super("Verwaltungsprogramm - Add Product");
     this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -40,6 +40,22 @@ public class Add_Product extends JFrame  {
     cproduct = new JTextArea("Category: ");
     cproduct.setBounds(210, 90, 100, 20);
     
+    // add JLabel for Price of Product
+    price = new JLabel("Price of Product:");
+    price.setBounds(100, 150, 100, 10);
+    
+    // add JTextArea for Price of Product
+    pproduct = new JTextArea("Price: ");
+    pproduct.setBounds(210, 150, 100, 20);
+    
+    // add JLabel for Information of Product
+    info = new JLabel("Information of Product:");
+    info.setBounds(100, 200, 200, 10);
+    
+    // add JTextArea for Information of product
+    iproduct = new JTextArea("Information of Product: ");
+    iproduct.setBounds(210, 200, 200, 50);
+    
     /*JComboBox cproduct = new JComboBox(windowList);
         cproduct.setBounds(550,225, 200,50);*/
     
@@ -47,8 +63,8 @@ public class Add_Product extends JFrame  {
     close.addActionListener(a -> {System.exit(0);});
     back.addActionListener(b -> {this.dispose(); new Main();});
     add.addActionListener(c -> {
-    try{
-      File file = new File("");
+      try {
+            File file = new File("");
             JFileChooser fc = new JFileChooser();
             fc.showSaveDialog(null); 
             file = fc.getSelectedFile();
@@ -56,8 +72,12 @@ public class Add_Product extends JFrame  {
             bw.write(nproduct.getText());
             bw.write("\n");
             bw.write(cproduct.getText());
+            bw.write("\n");
+            bw.write(pproduct.getText());
+            bw.write("\n");
+            bw.write(iproduct.getText());
             bw.flush();
-    }catch (IOException e) {e.printStackTrace();}
+      }catch (IOException e) {e.printStackTrace();}
   });
     
     // add JButtons to JFrame
@@ -65,9 +85,13 @@ public class Add_Product extends JFrame  {
     this.add(back);
     this.add(add);
     this.add(name);
+    this.add(info);
+    this.add(price);
     this.add(category);
     this.add(nproduct);
     this.add(cproduct);
+    this.add(pproduct);
+    this.add(iproduct);
   }
 }
   
