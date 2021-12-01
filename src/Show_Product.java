@@ -13,7 +13,7 @@ public class Show_Product {
      JToolBar tbar;
      FileFilter filter;
     public Show_Product() {
-	frame = new JFrame("Verwaltungsprogramm - Show Product");
+  frame = new JFrame("Verwaltungsprogramm - Show Product");
     frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setVisible(true);

@@ -8,11 +8,11 @@ public class Main {
   
   public Main() {
     
-         try {
-                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            } catch(Exception e) {
-                System.out.println("Setting Look and Feel Failed");  
-            }
+    try {
+      UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+    } catch(Exception e) {
+      System.out.println("Setting Look and Feel Failed");  
+    }
     
     // add Main Frame
     f = new JFrame("Verwaltungsprogramm - Main");

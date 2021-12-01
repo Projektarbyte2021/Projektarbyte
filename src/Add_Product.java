@@ -5,7 +5,7 @@ public class Add_Product extends JFrame  {
     JButton close, back, add;
     JTextArea nproduct, cproduct, pproduct, iproduct;
     JLabel name, category, price, info;
-    public Add_Product() {
+  public Add_Product() {
     super("Verwaltungsprogramm - Add Product");
     this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -30,15 +30,15 @@ public class Add_Product extends JFrame  {
     
     // add JTextArea for Name of product
     nproduct = new JTextArea("Name: ");
-    nproduct.setBounds(210, 47, 100, 20);
+    nproduct.setBounds(220, 47, 100, 20);
     
     // add JLabel for Category of Product
     category = new JLabel("Category of Product:");
-    category.setBounds(100, 87, 100, 10);
+    category.setBounds(100, 87, 200, 20);
     
     // add JTextArea for Category of product
     cproduct = new JTextArea("Category: ");
-    cproduct.setBounds(210, 90, 100, 20);
+    cproduct.setBounds(220, 90, 100, 20);
     
     // add JLabel for Price of Product
     price = new JLabel("Price of Product:");
@@ -46,7 +46,7 @@ public class Add_Product extends JFrame  {
     
     // add JTextArea for Price of Product
     pproduct = new JTextArea("Price: ");
-    pproduct.setBounds(210, 150, 100, 20);
+    pproduct.setBounds(220, 150, 100, 20);
     
     // add JLabel for Information of Product
     info = new JLabel("Information of Product:");
@@ -54,7 +54,7 @@ public class Add_Product extends JFrame  {
     
     // add JTextArea for Information of product
     iproduct = new JTextArea("Information of Product: ");
-    iproduct.setBounds(210, 200, 200, 50);
+    iproduct.setBounds(220, 200, 200, 50);
     
     /*JComboBox cproduct = new JComboBox(windowList);
         cproduct.setBounds(550,225, 200,50);*/
@@ -64,19 +64,19 @@ public class Add_Product extends JFrame  {
     back.addActionListener(b -> {this.dispose(); new Main();});
     add.addActionListener(c -> {
       try {
-            File file = new File("");
-            JFileChooser fc = new JFileChooser();
-            fc.showSaveDialog(null); 
-            file = fc.getSelectedFile();
-            BufferedWriter bw = new BufferedWriter(new FileWriter(file));
-            bw.write(nproduct.getText());
-            bw.write("\n");
-            bw.write(cproduct.getText());
-            bw.write("\n");
-            bw.write(pproduct.getText());
-            bw.write("\n");
-            bw.write(iproduct.getText());
-            bw.flush();
+        File file = new File("");
+        JFileChooser fc = new JFileChooser();
+        fc.showSaveDialog(null); 
+        file = fc.getSelectedFile();
+        BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+        bw.write(nproduct.getText());
+        bw.write("\n");
+        bw.write(cproduct.getText());
+        bw.write("\n");
+        bw.write(pproduct.getText());
+        bw.write("\n");
+        bw.write(iproduct.getText());
+        bw.flush();
       }catch (IOException e) {e.printStackTrace();}
   });
     
