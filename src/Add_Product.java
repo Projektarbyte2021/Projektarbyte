@@ -41,7 +41,7 @@ public class Add_Product extends JFrame  {
     
     // add JTextArea for Name of product
     nproduct = new JTextArea("Name: ");
-    nproduct.setBounds(220, 47, 100, 20);
+    nproduct.setBounds(250, 47, 100, 20);
     
     // add JLabel for Category of Product
     category = new JLabel("Category of Product:");
@@ -49,7 +49,7 @@ public class Add_Product extends JFrame  {
     
     // add JTextArea for Category of product
     cproduct = new JTextArea("Category: ");
-    cproduct.setBounds(220, 90, 100, 20);
+    cproduct.setBounds(250, 90, 100, 20);
     
     // add JLabel for Price of Product
     price = new JLabel("Price of Product:");
@@ -57,7 +57,7 @@ public class Add_Product extends JFrame  {
     
     // add JTextArea for Price of Product
     pproduct = new JTextArea("Price: ");
-    pproduct.setBounds(220, 150, 100, 20);
+    pproduct.setBounds(250, 150, 100, 20);
     
     // add JLabel for Information of Product
     info = new JLabel("Information of Product:");
@@ -65,7 +65,7 @@ public class Add_Product extends JFrame  {
     
     // add JTextArea for Information of product
     iproduct = new JTextArea("Information of Product: ");
-    iproduct.setBounds(220, 200, 200, 50);
+    iproduct.setBounds(250, 200, 200, 50);
     
     /*JComboBox cproduct = new JComboBox(windowList);
         cproduct.setBounds(550,225, 200,50);*/
