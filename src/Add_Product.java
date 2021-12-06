@@ -1,15 +1,17 @@
-import javax.swing.*;
+import javax.swing.*;  
+import java.awt.*;  
 import java.io.*;
 
-public class Add_Product extends JFrame  {
+public class Add_Product extends JFrame  {  
+    JPanel panel;
     JButton close, back, add;
+    JRadioButton don, doff;
     JTextArea nproduct, cproduct, pproduct, iproduct;
-    JLabel name, category, price, info;
-  public Add_Product() {
+    JLabel name, category, price, info; 
+  public Add_Product() {             
     super("Verwaltungsprogramm - Add Product");
     this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setLayout(null);
     this.setVisible(true);
     
     // add JButton for Cancel
@@ -23,6 +25,15 @@ public class Add_Product extends JFrame  {
     // add JButton for Add
     add = new JButton("Add");
     add.setBounds(450, 100, 200, 50);
+    
+    // add JCheckBox for Description on
+    don = new JRadioButton("Description on");
+    
+    // add JCheckBox for Description off
+    doff = new JRadioButton("Description off");
+    
+    panel = new JPanel(); 
+    panel.setBackground(Color.gray);
     
     // add JLabel for Name of Product
     name = new JLabel("Name of Product:");
@@ -80,18 +91,20 @@ public class Add_Product extends JFrame  {
       }catch (IOException e) {e.printStackTrace();}
   });
     
-    // add JButtons to JFrame
-    this.add(close);
-    this.add(back);
-    this.add(add);
-    this.add(name);
-    this.add(info);
-    this.add(price);
-    this.add(category);
-    this.add(nproduct);
-    this.add(cproduct);
-    this.add(pproduct);
-    this.add(iproduct);
+    // add JButtons to JFrame    
+    this.add(panel);
+    panel.add(close);
+    panel.add(back);
+    panel.add(add);
+    panel.add(don);
+    panel.add(doff);   
+    panel.add(name);
+    panel.add(info);
+    panel.add(price);
+    panel.add(category);
+    panel.add(nproduct);
+    panel.add(cproduct);
+    panel.add(iproduct);
   }
 }
   

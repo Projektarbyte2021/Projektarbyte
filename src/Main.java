@@ -5,7 +5,7 @@ public class Main {
   
   public JButton close, aproduct, dproduct, sproduct, simulation;
   public JFrame f;
-  
+                               
   public Main() {
     
     try {
