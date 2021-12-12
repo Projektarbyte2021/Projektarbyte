@@ -1,3 +1,4 @@
+// Imports
 import javax.swing.*;
 
 public class Simulation extends JFrame {

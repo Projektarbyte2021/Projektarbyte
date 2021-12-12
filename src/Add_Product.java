@@ -1,22 +1,15 @@
+// Imports
 import java.awt.*;
 import javax.swing.*;
 import java.io.*;
 
-/**
- *
- * Beschreibung
- *
- * @version 1.0 vom 09.12.2021
- * @author 
- */
-
 public class Add_Product extends JFrame {
-  // Anfang Attribute
+
   private JButton close = new JButton();
   private JButton back = new JButton();
   private JButton add = new JButton();
-  private JRadioButton don = new JRadioButton("Description on");
-  private JRadioButton doff = new JRadioButton("Description off");
+  private JRadioButton don = new JRadioButton("Label on");
+  private JRadioButton doff = new JRadioButton("Label off");
   private JTextArea nproduct = new JTextArea("");
   private JScrollPane nproductScrollPane = new JScrollPane(nproduct);
   private JTextArea cproduct = new JTextArea("");
@@ -27,19 +20,16 @@ public class Add_Product extends JFrame {
   private JScrollPane pproductScrollPane = new JScrollPane(pproduct);
   private JLabel price = new JLabel();
   private JTextArea iproduct = new JTextArea("");
-    private JScrollPane iproductScrollPane = new JScrollPane(iproduct);
+  private JScrollPane iproductScrollPane = new JScrollPane(iproduct);
   private JLabel info = new JLabel();
-  // Ende Attribute
   
   public Add_Product() { 
-    // Frame-Initialisierung
     super("Verwaltungsprogramm - Add Product");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setExtendedState(JFrame.MAXIMIZED_BOTH);
     setVisible(true);
     Container cp = getContentPane();
     cp.setLayout(null);
-    // Anfang Komponenten
     
     close.setBounds(200, 500, 200, 50);
     close.setText("Close");
@@ -91,27 +81,26 @@ public class Add_Product extends JFrame {
     cp.add(don);
     doff.setBounds(420, 73, 100, 20);
     cp.add(doff);
-    nproductScrollPane.setBounds(130, 27, 168, 44);
+    nproductScrollPane.setBounds(150, 27, 168, 44);
     cp.add(nproductScrollPane);
-    cproductScrollPane.setBounds(130, 80, 168, 44);
+    cproductScrollPane.setBounds(150, 80, 168, 44);
     cp.add(cproductScrollPane);
-    name.setBounds(16, 34, 110, 20);
+    name.setBounds(16, 34, 150, 20);
     name.setText("Name of Product:");
     cp.add(name);
-    category.setBounds(13, 90, 110, 20);
+    category.setBounds(16, 90, 150, 20);
     category.setText("Category of Product:");
     cp.add(category);
-    pproductScrollPane.setBounds(130, 137, 168, 44);
+    pproductScrollPane.setBounds(150, 137, 168, 44);
     cp.add(pproductScrollPane);
-    price.setBounds(12, 150, 110, 20);
+    price.setBounds(16, 150, 150, 20);
     price.setText("Price of Product:");
     cp.add(price);
-    iproductScrollPane.setBounds(129, 194, 168, 44);
+    iproductScrollPane.setBounds(150, 194, 168, 44);
     cp.add(iproductScrollPane);
-    info.setBounds(9, 211, 110, 20);
+    info.setBounds(16, 211, 150, 20);
     info.setText("Description of Product: ");
     cp.add(info);
-    // Ende Komponenten
   } 
   
 }
