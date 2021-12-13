@@ -1,11 +1,3 @@
-/**
- *
- * Beschreibung
- *
- * @version 1.0 vom 15.11.2021
- * @author 
- */
-
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.JFrame;
