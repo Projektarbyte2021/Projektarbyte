@@ -5,23 +5,11 @@ import java.io.*;
 
 public class Add_Product extends JFrame {
 
-  private JButton close = new JButton();
-  private JButton back = new JButton();
-  private JButton add = new JButton();
-  private JRadioButton don = new JRadioButton("Label on");
-  private JRadioButton doff = new JRadioButton("Label off");
-  private JTextArea nproduct = new JTextArea("");
-  private JScrollPane nproductScrollPane = new JScrollPane(nproduct);
-  private JTextArea cproduct = new JTextArea("");
-  private JScrollPane cproductScrollPane = new JScrollPane(cproduct);
-  private JLabel name = new JLabel();
-  private JLabel category = new JLabel();
-  private JTextArea pproduct = new JTextArea("");
-  private JScrollPane pproductScrollPane = new JScrollPane(pproduct);
-  private JLabel price = new JLabel();
-  private JTextArea iproduct = new JTextArea("");
-  private JScrollPane iproductScrollPane = new JScrollPane(iproduct);
-  private JLabel info = new JLabel();
+  private JButton close, back, add;
+  private JRadioButton don, doff;
+  private JTextArea nproduct, cproduct, pproduct, iproduct;  
+  private JScrollPane nproductScrollPane, cproductScrollPane, pproductScrollPane, iproductScrollPane;
+  private JLabel name, category, price, info;
   
   public Add_Product() { 
     super("Verwaltungsprogramm - Add Product");
@@ -31,21 +19,76 @@ public class Add_Product extends JFrame {
     Container cp = getContentPane();
     cp.setLayout(null);
     
+    // JTextAreas and JScrollPanes
+    nproduct = new JTextArea();
+    nproductScrollPane = new JScrollPane(nproduct);
+    nproductScrollPane.setBounds(150, 27, 168, 44);
+    cp.add(nproductScrollPane);
+    
+    cproduct = new JTextArea();
+    cproductScrollPane = new JScrollPane(cproduct);
+    cproductScrollPane.setBounds(150, 80, 168, 44);
+    cp.add(cproductScrollPane);
+    
+    pproduct = new JTextArea();
+    pproductScrollPane = new JScrollPane(pproduct);
+    pproductScrollPane.setBounds(150, 137, 168, 44);
+    cp.add(pproductScrollPane);
+    
+    
+    iproduct = new JTextArea();
+    iproductScrollPane = new JScrollPane(iproduct);
+    iproductScrollPane.setBounds(150, 194, 168, 44);
+    cp.add(iproductScrollPane);
+    
+    // JLabels
+    name = new JLabel("Name of Product:");
+    name.setBounds(16, 34, 150, 20);
+    cp.add(name);
+    
+    category = new JLabel("Category of Product:");
+    category.setBounds(16, 90, 150, 20);
+    cp.add(category);
+    
+    price = new JLabel("Price of Product:");
+    price.setBounds(16, 150, 150, 20);
+    cp.add(price);
+    
+    info = new JLabel("Description of Product: ");
+    info.setBounds(16, 211, 150, 20);
+    cp.add(info);
+    
+    // JButtons
+    close = new JButton("Close");
     close.setBounds(200, 500, 200, 50);
-    close.setText("Close");
+    cp.add(close);
+    
+    back = new JButton("Back");
+    back.setBounds(450, 500, 200, 50);
+    cp.add(back);
+    
+    add = new JButton("Add");
+    add.setBounds(450, 100, 200, 50);
+    cp.add(add);
+    
+    don = new JRadioButton("Label on");
+    don.setBounds(420, 38, 100, 20);
+    cp.add(don);
+    
+    doff = new JRadioButton("Label off");
+    doff.setBounds(420, 73, 100, 20);
+    cp.add(doff);
+    
+    // ActionListeners 
     close.addActionListener(a -> {
       System.exit(0);
     });
-    cp.add(close);
-    back.setBounds(450, 500, 200, 50);
-    back.setText("Back");
-    back.addActionListener(a -> {;
+     
+    back.addActionListener(a -> {
       this.dispose();
       new Main();
     });
-    cp.add(back);
-    add.setBounds(450, 100, 200, 50);
-    add.setText("Add");
+    
     add.addActionListener(a -> {
       try {
         File file = new File("");
@@ -61,14 +104,18 @@ public class Add_Product extends JFrame {
         bw.write("\n");
         bw.write(iproduct.getText());
         bw.flush();
-      }catch (IOException e) {e.printStackTrace();}
+      }catch (IOException e) {
+        e.printStackTrace();
+      }
     });
-    don.addActionListener(a -> {;
+    
+    don.addActionListener(a -> {
       nproduct.setText("Name: ");
       cproduct.setText("Category: ");
       pproduct.setText("Price: ");
       iproduct.setText("Description: ");
     });
+    
     doff.addActionListener(a -> {
       nproduct.setText(" ");
       cproduct.setText(" ");
@@ -76,31 +123,6 @@ public class Add_Product extends JFrame {
       iproduct.setText(" ");
     });
     
-    cp.add(add);
-    don.setBounds(420, 38, 100, 20);
-    cp.add(don);
-    doff.setBounds(420, 73, 100, 20);
-    cp.add(doff);
-    nproductScrollPane.setBounds(150, 27, 168, 44);
-    cp.add(nproductScrollPane);
-    cproductScrollPane.setBounds(150, 80, 168, 44);
-    cp.add(cproductScrollPane);
-    name.setBounds(16, 34, 150, 20);
-    name.setText("Name of Product:");
-    cp.add(name);
-    category.setBounds(16, 90, 150, 20);
-    category.setText("Category of Product:");
-    cp.add(category);
-    pproductScrollPane.setBounds(150, 137, 168, 44);
-    cp.add(pproductScrollPane);
-    price.setBounds(16, 150, 150, 20);
-    price.setText("Price of Product:");
-    cp.add(price);
-    iproductScrollPane.setBounds(150, 194, 168, 44);
-    cp.add(iproductScrollPane);
-    info.setBounds(16, 211, 150, 20);
-    info.setText("Description of Product: ");
-    cp.add(info);
   } 
   
 }

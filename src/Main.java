@@ -14,50 +14,63 @@ public class Main {
       System.out.println("Setting Look and Feel Failed");  
     }
     
-    // add Main Frame
+    // JFrame
     f = new JFrame("Verwaltungsprogramm - Main");
     f.setExtendedState(JFrame.MAXIMIZED_BOTH);
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     f.setLayout(null);
     f.setVisible(true);
     
-    // add JButton for Cancel
+    // JButtons
     close = new JButton("Close");
     close.setBounds(300, 500, 200, 50);
+    f.add(close);
     
-    // add JButton for Add Product
     aproduct = new JButton("Add Product");
     aproduct.setBounds(200, 150, 200, 50);
+    f.add(aproduct);
     
-    // add JButton for Delete Product
     dproduct = new JButton("Delete Product");
     dproduct.setBounds(450, 150, 200, 50);
+    f.add(dproduct);
     
-    // add JButton for Show Button
     sproduct = new JButton("Show Product");
     sproduct.setBounds(200, 250, 200, 50);
+    f.add(sproduct);
     
-    // add JButton for Simulation
     simulation = new JButton("Simulation");
     simulation.setBounds(450, 250, 200, 50);
-    
-    // add ActionListener
-    close.addActionListener(a -> {System.exit(0);});
-    aproduct.addActionListener(b -> {f.dispose(); new Add_Product();});
-    dproduct.addActionListener(c -> {f.dispose(); new Delete_Product();});
-    sproduct.addActionListener(d -> {f.dispose(); new Show_Product();});
-    simulation.addActionListener(e -> {f.dispose(); new Simulation();});
-    
-    // add Items to JFrame
-    f.add(close);
-    f.add(aproduct);
-    f.add(dproduct);
-    f.add(sproduct);
     f.add(simulation);
+    
+    // ActionListeners
+    close.addActionListener(a -> {
+      System.exit(0);
+    });
+
+    aproduct.addActionListener(b -> {
+      f.dispose();
+      new Add_Product();
+    });
+
+    dproduct.addActionListener(c -> {
+      f.dispose();
+      new Delete_Product();
+    });
+
+    sproduct.addActionListener(d -> {
+      f.dispose();
+      new Show_Product();
+    });
+
+    simulation.addActionListener(e -> {
+      f.dispose();
+      new Simulation();
+    });
   } 
   
   public static void main (String[] args) {
     new Main();
   }
+  
 }
 
