@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.io.*;
 
 public class Add_Product extends JFrame {
-
+                                 
   private JButton close, back, add;
   private JRadioButton don, doff;
   private JTextArea nproduct, cproduct, pproduct, iproduct;  
@@ -105,7 +105,9 @@ public class Add_Product extends JFrame {
         bw.write(iproduct.getText());
         bw.flush();
       }catch (IOException e) {
-        e.printStackTrace();
+        // e.printStackTrace();
+        ErrorDialog error = new ErrorDialog();
+        error.setWriteError();
       }
     });
     

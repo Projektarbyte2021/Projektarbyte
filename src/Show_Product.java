@@ -82,7 +82,9 @@ public class Show_Product {
           read.setText(s2);
           br.close();
         } catch(Exception e) {
-          e.printStackTrace();
+          // e.printStackTrace();
+          ErrorDialog error = new ErrorDialog();
+          error.setOpenError();
         }
       }
     });

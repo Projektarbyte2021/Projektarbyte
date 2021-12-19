@@ -46,7 +46,9 @@ public class Delete_Product extends JFrame {
             bw.write("");
             bw.flush();
       } catch(Exception e) {
-        e.printStackTrace();
+        // e.printStackTrace();
+        ErrorDialog error = new ErrorDialog();
+        error.setWriteError();
       } 
     });
     
