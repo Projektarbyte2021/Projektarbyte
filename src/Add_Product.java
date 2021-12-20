@@ -2,9 +2,12 @@
 import java.awt.*;
 import javax.swing.*;
 import java.io.*;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Add_Product extends JFrame {
                                  
+  private FileFilter filter;
   private JButton close, back, add;
   private JRadioButton don, doff;
   private JTextArea nproduct, cproduct, pproduct, iproduct;  
@@ -84,17 +87,20 @@ public class Add_Product extends JFrame {
       System.exit(0);
     });
      
-    back.addActionListener(a -> {
+    back.addActionListener(b -> {
       this.dispose();
       new Main();
     });
     
-    add.addActionListener(a -> {
+    add.addActionListener(c -> {;
+      JFileChooser fc = new JFileChooser();
+      filter = new FileNameExtensionFilter("Textdatei", "txt");
+      fc.addChoosableFileFilter(filter);   
+      int i = fc.showSaveDialog(null);
+      if(i == JFileChooser.APPROVE_OPTION) {
       try {
         boolean neu = false;
         File file = new File("");
-        JFileChooser fc = new JFileChooser();
-        fc.showSaveDialog(null); 
         file = fc.getSelectedFile();
         if(!file.exists()) {
           file.createNewFile();
@@ -105,7 +111,10 @@ public class Add_Product extends JFrame {
           bw.write("\n");
           bw.write("\n");
         } // end of if
+<<<<<<< HEAD
+=======
         bw.write("");
+>>>>>>> 4f42785925bb966dc771bf3934845a278e563d7e
         bw.write(nproduct.getText());
         bw.write("\n");
         bw.write(cproduct.getText());
@@ -118,17 +127,18 @@ public class Add_Product extends JFrame {
         // e.printStackTrace();
         ErrorDialog error = new ErrorDialog();
         error.setWriteError();
+        }
       }
     });
     
-    don.addActionListener(a -> {
+    don.addActionListener(d -> {
       nproduct.setText("Name: ");
       cproduct.setText("Category: ");
       pproduct.setText("Price: ");
       iproduct.setText("Description: ");
     });
     
-    doff.addActionListener(a -> {
+    doff.addActionListener(e -> {
       nproduct.setText(" ");
       cproduct.setText(" ");
       pproduct.setText(" ");
