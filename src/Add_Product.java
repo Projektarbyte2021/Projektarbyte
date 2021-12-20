@@ -111,10 +111,7 @@ public class Add_Product extends JFrame {
           bw.write("\n");
           bw.write("\n");
         } // end of if
-<<<<<<< HEAD
-=======
         bw.write("");
->>>>>>> 4f42785925bb966dc771bf3934845a278e563d7e
         bw.write(nproduct.getText());
         bw.write("\n");
         bw.write(cproduct.getText());
