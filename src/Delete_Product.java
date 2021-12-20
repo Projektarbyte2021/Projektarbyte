@@ -4,7 +4,6 @@ import java.io.*;
 
 public class Delete_Product extends JFrame {
     private JButton close, back, alldelete, onedelete;
-    private JDialog dialog;
   
     public Delete_Product() {
     super("Verwaltungsprogramm - Delete Product");
@@ -42,7 +41,7 @@ public class Delete_Product extends JFrame {
 
     alldelete.addActionListener(c -> {
       try {
-        File file;
+          File file;
             JFileChooser fc = new JFileChooser();
             fc.showSaveDialog(null);
             file = fc.getSelectedFile();
@@ -54,6 +53,23 @@ public class Delete_Product extends JFrame {
         ErrorDialog error = new ErrorDialog();
         error.setWriteError();
       } 
+    });
+
+    onedelete.addActionListener(d -> {
+        try {
+            File file;
+            JFileChooser fc =  new JFileChooser();
+            fc.showSaveDialog(null);
+            file = fc.getSelectedFile();
+            boolean neu = true;
+            boolean gelöscht = false;
+            if(file.exists()) {
+                BufferedWriter bw = new BufferedWriter(new FileWriter(file, false));
+            }
+        } catch(IOException e) {
+            ErrorDialog error = new ErrorDialog();
+            error.setWriteError();
+        }
     });
     
   } 
