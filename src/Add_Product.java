@@ -100,7 +100,7 @@ public class Add_Product extends JFrame {
       if(i == JFileChooser.APPROVE_OPTION) {
       try {
         boolean neu = false;
-        File file = new File("");
+        File file;
         file = fc.getSelectedFile();
         if(!file.exists()) {
           file.createNewFile();

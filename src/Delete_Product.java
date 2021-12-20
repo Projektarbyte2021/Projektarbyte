@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.io.*;
 
 public class Delete_Product extends JFrame {
-    private JButton close, back, alldelete;
+    private JButton close, back, alldelete, onedelete;
     private JDialog dialog;
   
     public Delete_Product() {
@@ -26,6 +26,10 @@ public class Delete_Product extends JFrame {
     alldelete.setBounds(800, 500, 200, 50);
     this.add(alldelete);
     
+    onedelete = new JButton("Delete one Product");
+    onedelete.setBounds(500, 700, 200, 50);
+    this.add(onedelete);
+    
     // add Actionlisteners
     close.addActionListener(a -> {
       System.exit(0);
@@ -38,7 +42,7 @@ public class Delete_Product extends JFrame {
 
     alldelete.addActionListener(c -> {
       try {
-        File file = new File("");
+        File file;
             JFileChooser fc = new JFileChooser();
             fc.showSaveDialog(null);
             file = fc.getSelectedFile();
