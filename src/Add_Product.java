@@ -91,11 +91,21 @@ public class Add_Product extends JFrame {
     
     add.addActionListener(a -> {
       try {
+        boolean neu = false;
         File file = new File("");
         JFileChooser fc = new JFileChooser();
         fc.showSaveDialog(null); 
         file = fc.getSelectedFile();
-        BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+        if(!file.exists()) {
+          file.createNewFile();
+          neu = true;
+        }      
+        BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
+        if (!neu) {
+          bw.write("\n");
+          bw.write("\n");
+        } // end of if
+        bw.write("");
         bw.write(nproduct.getText());
         bw.write("\n");
         bw.write(cproduct.getText());
@@ -103,7 +113,7 @@ public class Add_Product extends JFrame {
         bw.write(pproduct.getText());
         bw.write("\n");
         bw.write(iproduct.getText());
-        bw.flush();
+        bw.flush(); 
       }catch (IOException e) {
         // e.printStackTrace();
         ErrorDialog error = new ErrorDialog();
