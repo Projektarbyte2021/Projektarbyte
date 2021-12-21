@@ -56,20 +56,7 @@ public class Delete_Product extends JFrame {
     });
 
     onedelete.addActionListener(d -> {
-        try {
-            File file;
-            JFileChooser fc =  new JFileChooser();
-            fc.showSaveDialog(null);
-            file = fc.getSelectedFile();
-            boolean neu = true;
-            boolean gelöscht = false;
-            if(file.exists()) {
-                BufferedWriter bw = new BufferedWriter(new FileWriter(file, false));
-            }
-        } catch(IOException e) {
-            ErrorDialog error = new ErrorDialog();
-            error.setWriteError();
-        }
+        
     });
     
   } 
