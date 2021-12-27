@@ -22,11 +22,11 @@ public class Delete_Product extends JFrame {
     this.add(back);
     
     alldelete = new JButton("Delete all Products");
-    alldelete.setBounds(800, 500, 200, 50);
+    alldelete.setBounds(950, 500, 200, 50);
     this.add(alldelete);
     
     onedelete = new JButton("Delete one Product");
-    onedelete.setBounds(500, 700, 200, 50);
+    onedelete.setBounds(700, 500, 200, 50);
     this.add(onedelete);
     
     // add Actionlisteners
@@ -55,11 +55,51 @@ public class Delete_Product extends JFrame {
       } 
     });
 
-    onedelete.addActionListener(d -> {
-        
+    onedelete.addActionListener(d -> {;
+    Add_Product[] zwischenvariabel = null;
+      int x = JOptionPane.showConfirmDialog(null, "Möchten Sie ein Produkt löschen?");
+      if (x == 0){
+        String input = JOptionPane.showInputDialog("Geben Sie die Artikelnummer ein, das Sie löschen möchten:");
+        delete(zwischenvariabel, input);
+      } 
     });
     
   } 
+  public static void delete (Add_Product[] capacity, String mod_deleted){
+    try{
+      File file;
+      JFileChooser fc = new JFileChooser();
+      fc.showSaveDialog(null);
+      file = fc.getSelectedFile();
+      boolean neu = true;
+      boolean deleted = false;
+      if(file.exists()){
+        BufferedWriter bw = new BufferedWriter(new FileWriter(file, false));
+        for (Add_Product element : capacity){
+          if (!(mod_deleted.equals(element.getCategory()))){
+            if(!neu){
+              bw.write("\n");
+            } else {
+              neu = false;
+            }
+          } else {
+          deleted = true;
+          }
+        }
+        bw.close();
+      } else {
+        System.out.print("Datei nicht vorhanden");
+      }
+      if (deleted){
+        System.out.print("Das Produkt wurde gelöscht.");
+      } else{
+        System.out.print("Artikelnummer nicht gefunden.");
+      }
+    } catch(IOException ioAusnahme){
+      ErrorDialog error = new ErrorDialog();
+      error.setOpenError();
+    }
+  }
 
 } 
 

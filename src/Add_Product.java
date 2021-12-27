@@ -13,6 +13,7 @@ public class Add_Product extends JFrame {
   private JTextArea nproduct, cproduct, pproduct, iproduct;  
   private JScrollPane nproductScrollPane, cproductScrollPane, pproductScrollPane, iproductScrollPane;
   private JLabel name, category, price, info;
+  private String zv1, zv2, zv3, zv4;
   
   public Add_Product() { 
     super("Verwaltungsprogramm - Add Product");
@@ -113,12 +114,16 @@ public class Add_Product extends JFrame {
         } // end of if
         bw.write("");
         bw.write(nproduct.getText());
+        this.zv1 = nproduct.getText();
         bw.write("\n");
         bw.write(cproduct.getText());
+        this.zv2 = cproduct.getText();
         bw.write("\n");
         bw.write(pproduct.getText());
+        this.zv3 = pproduct.getText();
         bw.write("\n");
         bw.write(iproduct.getText());
+        this.zv4 = iproduct.getText();
         bw.flush(); 
       }catch (IOException e) {
         // e.printStackTrace();
@@ -144,6 +149,23 @@ public class Add_Product extends JFrame {
     
   } 
   
+  public String getName() {
+    return zv1;   
+  }
+  
+  public String getCategory() {
+    return zv2;
+  }
+  
+  public String getPrice() {
+    return zv3;
+  }
+  
+  public String getInformation() {
+    return zv4;
+  }
+
+
 }
   
  
