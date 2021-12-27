@@ -11,7 +11,7 @@ public class Splash extends JWindow {
 
     public Splash() {
         infoLabel = new JLabel("Verwaltungsprogramm 1.0.0");          
-        URL iconurl = getClass().getResource("Open.png");
+        URL iconurl = getClass().getResource("Pencil.png");
         ImageIcon logo = new ImageIcon(iconurl);
         container = this.getContentPane();
         container.setLayout(new BorderLayout());

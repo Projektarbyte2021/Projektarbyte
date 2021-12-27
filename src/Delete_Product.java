@@ -57,9 +57,9 @@ public class Delete_Product extends JFrame {
 
     onedelete.addActionListener(d -> {;
     Add_Product[] zwischenvariabel = null;
-      int x = JOptionPane.showConfirmDialog(null, "Möchten Sie ein Produkt löschen?");
+      int x = JOptionPane.showConfirmDialog(null, "Mï¿½chten Sie ein Produkt loeschen?");
       if (x == 0){
-        String input = JOptionPane.showInputDialog("Geben Sie die Artikelnummer ein, das Sie löschen möchten:");
+        String input = JOptionPane.showInputDialog("Geben Sie die Artikelnummer ein, das Sie loeschen moechten:");
         delete(zwischenvariabel, input);
       } 
     });
@@ -91,7 +91,7 @@ public class Delete_Product extends JFrame {
         System.out.print("Datei nicht vorhanden");
       }
       if (deleted){
-        System.out.print("Das Produkt wurde gelöscht.");
+        System.out.print("Das Produkt wurde gelï¿½scht.");
       } else{
         System.out.print("Artikelnummer nicht gefunden.");
       }
