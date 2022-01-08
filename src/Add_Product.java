@@ -10,10 +10,12 @@ public class Add_Product extends JFrame {
   private FileFilter filter;
   private JButton close, back, add;
   private JRadioButton don, doff;
-  private JTextArea nproduct, cproduct, pproduct, iproduct;  
+  private JTextArea nproduct, /*cproduct,*/ pproduct, iproduct;  
+  private JComboBox c;
   private JScrollPane nproductScrollPane, cproductScrollPane, pproductScrollPane, iproductScrollPane;
   private JLabel name, category, price, info;
-  private String zv1, zv2, zv3, zv4;
+  private String zv1, zv2, zv3, zv4, electronic, mechanic, social, services, error;
+  private boolean test1, test2, test3, test4, test5;
   
   public Add_Product() { 
     super("Verwaltungsprogramm - Add Product");
@@ -29,10 +31,14 @@ public class Add_Product extends JFrame {
     nproductScrollPane.setBounds(150, 27, 168, 44);
     cp.add(nproductScrollPane);
     
-    cproduct = new JTextArea();
+    /*cproduct = new JTextArea();
     cproductScrollPane = new JScrollPane(cproduct);
     cproductScrollPane.setBounds(150, 80, 168, 44);
-    cp.add(cproductScrollPane);
+    cp.add(cproductScrollPane);*/ 
+    String[] categoryList = {"Please select a category", "electronic", "mechanic", "social", "services"};
+    c = new JComboBox(categoryList);
+    c.setBounds(150, 80, 168, 44);
+    cp.add(c);
     
     pproduct = new JTextArea();
     pproductScrollPane = new JScrollPane(pproduct);
@@ -83,6 +89,122 @@ public class Add_Product extends JFrame {
     doff.setBounds(420, 73, 100, 20);
     cp.add(doff);
     
+    don.addActionListener(d -> {
+      nproduct.setText("Name: ");
+      // cproduct.setText("Category: ");
+      test1 = true;
+      test2 = true;
+      test3 = true;
+      test4 = true;
+      test5 = true;
+      pproduct.setText("Price: ");
+      iproduct.setText("Description: ");
+    });
+    
+    doff.addActionListener(e -> {
+      nproduct.setText(" ");
+      // cproduct.setText(" ");
+      test1 = false;
+      test2 = false;
+      test3 = false;
+      test4 = false;
+      test5 = false;
+      pproduct.setText(" ");
+      iproduct.setText(" ");
+    });
+    
+    // ItemListener
+    c.addItemListener(ia -> {;
+      if (c.getSelectedItem().equals("Please select a category")) {
+        if (test1 == true) {
+          error = "Category: non";
+          electronic = "";
+          mechanic = "";
+          social = "";
+          services = "";
+        } // end of if
+        
+        if (test1 == false) {
+          error = "non";
+          electronic = "";
+          mechanic = "";
+          social = "";
+          services = "";
+        } // end of if
+      } 
+      
+      if (c.getSelectedItem().equals("electronic")) {
+        if (test2 == true) {
+          error = "";
+          electronic = "Category: electronic";
+          mechanic = "";
+          social = "";
+          services = "";
+        } // end of if
+        
+        if (test2 == false) {
+          error = "";
+          electronic = "electronic";
+          mechanic = "";
+          social = "";
+          services = "";
+        } // end of if
+      } 
+      
+      if (c.getSelectedItem().equals("mechanic")) {
+        if (test3 == true) {
+          error = "";
+          electronic = "";
+          mechanic = "Category: mechanic";
+          social = "";
+          services = "";
+        } // end of if
+        
+        if (test3 == false) {
+          error = "";
+          electronic = "";
+          mechanic = "mechanic";
+          social = "";
+          services = "";
+        } // end of if
+      } 
+      
+      if (c.getSelectedItem().equals("social")) {
+        if (test4 == true) {
+          error = "";
+          electronic = "";
+          mechanic = "";
+          social = "Category: social";
+          services = "";
+        } // end of if
+        
+        if (test4 == false) {
+          error = "";
+          electronic = "";
+          mechanic = "";
+          social = "social";
+          services = "";
+        } // end of if
+      } 
+      
+      if (c.getSelectedItem().equals("services")) {
+        if (test5 == true) {
+          error = "";
+          electronic = "";
+          mechanic = "";
+          social = "";
+          services = "Category: services";
+        } // end of if
+        
+        if (test5 == false) {
+          error = "";
+          electronic = "";
+          mechanic = "";
+          social = "";
+          services = "services";
+        } // end of if
+      } 
+    });
     // ActionListeners 
     close.addActionListener(a -> {
       System.exit(0);
@@ -99,52 +221,67 @@ public class Add_Product extends JFrame {
       fc.addChoosableFileFilter(filter);   
       int i = fc.showSaveDialog(null);
       if(i == JFileChooser.APPROVE_OPTION) {
-      try {
-        boolean neu = false;
-        File file;
-        file = fc.getSelectedFile();
-        if(!file.exists()) {
-          file.createNewFile();
-          neu = true;
-        }      
-        BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
-        if (!neu) {
+        try {
+          boolean neu = false;
+          File file;
+          file = fc.getSelectedFile();
+          if(!file.exists()) {
+            file.createNewFile();
+            neu = true;
+          }      
+          BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
+          if (!neu) {
+            bw.write("\n");
+            bw.write("\n");
+          } // end of if
+          bw.write("");
+          bw.write(nproduct.getText());
+          this.zv1 = nproduct.getText();
           bw.write("\n");
+          /*bw.write(cproduct.getText());
+          this.zv2 = cproduct.getText();*/
+          if (error == "non") {
+            bw.write(error);
+          } else if (error == "Category: non") {
+            bw.write(error);  
+          }
+          
+          if (electronic == "electronic") {
+            bw.write(electronic);
+          } else if (electronic == "Category: electronic") {
+            bw.write(electronic);  
+          } 
+            
+          if (mechanic == "mechanic") {
+            bw.write(mechanic);
+          } else if (mechanic == "Category: mechanic") {
+            bw.write(mechanic);  
+          }
+           
+          if (social == "social") {
+            bw.write(social);
+          } else if (social == "Category: social") {
+            bw.write(social);  
+          }
+           
+          if (services == "services") {
+            bw.write(services);
+          } else if (services == "Category: services") {
+            bw.write(services);  
+          }
           bw.write("\n");
-        } // end of if
-        bw.write("");
-        bw.write(nproduct.getText());
-        this.zv1 = nproduct.getText();
-        bw.write("\n");
-        bw.write(cproduct.getText());
-        this.zv2 = cproduct.getText();
-        bw.write("\n");
-        bw.write(pproduct.getText());
-        this.zv3 = pproduct.getText();
-        bw.write("\n");
-        bw.write(iproduct.getText());
-        this.zv4 = iproduct.getText();
-        bw.flush(); 
-      }catch (IOException e) {
-        // e.printStackTrace();
-        ErrorDialog error = new ErrorDialog();
-        error.setWriteError();
+          bw.write(pproduct.getText());
+          this.zv3 = pproduct.getText();
+          bw.write("\n");
+          bw.write(iproduct.getText());
+          this.zv4 = iproduct.getText();
+          bw.flush(); 
+        }catch (IOException e) {
+          // e.printStackTrace();
+          ErrorDialog error = new ErrorDialog();
+          error.setWriteError();
         }
       }
-    });
-    
-    don.addActionListener(d -> {
-      nproduct.setText("Name: ");
-      cproduct.setText("Category: ");
-      pproduct.setText("Price: ");
-      iproduct.setText("Description: ");
-    });
-    
-    doff.addActionListener(e -> {
-      nproduct.setText(" ");
-      cproduct.setText(" ");
-      pproduct.setText(" ");
-      iproduct.setText(" ");
     });
     
   } 
@@ -167,5 +304,3 @@ public class Add_Product extends JFrame {
 
 
 }
-  
- 
