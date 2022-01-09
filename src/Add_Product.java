@@ -10,12 +10,12 @@ public class Add_Product extends JFrame {
   private FileFilter filter;
   private JButton close, back, add;
   private JRadioButton don, doff;
-  private JTextArea nproduct, /*cproduct,*/ pproduct, iproduct;  
+  private JTextArea nproduct, /*cproduct,*/ pproduct, iproduct, inventoryproduct;  
   private JComboBox c;
-  private JScrollPane nproductScrollPane, cproductScrollPane, pproductScrollPane, iproductScrollPane;
-  private JLabel name, category, price, info;
-  private String zv1, zv2, zv3, zv4, electronic, mechanic, social, services, error;
-  private boolean test1, test2, test3, test4, test5;
+  private JScrollPane nproductScrollPane, cproductScrollPane, pproductScrollPane, iproductScrollPane, inventoryScrollPane;
+  private JLabel name, category, price, info, inventory;
+  private String zv1, zv2, zv3, zv4, zv5, electronic, mechanic, social, services, error;
+  private boolean test1, test2, test3, test4, test5, check = false;
   
   public Add_Product() { 
     super("Verwaltungsprogramm - Add Product");
@@ -45,10 +45,14 @@ public class Add_Product extends JFrame {
     pproductScrollPane.setBounds(150, 137, 168, 44);
     cp.add(pproductScrollPane);
     
+    inventoryproduct = new JTextArea();
+    inventoryScrollPane = new JScrollPane(inventoryproduct);
+    inventoryScrollPane.setBounds(150, 194, 168, 44);
+    cp.add(inventoryScrollPane);
     
     iproduct = new JTextArea();
     iproductScrollPane = new JScrollPane(iproduct);
-    iproductScrollPane.setBounds(150, 194, 168, 44);
+    iproductScrollPane.setBounds(150, 258, 168, 44);
     cp.add(iproductScrollPane);
     
     // JLabels
@@ -64,8 +68,12 @@ public class Add_Product extends JFrame {
     price.setBounds(16, 150, 150, 20);
     cp.add(price);
     
+    inventory = new JLabel("Inventory of Product: ");
+    inventory.setBounds(16, 211, 150, 20);
+    cp.add(inventory);
+    
     info = new JLabel("Description of Product: ");
-    info.setBounds(16, 211, 150, 20);
+    info.setBounds(16, 271, 150, 20);
     cp.add(info);
     
     // JButtons
@@ -98,6 +106,7 @@ public class Add_Product extends JFrame {
       test4 = true;
       test5 = true;
       pproduct.setText("Price: ");
+      inventoryproduct.setText("Inventory of Product: ");
       iproduct.setText("Description: ");
     });
     
@@ -110,6 +119,7 @@ public class Add_Product extends JFrame {
       test4 = false;
       test5 = false;
       pproduct.setText(" ");
+      inventoryproduct.setText(" ");
       iproduct.setText(" ");
     });
     
@@ -273,8 +283,11 @@ public class Add_Product extends JFrame {
           bw.write(pproduct.getText());
           this.zv3 = pproduct.getText();
           bw.write("\n");
+          bw.write(inventoryproduct.getText());
+          this.zv4 = inventoryproduct.getText();
+          bw.write("\n");
           bw.write(iproduct.getText());
-          this.zv4 = iproduct.getText();
+          this.zv5 = iproduct.getText();
           bw.flush(); 
         }catch (IOException e) {
           // e.printStackTrace();
@@ -298,8 +311,12 @@ public class Add_Product extends JFrame {
     return zv3;
   }
   
-  public String getInformation() {
+  public String getInventory() {
     return zv4;
+  }
+  
+  public String getInformation() {
+    return zv5;
   }
 
 
