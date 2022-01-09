@@ -88,12 +88,15 @@ public class Delete_Product extends JFrame {
         }
         bw.close();
       } else {
-        System.out.print("Datei nicht vorhanden");
+        ErrorDialog error = new ErrorDialog();
+        error.setWrongFile();
       }
       if (deleted){
-        System.out.print("Das Produkt wurde gel?scht.");
+        ErrorDialog error = new ErrorDialog();
+        error.setProductDelete();
       } else{
-        System.out.print("Artikelnummer nicht gefunden.");
+        ErrorDialog error = new ErrorDialog();
+        error.setWrongItemNumber();
       }
     } catch(IOException ioAusnahme){
       ErrorDialog error = new ErrorDialog();

@@ -119,10 +119,10 @@ public class Add_Product extends JFrame {
           check = false;
         } else {
           ErrorDialog error = new ErrorDialog();
-          error.setWriteError();
+          error.setLabelError();
           }
       
-    });
+    });                     
     
     // ItemListener
     c.addItemListener(ia -> {;
