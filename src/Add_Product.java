@@ -9,12 +9,12 @@ public class Add_Product extends JFrame {
                                  
   private FileFilter filter;
   private JButton close, back, add;
-  private JRadioButton don, doff;
-  private JTextArea nproduct, /*cproduct,*/ pproduct, iproduct, inventoryproduct;  
+  private JRadioButton donoff;
+  private JTextArea nproduct, pproduct, iproduct, inventoryproduct;  
   private JComboBox c;
   private JScrollPane nproductScrollPane, cproductScrollPane, pproductScrollPane, iproductScrollPane, inventoryScrollPane;
   private JLabel name, category, price, info, inventory;
-  private String zv1, zv2, zv3, zv4, zv5, electronic, mechanic, social, services, error;
+  private String zv1, zv2, zv3, zv4, zv5, electronic, mechanic, social, services, error ="non";
   private boolean test1, test2, test3, test4, test5, check = false;
   
   public Add_Product() { 
@@ -30,11 +30,7 @@ public class Add_Product extends JFrame {
     nproductScrollPane = new JScrollPane(nproduct);
     nproductScrollPane.setBounds(150, 27, 168, 44);
     cp.add(nproductScrollPane);
-    
-    /*cproduct = new JTextArea();
-    cproductScrollPane = new JScrollPane(cproduct);
-    cproductScrollPane.setBounds(150, 80, 168, 44);
-    cp.add(cproductScrollPane);*/ 
+     
     String[] categoryList = {"Please select a category", "electronic", "mechanic", "social", "services"};
     c = new JComboBox(categoryList);
     c.setBounds(150, 80, 168, 44);
@@ -86,41 +82,46 @@ public class Add_Product extends JFrame {
     cp.add(back);
     
     add = new JButton("Add");
-    add.setBounds(450, 100, 200, 50);
+    add.setBounds(420, 100, 200, 50);
     cp.add(add);
     
-    don = new JRadioButton("Label on");
-    don.setBounds(420, 38, 100, 20);
-    cp.add(don);
+    // JRadioButton
+    donoff = new JRadioButton("Label off");
+    donoff.setBounds(420, 50, 100, 20);
+    cp.add(donoff);
     
-    doff = new JRadioButton("Label off");
-    doff.setBounds(420, 73, 100, 20);
-    cp.add(doff);
-    
-    don.addActionListener(d -> {
-      nproduct.setText("Name: ");
-      // cproduct.setText("Category: ");
-      test1 = true;
-      test2 = true;
-      test3 = true;
-      test4 = true;
-      test5 = true;
-      pproduct.setText("Price: ");
-      inventoryproduct.setText("Inventory of Product: ");
-      iproduct.setText("Description: ");
-    });
-    
-    doff.addActionListener(e -> {
-      nproduct.setText(" ");
-      // cproduct.setText(" ");
-      test1 = false;
-      test2 = false;
-      test3 = false;
-      test4 = false;
-      test5 = false;
-      pproduct.setText(" ");
-      inventoryproduct.setText(" ");
-      iproduct.setText(" ");
+    // ActionListener for JRadioButton 
+    donoff.addActionListener(d -> {;
+      if (check == false) {
+        donoff.setText("Label on");
+        nproduct.setText("Name: ");
+        test1 = true;
+        test2 = true;
+        test3 = true;
+        test4 = true;
+        test5 = true;
+        pproduct.setText("Price: ");
+        inventoryproduct.setText("Inventory of Product: ");
+        iproduct.setText("Description: ");
+        check = true;
+      } else if (check == true) 
+        {
+          donoff.setText("Label off");
+          nproduct.setText(" ");
+          test1 = false;
+          test2 = false;
+          test3 = false;
+          test4 = false;
+          test5 = false;
+          pproduct.setText(" ");
+          inventoryproduct.setText(" ");
+          iproduct.setText(" ");
+          check = false;
+        } else {
+          ErrorDialog error = new ErrorDialog();
+          error.setWriteError();
+          }
+      
     });
     
     // ItemListener
@@ -248,36 +249,44 @@ public class Add_Product extends JFrame {
           bw.write(nproduct.getText());
           this.zv1 = nproduct.getText();
           bw.write("\n");
-          /*bw.write(cproduct.getText());
-          this.zv2 = cproduct.getText();*/
           if (error == "non") {
             bw.write(error);
+            this.zv2 = error;
           } else if (error == "Category: non") {
-            bw.write(error);  
+            bw.write(error);
+            this.zv2 = error;  
           }
           
           if (electronic == "electronic") {
             bw.write(electronic);
+            this.zv2 = electronic;
           } else if (electronic == "Category: electronic") {
-            bw.write(electronic);  
+            bw.write(electronic);
+            this.zv2 = electronic;  
           } 
             
           if (mechanic == "mechanic") {
             bw.write(mechanic);
+            this.zv2 = mechanic;
           } else if (mechanic == "Category: mechanic") {
-            bw.write(mechanic);  
+            bw.write(mechanic);
+            this.zv2 = mechanic;  
           }
            
           if (social == "social") {
             bw.write(social);
+            this.zv2 = mechanic;
           } else if (social == "Category: social") {
-            bw.write(social);  
+            bw.write(social);
+            this.zv2 = mechanic;  
           }
            
           if (services == "services") {
             bw.write(services);
+            this.zv2 = services;
           } else if (services == "Category: services") {
-            bw.write(services);  
+            bw.write(services);
+            this.zv2 = services;  
           }
           bw.write("\n");
           bw.write(pproduct.getText());
@@ -299,6 +308,7 @@ public class Add_Product extends JFrame {
     
   } 
   
+  // Methods
   public String getName() {
     return zv1;   
   }
