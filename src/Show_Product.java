@@ -61,7 +61,7 @@ public class Show_Product {
 
     back.addActionListener(b -> {
       frame.dispose();
-      new Main();
+      new Gui();
     });
 
     show.addActionListener(c -> {

@@ -36,7 +36,7 @@ public class Delete_Product extends JFrame {
     
     back.addActionListener(b -> {
       this.dispose();
-      new Main();
+      new Gui();
     });
 
     alldelete.addActionListener(c -> {

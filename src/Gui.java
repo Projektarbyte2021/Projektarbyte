@@ -1,12 +1,12 @@
 // Imports
 import javax.swing.*;
 
-public class Main {
+public class Gui {
   
   public JButton close, aproduct, dproduct, sproduct, simulation;
   public JFrame f;
                                
-  public Main() {
+  public Gui() {
     
     try {
       UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -15,7 +15,7 @@ public class Main {
     }
     
     // JFrame
-    f = new JFrame("Verwaltungsprogramm - Main");
+    f = new JFrame("Verwaltungsprogramm - Gui");
     f.setExtendedState(JFrame.MAXIMIZED_BOTH);
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     f.setLayout(null);
@@ -70,7 +70,7 @@ public class Main {
   
   public static void main (String[] args) {
     new Splash().showSplash();
-    new Main();
+    new Gui();
   }
   
 }

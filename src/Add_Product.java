@@ -223,7 +223,7 @@ public class Add_Product extends JFrame {
      
     back.addActionListener(b -> {
       this.dispose();
-      new Main();
+      new Gui();
     });
     
     add.addActionListener(c -> {;
