@@ -5,6 +5,7 @@ import java.awt.*;
 public class ErrorDialog  {
   private JDialog error;
   private JLabel cwrite;
+  private JButton ok, cancel;
   
   public void setWriteError() {
     error = new JDialog();
@@ -84,5 +85,23 @@ public class ErrorDialog  {
     error.add(cwrite);
   }
 
+  public void setSucessfully() {
+    error = new JDialog();
+    cwrite = new JLabel("File was saved successfully!!");
+    error.setTitle("Sucessfully");
+    error.setBounds(400, 100, 600, 500);
+    error.setResizable(false);
+    error.setVisible(true);
+    cwrite.setFont(new Font("Calibri", Font.ITALIC, 35));
+    cwrite.setBounds(150, 100, 500, 100);
+    cwrite.setSize(500, 100);
+    error.add(cwrite);
+    ok = new JButton("OK");
+    ok.setBounds(300, 400, 100, 50);
+    error.add(ok);
+    ok.addActionListener(a -> {
+      error.dispose();
+    });
+  }
 
 }

@@ -304,6 +304,8 @@ public class Add_Product extends JFrame {
           error.setWriteError();
         }
       }
+      ErrorDialog sucessfully = new ErrorDialog();
+      sucessfully.setSucessfully();
     });
     
   } 
