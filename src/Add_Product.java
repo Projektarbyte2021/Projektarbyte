@@ -2,17 +2,18 @@
 import java.awt.*;
 import javax.swing.*;
 import java.io.*;
+import java.net.URL;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Add_Product extends JFrame {
                                  
   private FileFilter filter;
-  private JButton close, back, add;
+  private JButton close, back, add, show;
   private JRadioButton donoff;
-  private JTextArea nproduct, pproduct, iproduct, inventoryproduct;  
+  private JTextArea nproduct, pproduct, iproduct, inventoryproduct, read;
   private JComboBox c;
-  private JScrollPane nproductScrollPane, cproductScrollPane, pproductScrollPane, iproductScrollPane, inventoryScrollPane;
+  private JScrollPane nproductScrollPane, pproductScrollPane, iproductScrollPane, inventoryScrollPane, readScrollPane;
   private JLabel name, category, price, info, inventory;
   private String zv1, zv2, zv3, zv4, zv5, electronic, mechanic, social, services, error ="non";
   private boolean test1, test2, test3, test4, test5, check = false;
@@ -50,6 +51,11 @@ public class Add_Product extends JFrame {
     iproductScrollPane = new JScrollPane(iproduct);
     iproductScrollPane.setBounds(150, 258, 168, 44);
     cp.add(iproductScrollPane);
+
+    read = new JTextArea();
+    readScrollPane = new JScrollPane(read);
+    readScrollPane.setBounds(680, 27, 600, 600);
+    cp.add(readScrollPane);
     
     // JLabels
     name = new JLabel("Name of Product:");
@@ -84,6 +90,13 @@ public class Add_Product extends JFrame {
     add = new JButton("Add");
     add.setBounds(420, 100, 200, 50);
     cp.add(add);
+
+    URL iconURL1 = getClass().getResource("Open.png");
+    // iconURL is null when not found
+    ImageIcon icon1 = new ImageIcon(iconURL1);
+    show = new JButton(icon1);
+    show.setBounds(420, 200, 200, 50);
+    cp.add(show);
     
     // JRadioButton
     donoff = new JRadioButton("Label off");
@@ -214,9 +227,9 @@ public class Add_Product extends JFrame {
           social = "";
           services = "services";
         } // end of if
-      } 
+      }
     });
-    // ActionListeners 
+    // ActionListener for JButton
     close.addActionListener(a -> {
       System.exit(0);
     });
@@ -226,7 +239,7 @@ public class Add_Product extends JFrame {
       new Gui();
     });
     
-    add.addActionListener(c -> {;
+    add.addActionListener(c -> {
       JFileChooser fc = new JFileChooser();
       filter = new FileNameExtensionFilter("Textdatei", "txt");
       fc.addChoosableFileFilter(filter);   
@@ -297,17 +310,58 @@ public class Add_Product extends JFrame {
           bw.write("\n");
           bw.write(iproduct.getText());
           this.zv5 = iproduct.getText();
-          bw.flush(); 
+          bw.flush();
+          if(i == JFileChooser.APPROVE_OPTION) {
+            File f = fc.getSelectedFile();
+            String filepath = f.getPath();
+            try {
+              BufferedReader br = new BufferedReader(new FileReader(filepath));
+              String s1 = "",s2 = "";
+              while((s1 = br.readLine()) != null){
+                s2+=s1+"\n";
+              }
+              read.setText(s2);
+              br.close();
+            } catch(Exception e) {
+              // e.printStackTrace();
+              ErrorDialog error = new ErrorDialog();
+              error.setOpenError();
+            }
+          }
         }catch (IOException e) {
           // e.printStackTrace();
           ErrorDialog error = new ErrorDialog();
           error.setWriteError();
         }
       }
-      ErrorDialog sucessfully = new ErrorDialog();
-      sucessfully.setSucessfully();
+      /*ErrorDialog sucessfully = new ErrorDialog();
+      sucessfully.setSucessfully();*/
     });
-    
+
+    show.addActionListener(d -> {
+      filter = new FileNameExtensionFilter("Textdatei", "txt");
+      JFileChooser fc = new JFileChooser();
+      fc.addChoosableFileFilter(filter);
+      int i = fc.showOpenDialog(this);
+
+      if(i == JFileChooser.APPROVE_OPTION) {
+        File f = fc.getSelectedFile();
+        String filepath = f.getPath();
+        try {
+          BufferedReader br = new BufferedReader(new FileReader(filepath));
+          String s1 = "",s2 = "";
+          while((s1 = br.readLine()) != null){
+            s2+=s1+"\n";
+          }
+          read.setText(s2);
+          br.close();
+        } catch(Exception e) {
+          // e.printStackTrace();
+          ErrorDialog error = new ErrorDialog();
+          error.setOpenError();
+        }
+      }
+    });
   } 
   
   // Methods

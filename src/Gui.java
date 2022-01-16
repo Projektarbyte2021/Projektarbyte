@@ -3,7 +3,7 @@ import javax.swing.*;
 
 public class Gui {
   
-  public JButton close, aproduct, dproduct, sproduct, simulation;
+  public JButton close, aproduct, dproduct, simulation;
   public JFrame f;
                                
   public Gui() {
@@ -34,10 +34,6 @@ public class Gui {
     dproduct.setBounds(450, 150, 200, 50);
     f.add(dproduct);
     
-    sproduct = new JButton("Show Product");
-    sproduct.setBounds(200, 250, 200, 50);
-    f.add(sproduct);
-    
     simulation = new JButton("Simulation");
     simulation.setBounds(450, 250, 200, 50);
     f.add(simulation);
@@ -55,11 +51,6 @@ public class Gui {
     dproduct.addActionListener(c -> {
       f.dispose();
       new Delete_Product();
-    });
-
-    sproduct.addActionListener(d -> {
-      f.dispose();
-      new Show_Product();
     });
 
     simulation.addActionListener(e -> {
