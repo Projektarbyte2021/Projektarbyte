@@ -3,9 +3,9 @@ import javax.swing.*;
 
 public class Gui {
   
-  public JButton close, aproduct, dproduct, simulation;
+  public JButton close, aproduct, simulation;
   public JFrame f;
-                               
+
   public Gui() {
     
     try {
@@ -30,10 +30,6 @@ public class Gui {
     aproduct.setBounds(200, 150, 200, 50);
     f.add(aproduct);
     
-    dproduct = new JButton("Delete Product");
-    dproduct.setBounds(450, 150, 200, 50);
-    f.add(dproduct);
-    
     simulation = new JButton("Simulation");
     simulation.setBounds(450, 250, 200, 50);
     f.add(simulation);
@@ -46,11 +42,6 @@ public class Gui {
     aproduct.addActionListener(b -> {
       f.dispose();
       new Add_Product();
-    });
-
-    dproduct.addActionListener(c -> {
-      f.dispose();
-      new Delete_Product();
     });
 
     simulation.addActionListener(e -> {

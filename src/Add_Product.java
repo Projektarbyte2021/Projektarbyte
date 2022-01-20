@@ -59,6 +59,7 @@ public class Add_Product extends JFrame {
     cp.add(iproductScrollPane);
 
     read = new JTextArea();
+    read.setEditable(false);
     readScrollPane = new JScrollPane(read);
     readScrollPane.setBounds(680, 27, 600, 600);
     cp.add(readScrollPane);
