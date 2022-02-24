@@ -61,20 +61,27 @@ public class Simulation extends JFrame {
           });
         }
 
-        private int variabeln() {
-            String alter = s.nextLine();
-
-
-            Container cp = getContentPane();
-            cp.setLayout(null);
-            JTextArea namw = new JTextArea();
-            namw.setBounds(56, 54, 150, 20);
-            namw.setText(alter);
-            cp.add(namw);
-
-
-          return 0;
+    private void lesen(File Produkt) {
+        try {
+            s= new Scanner(Produkt);
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
+    }
+
+    private int variable() {
+        if (s.hasNext()) {
+            int alter= s.nextInt();
+            return alter;
+        }
+    }
+
+
+
+
+
+
+
 
         private void showPerks() {
           Container cp = getContentPane();
