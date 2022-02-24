@@ -8,7 +8,7 @@ public class Simulation extends JFrame {
   private String Produkt;
   //Datei muss Produkt heißen!!!
   //Produkt muss der name
-  Scanner s = new Scanner("Produkt.txt");
+    Scanner s = new Scanner("Produkt.txt");
         Random r = new Random();
 
         private String name, linie , category, description;
