@@ -49,7 +49,7 @@ public class Simulation extends JFrame {
           money = r.nextInt(100) + 100;
 
 
-          variabeln();
+          variable();
           showPerks();
 
           close.addActionListener(a -> {
@@ -74,6 +74,7 @@ public class Simulation extends JFrame {
             int alter= s.nextInt();
             return alter;
         }
+        return variable();
     }
 
 
