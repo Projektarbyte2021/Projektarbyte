@@ -71,18 +71,11 @@ public class Simulation extends JFrame {
 
     private int variable() {
         if (s.hasNext()) {
-            int alter= s.nextInt();
+            int alter = s.nextInt();
             return alter;
         }
         return variable();
     }
-
-
-
-
-
-
-
 
         private void showPerks() {
           Container cp = getContentPane();
