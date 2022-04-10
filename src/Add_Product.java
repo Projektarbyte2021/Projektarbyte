@@ -400,8 +400,8 @@ public class Add_Product extends JFrame {
 
       } catch (Exception ex) {
         // e.printStackTrace();
-        ErrorDialog error = new ErrorDialog();
-        error.setWriteError();
+        /*ErrorDialog error = new ErrorDialog();
+        error.setWriteError();*/
       }
     });
 
