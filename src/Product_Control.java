@@ -6,25 +6,21 @@ import java.net.URL;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class Add_Product extends JFrame {
+public class Product_Control extends JFrame {
 
   private FileFilter filter;
   private JButton close, back, add, show, alldelete, onedelete;
   private JRadioButton donoff;
-  private JTextArea nproduct;
-  private JTextArea pproduct;
-  private JTextArea iproduct;
-  private JTextArea inventoryproduct;
-  private static JTextArea read;
+  private JTextArea nproduct, pproduct, iproduct, inventoryproduct, read, productnumber;
   private JComboBox c;
-  private JScrollPane nproductScrollPane, pproductScrollPane, iproductScrollPane, inventoryScrollPane, readScrollPane;
-  private JLabel name, category, price, info, inventory;
+  private JScrollPane nproductScrollPane, pproductScrollPane, iproductScrollPane, inventoryScrollPane, readScrollPane, productnumberScrollPane;
+  private JLabel name, category, price, info, inventory, number;
   private String zv1, zv2, zv3, zv4, zv5, electronic, mechanic, social, services, error = "non";
   private boolean test1, test2, test3, test4, test5, check = false;
-  private Add_Product[] capacity;
+  private Product_Control[] capacity;
   private String mod_deleted;
 
-  public Add_Product() {
+  public Product_Control() {
     super("Verwaltungsprogramm - Add Product");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -42,6 +38,12 @@ public class Add_Product extends JFrame {
     c = new JComboBox(categoryList);
     c.setBounds(150, 80, 168, 44);
     cp.add(c);
+
+    productnumber = new JTextArea();
+    productnumber.setEditable(false);
+    productnumberScrollPane = new JScrollPane(productnumber);
+    productnumberScrollPane.setBounds(680, 27, 600, 600);
+    cp.add(productnumberScrollPane);
 
     pproduct = new JTextArea();
     pproductScrollPane = new JScrollPane(pproduct);
@@ -65,6 +67,10 @@ public class Add_Product extends JFrame {
     cp.add(readScrollPane);
 
     // JLabels
+    number = new JLabel("Number of Product:");
+    number.setBounds(16, 34, 150, 20);
+    cp.add(number);
+
     name = new JLabel("Name of Product:");
     name.setBounds(16, 34, 150, 20);
     cp.add(name);
@@ -406,7 +412,7 @@ public class Add_Product extends JFrame {
     });
 
     onedelete.addActionListener(d -> {
-      Add_Product[] zwischenvariabel = null;
+      Product_Control[] zwischenvariabel = null;
       int x = JOptionPane.showConfirmDialog(null, "Moechten Sie ein Produkt loeschen?");
       if (x == 0) {
         String input = JOptionPane.showInputDialog("Geben Sie die Kategory ein, die Sie loeschen moechten:");
@@ -421,7 +427,7 @@ public class Add_Product extends JFrame {
           boolean deleted = false;
           if (file.exists()) {
             BufferedWriter bw = new BufferedWriter(new FileWriter(file, false));
-            for (Add_Product element : capacity) {
+            for (Product_Control element : capacity) {
               if (!(mod_deleted.equals(element.getCategory()))) {
                 if (!neu) {
                   bw.write("\n");

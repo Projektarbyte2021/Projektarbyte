@@ -41,7 +41,7 @@ public class Gui {
 
     aproduct.addActionListener(b -> {
       f.dispose();
-      new Add_Product();
+      new Product_Control();
     });
 
     simulation.addActionListener(e -> {
