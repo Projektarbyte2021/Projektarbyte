@@ -9,7 +9,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class Product_Control extends JFrame {
 
   private FileFilter filter;
-  private JButton close, back, add, show, alldelete, onedelete;
+  private JButton close, back, add, show, alldelete, onedelete, simulation;
   private JRadioButton donoff;
   private JTextArea nproduct, pproduct, iproduct, inventoryproduct, read, productnumber;
   private JComboBox c;
@@ -19,6 +19,7 @@ public class Product_Control extends JFrame {
   private boolean test1, test2, test3, test4, test5, check = false;
   private Product_Control[] capacity;
   private String mod_deleted;
+
 
   public Product_Control() {
     super("Verwaltungsprogramm - Add Product");
@@ -92,11 +93,11 @@ public class Product_Control extends JFrame {
 
     // JButtons
     close = new JButton("Close");
-    close.setBounds(200, 500, 200, 50);
+    close.setBounds(200, 600, 200, 50);
     cp.add(close);
 
     back = new JButton("Back");
-    back.setBounds(450, 500, 200, 50);
+    back.setBounds(450, 600, 200, 50);
     cp.add(back);
 
     add = new JButton("Add");
@@ -109,6 +110,10 @@ public class Product_Control extends JFrame {
     show = new JButton(icon1);
     show.setBounds(420, 200, 200, 50);
     cp.add(show);
+
+    simulation = new JButton("Simulation");
+    simulation.setBounds(420, 500, 200, 50);
+    this.add(simulation);
 
     alldelete = new JButton("Delete all Products");
     alldelete.setBounds(420, 300, 200, 50);
@@ -466,6 +471,10 @@ public class Product_Control extends JFrame {
           error.setOpenError();
         }
       }
+    });
+
+    simulation.addActionListener(e -> {
+      new Simulation();
     });
   }
 

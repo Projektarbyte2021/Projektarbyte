@@ -11,7 +11,7 @@ public class Gui {
     try {
       UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
     } catch(Exception e) {
-      System.out.println("Setting Look and Feel Failed");  
+      System.out.println("Setting Look and Feel Failed");
     }
     
     // JFrame
@@ -31,7 +31,7 @@ public class Gui {
     f.add(aproduct);
     
     simulation = new JButton("Simulation");
-    simulation.setBounds(450, 250, 200, 50);
+    simulation.setBounds(200, 250, 200, 50);
     f.add(simulation);
     
     // ActionListeners
