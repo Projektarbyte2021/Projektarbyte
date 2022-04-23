@@ -1,12 +1,14 @@
 // Imports
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.URL;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class Product_Control extends JFrame {
+public class Product_Control extends JFrame implements ActionListener {
 
   private FileFilter filter;
   private JButton close, back, add, show, alldelete, onedelete, simulation;
@@ -19,6 +21,8 @@ public class Product_Control extends JFrame {
   private boolean test1, test2, test3, test4, test5, check = false;
   private Product_Control[] capacity;
   private String mod_deleted;
+  private JMenu menu;
+  private JMenuItem exit;
 
 
   public Product_Control() {
@@ -28,6 +32,15 @@ public class Product_Control extends JFrame {
     setVisible(true);
     Container cp = getContentPane();
     cp.setLayout(null);
+
+    // JMenu
+    JMenuBar mb =  new JMenuBar();
+    menu = new JMenu("File");
+    exit = new JMenuItem("Exit");
+    menu.add(exit);
+    mb.add(menu);
+    this.setJMenuBar(mb);
+    exit.addActionListener(this);
 
     // JTextAreas and JScrollPanes
     nproduct = new JTextArea();
@@ -257,7 +270,7 @@ public class Product_Control extends JFrame {
         } // end of if
       }
     });
-    // ActionListener for JButton
+    // ActionListeners
     close.addActionListener(a -> {
       System.exit(0);
     });
@@ -478,6 +491,13 @@ public class Product_Control extends JFrame {
     });
   }
 
+
+  @Override
+  public void actionPerformed(ActionEvent e) {
+      if(e.getSource()==exit)
+      System.exit(0);
+  }
+
   // Methods
   public String getName() {
     return zv1;
@@ -500,4 +520,5 @@ public class Product_Control extends JFrame {
   }
 
   public String getNumber() {return zv6;}
+
 }
