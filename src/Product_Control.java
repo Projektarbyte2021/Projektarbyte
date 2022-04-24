@@ -22,7 +22,7 @@ public class Product_Control extends JFrame implements ActionListener {
   private Product_Control[] capacity;
   private String mod_deleted;
   private JMenu menu;
-  private JMenuItem exit, save;
+  private JMenuItem exit, save, open;
 
 
   public Product_Control() {
@@ -36,12 +36,16 @@ public class Product_Control extends JFrame implements ActionListener {
     // JMenu
     JMenuBar mb =  new JMenuBar();
     menu = new JMenu("File");
+    open = new JMenuItem("Open");
     save = new JMenuItem("Save");
     exit = new JMenuItem("Exit");
+    menu.add(open);
     menu.add(save);
     menu.add(exit);
     mb.add(menu);
     this.setJMenuBar(mb);
+    open.addActionListener(this);
+    save.addActionListener(this);
     exit.addActionListener(this);
 
     // JTextAreas and JScrollPanes
@@ -594,6 +598,30 @@ public class Product_Control extends JFrame implements ActionListener {
             // e.printStackTrace();
             ErrorDialog error = new ErrorDialog();
             error.setWriteError();
+          }
+        }
+      }
+      if(e.getSource()==open) {
+        filter = new FileNameExtensionFilter("Textdatei", "txt");
+        JFileChooser fc = new JFileChooser();
+        fc.addChoosableFileFilter(filter);
+        int i = fc.showOpenDialog(this);
+
+        if (i == JFileChooser.APPROVE_OPTION) {
+          File f = fc.getSelectedFile();
+          String filepath = f.getPath();
+          try {
+            BufferedReader br = new BufferedReader(new FileReader(filepath));
+            String s1 = "", s2 = "";
+            while ((s1 = br.readLine()) != null) {
+              s2 += s1 + "\n";
+            }
+            read.setText(s2);
+            br.close();
+          } catch (Exception ex) {
+            // e.printStackTrace();
+            ErrorDialog error = new ErrorDialog();
+            error.setOpenError();
           }
         }
       }
