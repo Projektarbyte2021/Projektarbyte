@@ -22,7 +22,7 @@ public class Product_Control extends JFrame implements ActionListener {
   private Product_Control[] capacity;
   private String mod_deleted;
   private JMenu menu;
-  private JMenuItem exit;
+  private JMenuItem exit, save;
 
 
   public Product_Control() {
@@ -36,7 +36,9 @@ public class Product_Control extends JFrame implements ActionListener {
     // JMenu
     JMenuBar mb =  new JMenuBar();
     menu = new JMenu("File");
+    save = new JMenuItem("Save");
     exit = new JMenuItem("Exit");
+    menu.add(save);
     menu.add(exit);
     mb.add(menu);
     this.setJMenuBar(mb);
@@ -496,6 +498,105 @@ public class Product_Control extends JFrame implements ActionListener {
   public void actionPerformed(ActionEvent e) {
       if(e.getSource()==exit)
       System.exit(0);
+      if(e.getSource()==save) {
+        JFileChooser fc = new JFileChooser();
+        filter = new FileNameExtensionFilter("Textdatei", "txt");
+        fc.addChoosableFileFilter(filter);
+        int i = fc.showSaveDialog(null);
+        if (i == JFileChooser.APPROVE_OPTION) {
+          try {
+            boolean neu = false;
+            File file;
+            file = fc.getSelectedFile();
+            if (!file.exists()) {
+              file.createNewFile();
+              neu = true;
+            }
+            BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
+            if (!neu) {
+              bw.write("\n");
+              bw.write("\n");
+            } // end of if
+            bw.write("");
+            bw.write(nproduct.getText());
+            this.zv1 = nproduct.getText();
+            bw.write("\n");
+            if (error == "non") {
+              bw.write(error);
+              this.zv2 = error;
+            } else if (error == "Category: non") {
+              bw.write(error);
+              this.zv2 = error;
+            }
+
+            if (electronic == "electronic") {
+              bw.write(electronic);
+              this.zv2 = electronic;
+            } else if (electronic == "Category: electronic") {
+              bw.write(electronic);
+              this.zv2 = electronic;
+            }
+
+            if (mechanic == "mechanic") {
+              bw.write(mechanic);
+              this.zv2 = mechanic;
+            } else if (mechanic == "Category: mechanic") {
+              bw.write(mechanic);
+              this.zv2 = mechanic;
+            }
+
+            if (social == "social") {
+              bw.write(social);
+              this.zv2 = mechanic;
+            } else if (social == "Category: social") {
+              bw.write(social);
+              this.zv2 = mechanic;
+            }
+
+            if (services == "services") {
+              bw.write(services);
+              this.zv2 = services;
+            } else if (services == "Category: services") {
+              bw.write(services);
+              this.zv2 = services;
+            }
+            bw.write("\n");
+            bw.write(productnumber.getText());
+            this.zv3 = productnumber.getText();
+            bw.write("\n");
+            bw.write(pproduct.getText());
+            this.zv4 = pproduct.getText();
+            bw.write("\n");
+            bw.write(inventoryproduct.getText());
+            this.zv5 = inventoryproduct.getText();
+            bw.write("\n");
+            bw.write(iproduct.getText());
+            this.zv6 = iproduct.getText();
+            bw.flush();
+            if (i == JFileChooser.APPROVE_OPTION) {
+              File f = fc.getSelectedFile();
+              String filepath = f.getPath();
+              try {
+                BufferedReader br = new BufferedReader(new FileReader(filepath));
+                String s1 = "", s2 = "";
+                while ((s1 = br.readLine()) != null) {
+                  s2 += s1 + "\n";
+                }
+                read.setText(s2);
+                br.close();
+              } catch (Exception ex) {
+                // e.printStackTrace();
+                ErrorDialog error = new ErrorDialog();
+                error.setOpenError();
+              }
+            }
+          } catch (IOException ex) {
+            // e.printStackTrace();
+            ErrorDialog error = new ErrorDialog();
+            error.setWriteError();
+          }
+        }
+      }
   }
 
   // Methods
