@@ -11,16 +11,14 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class Product_Control extends JFrame implements ActionListener {
 
   private FileFilter filter;
-  private JButton close, back, add, show, alldelete, onedelete, simulation;
+  private JButton close, back, add, show, alldelete, simulation;
   private JRadioButton donoff;
   private JTextArea nproduct, pproduct, iproduct, inventoryproduct, read, productnumber;
   private JComboBox c;
   private JScrollPane nproductScrollPane, pproductScrollPane, iproductScrollPane, inventoryScrollPane, readScrollPane, productnumberScrollPane;
   private JLabel name, category, price, info, inventory, number;
-  private String zv1, zv2, zv3, zv4, zv5, zv6, electronic, mechanic, social, services, error = "non";
+  private String electronic, mechanic, social, services, error = "non";
   private boolean test1, test2, test3, test4, test5, check = false;
-  private Product_Control[] capacity;
-  private String mod_deleted;
   private JMenu menu;
   private JMenuItem exit, save, open;
 
@@ -94,16 +92,16 @@ public class Product_Control extends JFrame implements ActionListener {
     category.setBounds(16, 90, 150, 20);
     cp.add(category);
 
-    number = new JLabel("Description of Product: ");
-    number.setBounds(16, 271, 150, 20);
+    number = new JLabel("Number of Product:");
+    number.setBounds(16, 150, 150, 20);
     cp.add(number);
 
-    inventory = new JLabel("Inventory of Product:");
-    inventory.setBounds(16, 150, 150, 20);
+    inventory = new JLabel("Inventory of Product: ");
+    inventory.setBounds(16, 211, 150, 20);
     cp.add(inventory);
 
     price = new JLabel("Price of Product: ");
-    price.setBounds(16, 211, 150, 20);
+    price.setBounds(16, 271, 150, 20);
     cp.add(price);
 
     info = new JLabel("Description of Product:");
@@ -112,11 +110,11 @@ public class Product_Control extends JFrame implements ActionListener {
 
     // JButtons
     close = new JButton("Close");
-    close.setBounds(200, 600, 200, 50);
+    close.setBounds(200, 500, 200, 50);
     cp.add(close);
 
     back = new JButton("Back");
-    back.setBounds(450, 600, 200, 50);
+    back.setBounds(450, 500, 200, 50);
     cp.add(back);
 
     add = new JButton("Add");
@@ -130,24 +128,20 @@ public class Product_Control extends JFrame implements ActionListener {
     show.setBounds(420, 200, 200, 50);
     cp.add(show);
 
-    simulation = new JButton("Simulation");
-    simulation.setBounds(420, 500, 200, 50);
-    this.add(simulation);
-
     alldelete = new JButton("Delete all Products");
     alldelete.setBounds(420, 300, 200, 50);
     this.add(alldelete);
 
-    onedelete = new JButton("Delete one Product");
-    onedelete.setBounds(420, 400, 200, 50);
-    this.add(onedelete);
+    simulation = new JButton("Simulation");
+    simulation.setBounds(420, 400, 200, 50);
+    this.add(simulation);
 
     // JRadioButton
     donoff = new JRadioButton("Label off");
     donoff.setBounds(420, 50, 100, 20);
     cp.add(donoff);
 
-    // ActionListener for JRadioButton 
+    // ActionListener for JRadioButton
     donoff.addActionListener(d -> {
       ;
       if (check == false) {
@@ -307,59 +301,44 @@ public class Product_Control extends JFrame implements ActionListener {
           } // end of if
           bw.write("");
           bw.write(nproduct.getText());
-          this.zv1 = nproduct.getText();
           bw.write("\n");
           if (error == "non") {
             bw.write(error);
-            this.zv2 = error;
           } else if (error == "Category: non") {
             bw.write(error);
-            this.zv2 = error;
           }
 
           if (electronic == "electronic") {
             bw.write(electronic);
-            this.zv2 = electronic;
           } else if (electronic == "Category: electronic") {
             bw.write(electronic);
-            this.zv2 = electronic;
           }
 
           if (mechanic == "mechanic") {
             bw.write(mechanic);
-            this.zv2 = mechanic;
           } else if (mechanic == "Category: mechanic") {
             bw.write(mechanic);
-            this.zv2 = mechanic;
           }
 
           if (social == "social") {
             bw.write(social);
-            this.zv2 = mechanic;
           } else if (social == "Category: social") {
             bw.write(social);
-            this.zv2 = mechanic;
           }
 
           if (services == "services") {
             bw.write(services);
-            this.zv2 = services;
           } else if (services == "Category: services") {
             bw.write(services);
-            this.zv2 = services;
           }
           bw.write("\n");
           bw.write(productnumber.getText());
-          this.zv3 = productnumber.getText();
           bw.write("\n");
           bw.write(pproduct.getText());
-          this.zv4 = pproduct.getText();
           bw.write("\n");
           bw.write(inventoryproduct.getText());
-          this.zv5 = inventoryproduct.getText();
           bw.write("\n");
           bw.write(iproduct.getText());
-          this.zv6 = iproduct.getText();
           bw.flush();
           if (i == JFileChooser.APPROVE_OPTION) {
             File f = fc.getSelectedFile();
@@ -439,59 +418,6 @@ public class Product_Control extends JFrame implements ActionListener {
       }
     });
 
-    onedelete.addActionListener(d -> {
-      Product_Control[] zwischenvariabel = null;
-      int x = JOptionPane.showConfirmDialog(null, "Moechten Sie ein Produkt loeschen?");
-      if (x == 0) {
-        String input = JOptionPane.showInputDialog("Geben Sie die Kategory ein, die Sie loeschen moechten:");
-        try {
-          File file;
-          JFileChooser fc = new JFileChooser();
-          fc.showSaveDialog(null);
-          file = fc.getSelectedFile();
-          File f = fc.getSelectedFile();
-          String filepath = f.getPath();
-          boolean neu = true;
-          boolean deleted = false;
-          if (file.exists()) {
-            BufferedWriter bw = new BufferedWriter(new FileWriter(file, false));
-            for (Product_Control element : capacity) {
-              if (!(mod_deleted.equals(element.getCategory()))) {
-                if (!neu) {
-                  bw.write("\n");
-                } else {
-                  neu = false;
-                }
-              } else {
-                deleted = true;
-              }
-            }
-            bw.close();
-          } else {
-            ErrorDialog error = new ErrorDialog();
-            error.setWrongFile();
-          }
-          if (deleted) {
-            ErrorDialog error = new ErrorDialog();
-            error.setProductDelete();
-          } else {
-            ErrorDialog error = new ErrorDialog();
-            error.setWrongItemNumber();
-          }
-          BufferedReader br = new BufferedReader(new FileReader(filepath));
-          String s1 = "", s2 = "";
-          while ((s1 = br.readLine()) != null) {
-            s2 += s1 + "\n";
-          }
-          read.setText(s2);
-          br.close();
-        } catch (IOException ioAusnahme) {
-          ErrorDialog error = new ErrorDialog();
-          error.setOpenError();
-        }
-      }
-    });
-
     simulation.addActionListener(e -> {
       new Simulation();
     });
@@ -500,154 +426,115 @@ public class Product_Control extends JFrame implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
-      if(e.getSource()==exit)
+    if(e.getSource()==exit)
       System.exit(0);
-      if(e.getSource()==save) {
-        JFileChooser fc = new JFileChooser();
-        filter = new FileNameExtensionFilter("Textdatei", "txt");
-        fc.addChoosableFileFilter(filter);
-        int i = fc.showSaveDialog(null);
-        if (i == JFileChooser.APPROVE_OPTION) {
-          try {
-            boolean neu = false;
-            File file;
-            file = fc.getSelectedFile();
-            if (!file.exists()) {
-              file.createNewFile();
-              neu = true;
-            }
-            BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
-            if (!neu) {
-              bw.write("\n");
-              bw.write("\n");
-            } // end of if
-            bw.write("");
-            bw.write(nproduct.getText());
-            this.zv1 = nproduct.getText();
+    if(e.getSource()==save) {
+      JFileChooser fc = new JFileChooser();
+      filter = new FileNameExtensionFilter("Textdatei", "txt");
+      fc.addChoosableFileFilter(filter);
+      int i = fc.showSaveDialog(null);
+      if (i == JFileChooser.APPROVE_OPTION) {
+        try {
+          boolean neu = false;
+          File file;
+          file = fc.getSelectedFile();
+          if (!file.exists()) {
+            file.createNewFile();
+            neu = true;
+          }
+          BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
+          if (!neu) {
             bw.write("\n");
-            if (error == "non") {
-              bw.write(error);
-              this.zv2 = error;
-            } else if (error == "Category: non") {
-              bw.write(error);
-              this.zv2 = error;
-            }
+            bw.write("\n");
+          } // end of if
+          bw.write("");
+          bw.write(nproduct.getText());
+          bw.write("\n");
+          if (error == "non") {
+            bw.write(error);
+          } else if (error == "Category: non") {
+            bw.write(error);
+          }
 
-            if (electronic == "electronic") {
-              bw.write(electronic);
-              this.zv2 = electronic;
-            } else if (electronic == "Category: electronic") {
-              bw.write(electronic);
-              this.zv2 = electronic;
-            }
+          if (electronic == "electronic") {
+            bw.write(electronic);
+          } else if (electronic == "Category: electronic") {
+            bw.write(electronic);
+          }
 
-            if (mechanic == "mechanic") {
-              bw.write(mechanic);
-              this.zv2 = mechanic;
-            } else if (mechanic == "Category: mechanic") {
-              bw.write(mechanic);
-              this.zv2 = mechanic;
-            }
+          if (mechanic == "mechanic") {
+            bw.write(mechanic);
+          } else if (mechanic == "Category: mechanic") {
+            bw.write(mechanic);
+          }
 
-            if (social == "social") {
-              bw.write(social);
-              this.zv2 = mechanic;
-            } else if (social == "Category: social") {
-              bw.write(social);
-              this.zv2 = mechanic;
-            }
+          if (social == "social") {
+            bw.write(social);
+          } else if (social == "Category: social") {
+            bw.write(social);
+          }
 
-            if (services == "services") {
-              bw.write(services);
-              this.zv2 = services;
-            } else if (services == "Category: services") {
-              bw.write(services);
-              this.zv2 = services;
-            }
-            bw.write("\n");
-            bw.write(productnumber.getText());
-            this.zv3 = productnumber.getText();
-            bw.write("\n");
-            bw.write(pproduct.getText());
-            this.zv4 = pproduct.getText();
-            bw.write("\n");
-            bw.write(inventoryproduct.getText());
-            this.zv5 = inventoryproduct.getText();
-            bw.write("\n");
-            bw.write(iproduct.getText());
-            this.zv6 = iproduct.getText();
-            bw.flush();
-            if (i == JFileChooser.APPROVE_OPTION) {
-              File f = fc.getSelectedFile();
-              String filepath = f.getPath();
-              try {
-                BufferedReader br = new BufferedReader(new FileReader(filepath));
-                String s1 = "", s2 = "";
-                while ((s1 = br.readLine()) != null) {
-                  s2 += s1 + "\n";
-                }
-                read.setText(s2);
-                br.close();
-              } catch (Exception ex) {
-                // e.printStackTrace();
-                ErrorDialog error = new ErrorDialog();
-                error.setOpenError();
+          if (services == "services") {
+            bw.write(services);
+          } else if (services == "Category: services") {
+            bw.write(services);
+          }
+          bw.write("\n");
+          bw.write(productnumber.getText());
+          bw.write("\n");
+          bw.write(pproduct.getText());
+          bw.write("\n");
+          bw.write(inventoryproduct.getText());
+          bw.write("\n");
+          bw.write(iproduct.getText());
+          bw.flush();
+          if (i == JFileChooser.APPROVE_OPTION) {
+            File f = fc.getSelectedFile();
+            String filepath = f.getPath();
+            try {
+              BufferedReader br = new BufferedReader(new FileReader(filepath));
+              String s1 = "", s2 = "";
+              while ((s1 = br.readLine()) != null) {
+                s2 += s1 + "\n";
               }
+              read.setText(s2);
+              br.close();
+            } catch (Exception ex) {
+              // e.printStackTrace();
+              ErrorDialog error = new ErrorDialog();
+              error.setOpenError();
             }
-          } catch (IOException ex) {
-            // e.printStackTrace();
-            ErrorDialog error = new ErrorDialog();
-            error.setWriteError();
           }
+        } catch (IOException ex) {
+          // e.printStackTrace();
+          ErrorDialog error = new ErrorDialog();
+          error.setWriteError();
         }
       }
-      if(e.getSource()==open) {
-        filter = new FileNameExtensionFilter("Textdatei", "txt");
-        JFileChooser fc = new JFileChooser();
-        fc.addChoosableFileFilter(filter);
-        int i = fc.showOpenDialog(this);
+    }
+    if(e.getSource()==open) {
+      filter = new FileNameExtensionFilter("Textdatei", "txt");
+      JFileChooser fc = new JFileChooser();
+      fc.addChoosableFileFilter(filter);
+      int i = fc.showOpenDialog(this);
 
-        if (i == JFileChooser.APPROVE_OPTION) {
-          File f = fc.getSelectedFile();
-          String filepath = f.getPath();
-          try {
-            BufferedReader br = new BufferedReader(new FileReader(filepath));
-            String s1 = "", s2 = "";
-            while ((s1 = br.readLine()) != null) {
-              s2 += s1 + "\n";
-            }
-            read.setText(s2);
-            br.close();
-          } catch (Exception ex) {
-            // e.printStackTrace();
-            ErrorDialog error = new ErrorDialog();
-            error.setOpenError();
+      if (i == JFileChooser.APPROVE_OPTION) {
+        File f = fc.getSelectedFile();
+        String filepath = f.getPath();
+        try {
+          BufferedReader br = new BufferedReader(new FileReader(filepath));
+          String s1 = "", s2 = "";
+          while ((s1 = br.readLine()) != null) {
+            s2 += s1 + "\n";
           }
+          read.setText(s2);
+          br.close();
+        } catch (Exception ex) {
+          // e.printStackTrace();
+          ErrorDialog error = new ErrorDialog();
+          error.setOpenError();
         }
       }
+    }
   }
-
-  // Methods
-  public String getName() {
-    return zv1;
-  }
-
-  public String getCategory() {
-    return zv2;
-  }
-
-  public String getPrice() {
-    return zv3;
-  }
-
-  public String getInventory() {
-    return zv4;
-  }
-
-  public String getInformation() {
-    return zv5;
-  }
-
-  public String getNumber() {return zv6;}
-
 }
