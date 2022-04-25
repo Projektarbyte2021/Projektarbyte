@@ -19,12 +19,11 @@ public class Product_Control extends JFrame implements ActionListener {
   private JLabel name, category, price, info, inventory, number;
   private String electronic, mechanic, social, services, error = "non";
   private boolean test1, test2, test3, test4, test5, check = false;
-  private JMenu menu;
-  private JMenuItem exit, save, open;
-
+  private JMenu filemenu, helpmenu;
+  private JMenuItem exit, save, open, infomenu, license;
 
   public Product_Control() {
-    super("Verwaltungsprogramm - Add Product");
+    super("Easy to Manage - Add Product");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setExtendedState(JFrame.MAXIMIZED_BOTH);
     setVisible(true);
@@ -33,18 +32,30 @@ public class Product_Control extends JFrame implements ActionListener {
 
     // JMenu
     JMenuBar mb =  new JMenuBar();
-    menu = new JMenu("File");
+    JSeparator sep = new JSeparator();
+    filemenu = new JMenu("File");
     open = new JMenuItem("Open");
     save = new JMenuItem("Save");
     exit = new JMenuItem("Exit");
-    menu.add(open);
-    menu.add(save);
-    menu.add(exit);
-    mb.add(menu);
+    filemenu.add(open);
+    filemenu.add(save);
+    filemenu.add(sep);
+    filemenu.add(exit);
+
+    helpmenu = new JMenu("Help");
+    infomenu = new JMenuItem("Info");
+    license = new JMenuItem("License");
+    helpmenu.add(license);
+    helpmenu.add(infomenu);
+
+    mb.add(filemenu);
+    mb.add(helpmenu);
     this.setJMenuBar(mb);
     open.addActionListener(this);
     save.addActionListener(this);
     exit.addActionListener(this);
+    infomenu.addActionListener(this);
+    license.addActionListener(this);
 
     // JTextAreas and JScrollPanes
     nproduct = new JTextArea();
@@ -430,115 +441,124 @@ public class Product_Control extends JFrame implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
-      if(e.getSource()==exit)
+    if (e.getSource() == exit)
       System.exit(0);
-      if(e.getSource()==save) {
-        JFileChooser fc = new JFileChooser();
-        filter = new FileNameExtensionFilter("Textdatei", "txt");
-        fc.addChoosableFileFilter(filter);
-        int i = fc.showSaveDialog(null);
-        if (i == JFileChooser.APPROVE_OPTION) {
-          try {
-            boolean neu = false;
-            File file;
-            file = fc.getSelectedFile();
-            if (!file.exists()) {
-              file.createNewFile();
-              neu = true;
-            }
-            BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
-            if (!neu) {
-              bw.write("\n");
-              bw.write("\n");
-            } // end of if
-            bw.write("");
-            bw.write(nproduct.getText());
+    if (e.getSource() == save) {
+      JFileChooser fc = new JFileChooser();
+      filter = new FileNameExtensionFilter("Textdatei", "txt");
+      fc.addChoosableFileFilter(filter);
+      int i = fc.showSaveDialog(null);
+      if (i == JFileChooser.APPROVE_OPTION) {
+        try {
+          boolean neu = false;
+          File file;
+          file = fc.getSelectedFile();
+          if (!file.exists()) {
+            file.createNewFile();
+            neu = true;
+          }
+          BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
+          if (!neu) {
             bw.write("\n");
-            if (error == "non") {
-              bw.write(error);
-            } else if (error == "Category: non") {
-              bw.write(error);
-            }
+            bw.write("\n");
+          } // end of if
+          bw.write("");
+          bw.write(nproduct.getText());
+          bw.write("\n");
+          if (error == "non") {
+            bw.write(error);
+          } else if (error == "Category: non") {
+            bw.write(error);
+          }
 
-            if (electronic == "electronic") {
-              bw.write(electronic);
-            } else if (electronic == "Category: electronic") {
-              bw.write(electronic);
-            }
+          if (electronic == "electronic") {
+            bw.write(electronic);
+          } else if (electronic == "Category: electronic") {
+            bw.write(electronic);
+          }
 
-            if (mechanic == "mechanic") {
-              bw.write(mechanic);
-            } else if (mechanic == "Category: mechanic") {
-              bw.write(mechanic);
-            }
+          if (mechanic == "mechanic") {
+            bw.write(mechanic);
+          } else if (mechanic == "Category: mechanic") {
+            bw.write(mechanic);
+          }
 
-            if (social == "social") {
-              bw.write(social);
-            } else if (social == "Category: social") {
-              bw.write(social);
-            }
+          if (social == "social") {
+            bw.write(social);
+          } else if (social == "Category: social") {
+            bw.write(social);
+          }
 
-            if (services == "services") {
-              bw.write(services);
-            } else if (services == "Category: services") {
-              bw.write(services);
-            }
-            bw.write("\n");
-            bw.write(productnumber.getText());
-            bw.write("\n");
-            bw.write(pproduct.getText());
-            bw.write("\n");
-            bw.write(inventoryproduct.getText());
-            bw.write("\n");
-            bw.write(iproduct.getText());
-            bw.flush();
-            if (i == JFileChooser.APPROVE_OPTION) {
-              File f = fc.getSelectedFile();
-              String filepath = f.getPath();
-              try {
-                BufferedReader br = new BufferedReader(new FileReader(filepath));
-                String s1 = "", s2 = "";
-                while ((s1 = br.readLine()) != null) {
-                  s2 += s1 + "\n";
-                }
-                read.setText(s2);
-                br.close();
-              } catch (Exception ex) {
-                // e.printStackTrace();
-                ErrorDialog error = new ErrorDialog();
-                error.setOpenError();
+          if (services == "services") {
+            bw.write(services);
+          } else if (services == "Category: services") {
+            bw.write(services);
+          }
+          bw.write("\n");
+          bw.write(productnumber.getText());
+          bw.write("\n");
+          bw.write(pproduct.getText());
+          bw.write("\n");
+          bw.write(inventoryproduct.getText());
+          bw.write("\n");
+          bw.write(iproduct.getText());
+          bw.flush();
+          if (i == JFileChooser.APPROVE_OPTION) {
+            File f = fc.getSelectedFile();
+            String filepath = f.getPath();
+            try {
+              BufferedReader br = new BufferedReader(new FileReader(filepath));
+              String s1 = "", s2 = "";
+              while ((s1 = br.readLine()) != null) {
+                s2 += s1 + "\n";
               }
+              read.setText(s2);
+              br.close();
+            } catch (Exception ex) {
+              // e.printStackTrace();
+              ErrorDialog error = new ErrorDialog();
+              error.setOpenError();
             }
-          } catch (IOException ex) {
-            // e.printStackTrace();
-            ErrorDialog error = new ErrorDialog();
-            error.setWriteError();
           }
+        } catch (IOException ex) {
+          // e.printStackTrace();
+          ErrorDialog error = new ErrorDialog();
+          error.setWriteError();
         }
       }
-      if(e.getSource()==open) {
-        filter = new FileNameExtensionFilter("Textdatei", "txt");
-        JFileChooser fc = new JFileChooser();
-        fc.addChoosableFileFilter(filter);
-        int i = fc.showOpenDialog(this);
+    }
+    if (e.getSource() == open) {
+      filter = new FileNameExtensionFilter("Textdatei", "txt");
+      JFileChooser fc = new JFileChooser();
+      fc.addChoosableFileFilter(filter);
+      int i = fc.showOpenDialog(this);
 
-        if (i == JFileChooser.APPROVE_OPTION) {
-          File f = fc.getSelectedFile();
-          String filepath = f.getPath();
-          try {
-            BufferedReader br = new BufferedReader(new FileReader(filepath));
-            String s1 = "", s2 = "";
-            while ((s1 = br.readLine()) != null) {
-              s2 += s1 + "\n";
-            }
-            read.setText(s2);
-            br.close();
-          } catch (Exception ex) {
-            // e.printStackTrace();
-            ErrorDialog error = new ErrorDialog();
-            error.setOpenError();
+      if (i == JFileChooser.APPROVE_OPTION) {
+        File f = fc.getSelectedFile();
+        String filepath = f.getPath();
+        try {
+          BufferedReader br = new BufferedReader(new FileReader(filepath));
+          String s1 = "", s2 = "";
+          while ((s1 = br.readLine()) != null) {
+            s2 += s1 + "\n";
           }
+          read.setText(s2);
+          br.close();
+        } catch (Exception ex) {
+          // e.printStackTrace();
+          ErrorDialog error = new ErrorDialog();
+          error.setOpenError();
         }
       }
+    }
+
+    if (e.getSource() == infomenu) {
+      final String aboutText= "<html><big>Welcome to ,,Easy to Manage''</big><hr><hr> <p align=right>Developed by Sebastian, Ben and Fynn!<hr><p align=left>The Source Code was compiled with JDK 17.0.2.<br><br><strong>Thanks for using Easy to Manage</strong><br>We hope that you have had a good experience with Easy to Manage<p align=center><hr><a href=\"https://github.com/fantastic-octo-garbanzo\">https://github.com/fantastic-octo-garbanzo</a><hr><hr><html>";
+      JOptionPane.showMessageDialog(Product_Control.this, aboutText, "About", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    if(e.getSource() == license) {
+
+    }
   }
 }

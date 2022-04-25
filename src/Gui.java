@@ -15,7 +15,7 @@ public class Gui {
     }
     
     // JFrame
-    f = new JFrame("Verwaltungsprogramm - Gui");
+    f = new JFrame("Easy to Manage - Gui");
     f.setExtendedState(JFrame.MAXIMIZED_BOTH);
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     f.setLayout(null);
