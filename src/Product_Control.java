@@ -20,7 +20,7 @@ public class Product_Control extends JFrame implements ActionListener {
   private String electronic, mechanic, social, services, error = "non";
   private boolean test1, test2, test3, test4, test5, check = false;
   private JMenu filemenu, helpmenu;
-  private JMenuItem exit, save, open, infomenu, license;
+  private JMenuItem exit, save, open, infomenu;
 
   public Product_Control() {
     super("Easy to Manage - Add Product");
@@ -44,8 +44,6 @@ public class Product_Control extends JFrame implements ActionListener {
 
     helpmenu = new JMenu("Help");
     infomenu = new JMenuItem("Info");
-    license = new JMenuItem("License");
-    helpmenu.add(license);
     helpmenu.add(infomenu);
 
     mb.add(filemenu);
@@ -55,7 +53,6 @@ public class Product_Control extends JFrame implements ActionListener {
     save.addActionListener(this);
     exit.addActionListener(this);
     infomenu.addActionListener(this);
-    license.addActionListener(this);
 
     // JTextAreas and JScrollPanes
     nproduct = new JTextArea();
@@ -555,10 +552,6 @@ public class Product_Control extends JFrame implements ActionListener {
     if (e.getSource() == infomenu) {
       final String aboutText= "<html><big>Welcome to ,,Easy to Manage''</big><hr><hr> <p align=right>Developed by Sebastian, Ben and Fynn!<hr><p align=left>The Source Code was compiled with JDK 17.0.2.<br><br><strong>Thanks for using Easy to Manage</strong><br>We hope that you have had a good experience with Easy to Manage<p align=center><hr><a href=\"https://github.com/fantastic-octo-garbanzo\">https://github.com/fantastic-octo-garbanzo</a><hr><hr><html>";
       JOptionPane.showMessageDialog(Product_Control.this, aboutText, "About", JOptionPane.INFORMATION_MESSAGE);
-    }
-
-    if(e.getSource() == license) {
-
     }
   }
 }
