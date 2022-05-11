@@ -3,16 +3,10 @@ import javax.swing.*;
 
 public class Gui {
   
-  public JButton close, aproduct, simulation;
+  public JButton close, aproduct;
   public JFrame f;
 
   public Gui() {
-    
-    try {
-      UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-    } catch(Exception e) {
-      System.out.println("Setting Look and Feel Failed");
-    }
     
     // JFrame
     f = new JFrame("Easy to Manage - Gui");
@@ -30,10 +24,6 @@ public class Gui {
     aproduct.setBounds(200, 150, 200, 50);
     f.add(aproduct);
     
-    simulation = new JButton("Simulation");
-    simulation.setBounds(200, 250, 200, 50);
-    f.add(simulation);
-    
     // ActionListeners
     close.addActionListener(a -> {
       System.exit(0);
@@ -42,11 +32,6 @@ public class Gui {
     aproduct.addActionListener(b -> {
       f.dispose();
       new Product_Control();
-    });
-
-    simulation.addActionListener(e -> {
-      f.dispose();
-      new Simulation();
     });
   } 
   

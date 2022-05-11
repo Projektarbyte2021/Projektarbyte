@@ -11,7 +11,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class Product_Control extends JFrame implements ActionListener {
 
   private FileFilter filter;
-  private JButton close, back, add, show, alldelete, onedelete, simulation;
+  private JButton close, back, add, show, alldelete, onedelete;
   private JRadioButton donoff;
   private JTextArea nproduct, pproduct, iproduct, inventoryproduct, read, productnumber;
   private JComboBox c;
@@ -19,8 +19,8 @@ public class Product_Control extends JFrame implements ActionListener {
   private JLabel name, category, price, info, inventory, number;
   private String electronic, mechanic, social, services, error = "non";
   private boolean test1, test2, test3, test4, test5, check = false;
-  private JMenu filemenu, helpmenu;
-  private JMenuItem exit, save, open, infomenu;
+  private JMenu filemenu, helpmenu, lookmenu;
+  private JMenuItem exit, save, open, infomenu, motif, system, metal;
 
   public Product_Control() {
     super("Easy to Manage - Add Product");
@@ -46,13 +46,25 @@ public class Product_Control extends JFrame implements ActionListener {
     infomenu = new JMenuItem("Info");
     helpmenu.add(infomenu);
 
+    lookmenu = new JMenu("Look And Feel");
+    motif = new JMenuItem("Motif");
+    metal = new JMenuItem("Metal");
+    system = new JMenuItem("System");
+    lookmenu.add(motif);
+    lookmenu.add(metal);
+    lookmenu.add(system);
+
     mb.add(filemenu);
     mb.add(helpmenu);
+    mb.add(lookmenu);
     this.setJMenuBar(mb);
     open.addActionListener(this);
     save.addActionListener(this);
     exit.addActionListener(this);
     infomenu.addActionListener(this);
+    motif.addActionListener(this);
+    metal.addActionListener(this);
+    system.addActionListener(this);
 
     // JTextAreas and JScrollPanes
     nproduct = new JTextArea();
@@ -100,12 +112,12 @@ public class Product_Control extends JFrame implements ActionListener {
     category.setBounds(16, 90, 150, 20);
     cp.add(category);
 
-    number = new JLabel("Description of Product: ");
-    number.setBounds(16, 271, 150, 20);
+    number = new JLabel("Number of Product: ");
+    number.setBounds(16, 150, 150, 20);
     cp.add(number);
 
     inventory = new JLabel("Inventory of Product:");
-    inventory.setBounds(16, 150, 150, 20);
+    inventory.setBounds(16, 271, 150, 20);
     cp.add(inventory);
 
     price = new JLabel("Price of Product: ");
@@ -135,10 +147,6 @@ public class Product_Control extends JFrame implements ActionListener {
     show = new JButton(icon1);
     show.setBounds(420, 200, 200, 50);
     cp.add(show);
-
-    simulation = new JButton("Simulation");
-    simulation.setBounds(420, 500, 200, 50);
-    this.add(simulation);
 
     alldelete = new JButton("Delete all Products");
     alldelete.setBounds(420, 300, 200, 50);
@@ -429,10 +437,6 @@ public class Product_Control extends JFrame implements ActionListener {
         error.setWriteError();*/
       }
     });
-
-    simulation.addActionListener(e -> {
-      new Simulation();
-    });
   }
 
 
@@ -550,8 +554,16 @@ public class Product_Control extends JFrame implements ActionListener {
     }
 
     if (e.getSource() == infomenu) {
-      final String aboutText= "<html><big>Welcome to ,,Easy to Manage''</big><hr><hr> <p align=right>Developed by Sebastian, Ben and Fynn!<hr><p align=left>The Source Code was compiled with JDK 17.0.2.<br><br><strong>Thanks for using Easy to Manage</strong><br>We hope that you have had a good experience with Easy to Manage<p align=center><hr><a href=\"https://github.com/fantastic-octo-garbanzo\">https://github.com/fantastic-octo-garbanzo</a><hr><hr><html>";
+      final String aboutText= "<html><big>Welcome to ,,Easy to Manage''</big><hr><hr> <p align=right>Developed by Sebastian, Ben and Fynn!<hr><p align=left>The Source Code was compiled with JDK 17.0.2.<br><br><strong>Thanks for using Easy to Manage</strong><br>We hope that you have had a good experience with Easy to Manage<p align=center><hr><a href=\"https://github.com/Projektarbyte2021/Projektarbyte\">https://github.com/Projektarbyte2021/Projektarbyte</a><hr><hr><html>";
       JOptionPane.showMessageDialog(Product_Control.this, aboutText, "About", JOptionPane.INFORMATION_MESSAGE);
     }
+
+    if(e.getSource() == motif) {
+    }
+  }
+
+  public static void main(String[] args) {
+    new Splash().showSplash();
+    new Product_Control();
   }
 }
