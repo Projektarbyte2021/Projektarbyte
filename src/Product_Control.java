@@ -5,13 +5,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.URL;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Product_Control extends JFrame implements ActionListener {
-
   private FileFilter filter;
-  private JButton close, back, add, show, alldelete, onedelete;
+  public Locale locale;
+  public static ResourceBundle bundle;
+  private JButton close, back, add, show, alldelete;
   private JRadioButton donoff;
   private JTextArea nproduct, pproduct, iproduct, inventoryproduct, read, productnumber;
   private JComboBox c;
@@ -22,8 +25,10 @@ public class Product_Control extends JFrame implements ActionListener {
   private JMenu filemenu, helpmenu, lookmenu;
   private JMenuItem exit, save, open, infomenu, motif, system, metal;
 
-  public Product_Control() {
-    super("Easy to Manage - Add Product");
+  public Product_Control(Locale StartLanguage) {
+    this.locale = StartLanguage;
+    this.bundle = ResourceBundle.getBundle("Bundle_" + locale, locale);
+    this.setTitle(bundle.getString("title"));
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setExtendedState(JFrame.MAXIMIZED_BOTH);
     setVisible(true);
@@ -33,20 +38,20 @@ public class Product_Control extends JFrame implements ActionListener {
     // JMenu
     JMenuBar mb =  new JMenuBar();
     JSeparator sep = new JSeparator();
-    filemenu = new JMenu("File");
-    open = new JMenuItem("Open");
-    save = new JMenuItem("Save");
-    exit = new JMenuItem("Exit");
+    filemenu = new JMenu(bundle.getString("filemenu"));
+    open = new JMenuItem(bundle.getString("open"));
+    save = new JMenuItem(bundle.getString("save"));
+    exit = new JMenuItem(bundle.getString("exit"));
     filemenu.add(open);
     filemenu.add(save);
     filemenu.add(sep);
     filemenu.add(exit);
 
-    helpmenu = new JMenu("Help");
+    helpmenu = new JMenu(bundle.getString("helpmenu"));
     infomenu = new JMenuItem("Info");
     helpmenu.add(infomenu);
 
-    lookmenu = new JMenu("Look And Feel");
+    lookmenu = new JMenu(bundle.getString("look"));
     motif = new JMenuItem("Motif");
     metal = new JMenuItem("Metal");
     system = new JMenuItem("System");
@@ -72,7 +77,7 @@ public class Product_Control extends JFrame implements ActionListener {
     nproductScrollPane.setBounds(200, 27, 168, 44);
     cp.add(nproductScrollPane);
 
-    String[] categoryList = {"Please select a category", "electronic", "mechanic", "social", "services"};
+    String[] categoryList = {bundle.getString("select"), bundle.getString("el"), bundle.getString("me"), bundle.getString("so"), bundle.getString("se")};
     c = new JComboBox(categoryList);
     c.setBounds(200, 80, 168, 44);
     cp.add(c);
@@ -104,40 +109,40 @@ public class Product_Control extends JFrame implements ActionListener {
     cp.add(readScrollPane);
 
     // JLabels
-    name = new JLabel("Name of Product:");
+    name = new JLabel(bundle.getString("name"));
     name.setBounds(16, 34, 150, 20);
     cp.add(name);
 
-    category = new JLabel("Category of Product:");
+    category = new JLabel(bundle.getString("category"));
     category.setBounds(16, 90, 150, 20);
     cp.add(category);
 
-    number = new JLabel("Number of Product: ");
+    number = new JLabel(bundle.getString("number"));
     number.setBounds(16, 150, 150, 20);
     cp.add(number);
 
-    inventory = new JLabel("Inventory of Product:");
+    inventory = new JLabel(bundle.getString("inventory"));
     inventory.setBounds(16, 271, 150, 20);
     cp.add(inventory);
 
-    price = new JLabel("Price of Product: ");
+    price = new JLabel(bundle.getString("price"));
     price.setBounds(16, 211, 150, 20);
     cp.add(price);
 
-    info = new JLabel("Description of Product:");
+    info = new JLabel(bundle.getString("info"));
     info.setBounds(16, 350, 150, 20);
     cp.add(info);
 
     // JButtons
-    close = new JButton("Close");
-    close.setBounds(200, 600, 200, 50);
+    close = new JButton(bundle.getString("close"));
+    close.setBounds(100, 500, 200, 50);
     cp.add(close);
 
-    back = new JButton("Back");
-    back.setBounds(450, 600, 200, 50);
+    back = new JButton(bundle.getString("back"));
+    back.setBounds(350, 500, 200, 50);
     cp.add(back);
 
-    add = new JButton("Add");
+    add = new JButton(bundle.getString("add"));
     add.setBounds(420, 100, 200, 50);
     cp.add(add);
 
@@ -148,37 +153,33 @@ public class Product_Control extends JFrame implements ActionListener {
     show.setBounds(420, 200, 200, 50);
     cp.add(show);
 
-    alldelete = new JButton("Delete all Products");
+    alldelete = new JButton(bundle.getString("dall"));
     alldelete.setBounds(420, 300, 200, 50);
     this.add(alldelete);
 
-    onedelete = new JButton("Delete one Product");
-    onedelete.setBounds(420, 400, 200, 50);
-    this.add(onedelete);
-
     // JRadioButton
-    donoff = new JRadioButton("Label off");
-    donoff.setBounds(420, 50, 100, 20);
+    donoff = new JRadioButton(bundle.getString("doff"));
+    donoff.setBounds(420, 50, 200, 20);
     cp.add(donoff);
 
     // ActionListener for JRadioButton 
     donoff.addActionListener(d -> {
       ;
       if (check == false) {
-        donoff.setText("Label on");
-        nproduct.setText("Name: ");
+        donoff.setText(bundle.getString("don"));
+        nproduct.setText(bundle.getString("name"));
         test1 = true;
         test2 = true;
         test3 = true;
         test4 = true;
         test5 = true;
-        productnumber.setText("Productnumber: ");
-        pproduct.setText("Price: ");
-        inventoryproduct.setText("Inventory of Product: ");
-        iproduct.setText("Description: ");
+        productnumber.setText(bundle.getString("number"));
+        pproduct.setText(bundle.getString("price"));
+        inventoryproduct.setText(bundle.getString("inventory"));
+        iproduct.setText(bundle.getString("info"));
         check = true;
       } else if (check == true) {
-        donoff.setText("Label off");
+        donoff.setText(bundle.getString("doff"));
         nproduct.setText(" ");
         test1 = false;
         test2 = false;
@@ -200,9 +201,9 @@ public class Product_Control extends JFrame implements ActionListener {
     // ItemListener
     c.addItemListener(ia -> {
       ;
-      if (c.getSelectedItem().equals("Please select a category")) {
+      if (c.getSelectedItem().equals(bundle.getString("select"))) {
         if (test1 == true) {
-          error = "Category: non";
+          error = bundle.getString("error1");
           electronic = "";
           mechanic = "";
           social = "";
@@ -210,7 +211,7 @@ public class Product_Control extends JFrame implements ActionListener {
         } // end of if
 
         if (test1 == false) {
-          error = "non";
+          error = bundle.getString("error2");
           electronic = "";
           mechanic = "";
           social = "";
@@ -218,10 +219,10 @@ public class Product_Control extends JFrame implements ActionListener {
         } // end of if
       }
 
-      if (c.getSelectedItem().equals("electronic")) {
+      if (c.getSelectedItem().equals(bundle.getString("el"))) {
         if (test2 == true) {
           error = "";
-          electronic = "Category: electronic";
+          electronic = bundle.getString("cel");
           mechanic = "";
           social = "";
           services = "";
@@ -229,18 +230,18 @@ public class Product_Control extends JFrame implements ActionListener {
 
         if (test2 == false) {
           error = "";
-          electronic = "electronic";
+          electronic = bundle.getString("el");
           mechanic = "";
           social = "";
           services = "";
         } // end of if
       }
 
-      if (c.getSelectedItem().equals("mechanic")) {
+      if (c.getSelectedItem().equals(bundle.getString("me"))) {
         if (test3 == true) {
           error = "";
           electronic = "";
-          mechanic = "Category: mechanic";
+          mechanic = bundle.getString("cme");
           social = "";
           services = "";
         } // end of if
@@ -248,18 +249,18 @@ public class Product_Control extends JFrame implements ActionListener {
         if (test3 == false) {
           error = "";
           electronic = "";
-          mechanic = "mechanic";
+          mechanic = bundle.getString("me");
           social = "";
           services = "";
         } // end of if
       }
 
-      if (c.getSelectedItem().equals("social")) {
+      if (c.getSelectedItem().equals(bundle.getString("so"))) {
         if (test4 == true) {
           error = "";
           electronic = "";
           mechanic = "";
-          social = "Category: social";
+          social = bundle.getString("cso");
           services = "";
         } // end of if
 
@@ -267,18 +268,18 @@ public class Product_Control extends JFrame implements ActionListener {
           error = "";
           electronic = "";
           mechanic = "";
-          social = "social";
+          social = bundle.getString("so");
           services = "";
         } // end of if
       }
 
-      if (c.getSelectedItem().equals("services")) {
+      if (c.getSelectedItem().equals(bundle.getString("se"))) {
         if (test5 == true) {
           error = "";
           electronic = "";
           mechanic = "";
           social = "";
-          services = "Category: services";
+          services = bundle.getString("cse");
         } // end of if
 
         if (test5 == false) {
@@ -286,7 +287,7 @@ public class Product_Control extends JFrame implements ActionListener {
           electronic = "";
           mechanic = "";
           social = "";
-          services = "services";
+          services = bundle.getString("se");
         } // end of if
       }
     });
@@ -302,7 +303,7 @@ public class Product_Control extends JFrame implements ActionListener {
 
     add.addActionListener(c -> {
       JFileChooser fc = new JFileChooser();
-      filter = new FileNameExtensionFilter("Textdatei", "txt");
+      filter = new FileNameExtensionFilter(bundle.getString("file"), "txt");
       fc.addChoosableFileFilter(filter);
       int i = fc.showSaveDialog(null);
       if (i == JFileChooser.APPROVE_OPTION) {
@@ -322,33 +323,33 @@ public class Product_Control extends JFrame implements ActionListener {
           bw.write("");
           bw.write(nproduct.getText());
           bw.write("\n");
-          if (error == "non") {
+          if (error == bundle.getString("error2")) {
             bw.write(error);
-          } else if (error == "Category: non") {
+          } else if (error == bundle.getString("error1")) {
             bw.write(error);
           }
 
-          if (electronic == "electronic") {
+          if (electronic == bundle.getString("el")) {
             bw.write(electronic);
-          } else if (electronic == "Category: electronic") {
+          } else if (electronic == bundle.getString("cel")) {
             bw.write(electronic);
           }
 
-          if (mechanic == "mechanic") {
+          if (mechanic == bundle.getString("me")) {
             bw.write(mechanic);
-          } else if (mechanic == "Category: mechanic") {
+          } else if (mechanic == bundle.getString("cme")) {
             bw.write(mechanic);
           }
 
-          if (social == "social") {
+          if (social == bundle.getString("so")) {
             bw.write(social);
-          } else if (social == "Category: social") {
+          } else if (social == bundle.getString("cso")) {
             bw.write(social);
           }
 
-          if (services == "services") {
+          if (services == bundle.getString("se")) {
             bw.write(services);
-          } else if (services == "Category: services") {
+          } else if (services == bundle.getString("cse")) {
             bw.write(services);
           }
           bw.write("\n");
@@ -388,7 +389,7 @@ public class Product_Control extends JFrame implements ActionListener {
     });
 
     show.addActionListener(d -> {
-      filter = new FileNameExtensionFilter("Textdatei", "txt");
+      filter = new FileNameExtensionFilter(bundle.getString("file"), "txt");
       JFileChooser fc = new JFileChooser();
       fc.addChoosableFileFilter(filter);
       int i = fc.showOpenDialog(this);
@@ -446,7 +447,7 @@ public class Product_Control extends JFrame implements ActionListener {
       System.exit(0);
     if (e.getSource() == save) {
       JFileChooser fc = new JFileChooser();
-      filter = new FileNameExtensionFilter("Textdatei", "txt");
+      filter = new FileNameExtensionFilter(bundle.getString("file"), "txt");
       fc.addChoosableFileFilter(filter);
       int i = fc.showSaveDialog(null);
       if (i == JFileChooser.APPROVE_OPTION) {
@@ -466,33 +467,33 @@ public class Product_Control extends JFrame implements ActionListener {
           bw.write("");
           bw.write(nproduct.getText());
           bw.write("\n");
-          if (error == "non") {
+          if (error == bundle.getString("error2")) {
             bw.write(error);
-          } else if (error == "Category: non") {
+          } else if (error == bundle.getString("error1")) {
             bw.write(error);
           }
 
-          if (electronic == "electronic") {
+          if (electronic == bundle.getString("el")) {
             bw.write(electronic);
-          } else if (electronic == "Category: electronic") {
+          } else if (electronic == bundle.getString("cel")) {
             bw.write(electronic);
           }
 
-          if (mechanic == "mechanic") {
+          if (mechanic == bundle.getString("me")) {
             bw.write(mechanic);
-          } else if (mechanic == "Category: mechanic") {
+          } else if (mechanic == bundle.getString("cme")) {
             bw.write(mechanic);
           }
 
-          if (social == "social") {
+          if (social == bundle.getString("so")) {
             bw.write(social);
-          } else if (social == "Category: social") {
+          } else if (social == bundle.getString("cso")) {
             bw.write(social);
           }
 
-          if (services == "services") {
+          if (services == bundle.getString("se")) {
             bw.write(services);
-          } else if (services == "Category: services") {
+          } else if (services == bundle.getString("cse")) {
             bw.write(services);
           }
           bw.write("\n");
@@ -529,7 +530,7 @@ public class Product_Control extends JFrame implements ActionListener {
       }
     }
     if (e.getSource() == open) {
-      filter = new FileNameExtensionFilter("Textdatei", "txt");
+      filter = new FileNameExtensionFilter(bundle.getString("file"), "txt");
       JFileChooser fc = new JFileChooser();
       fc.addChoosableFileFilter(filter);
       int i = fc.showOpenDialog(this);
@@ -554,16 +555,11 @@ public class Product_Control extends JFrame implements ActionListener {
     }
 
     if (e.getSource() == infomenu) {
-      final String aboutText= "<html><big>Welcome to ,,Easy to Manage''</big><hr><hr> <p align=right>Developed by Sebastian, Ben and Fynn!<hr><p align=left>The Source Code was compiled with JDK 17.0.2.<br><br><strong>Thanks for using Easy to Manage</strong><br>We hope that you have had a good experience with Easy to Manage<p align=center><hr><a href=\"https://github.com/Projektarbyte2021/Projektarbyte\">https://github.com/Projektarbyte2021/Projektarbyte</a><hr><hr><html>";
-      JOptionPane.showMessageDialog(Product_Control.this, aboutText, "About", JOptionPane.INFORMATION_MESSAGE);
+      final String aboutText= bundle.getString("about");
+      JOptionPane.showMessageDialog(Product_Control.this, aboutText, bundle.getString("abouttitle"), JOptionPane.INFORMATION_MESSAGE);
     }
 
     if(e.getSource() == motif) {
     }
-  }
-
-  public static void main(String[] args) {
-    new Splash().showSplash();
-    new Product_Control();
   }
 }

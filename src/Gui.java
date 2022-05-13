@@ -1,5 +1,6 @@
 // Imports
 import javax.swing.*;
+import java.util.Locale;
 
 public class Gui {
   
@@ -31,7 +32,7 @@ public class Gui {
 
     aproduct.addActionListener(b -> {
       f.dispose();
-      new Product_Control();
+      new Product_Control(Locale.GERMAN);
     });
   } 
   
