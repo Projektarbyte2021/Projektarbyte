@@ -200,7 +200,7 @@ public class Product_Control extends JFrame implements ActionListener {
 
     // ItemListener
     c.addItemListener(ia -> {
-      ;
+
       if (c.getSelectedItem().equals(bundle.getString("select"))) {
         if (test1 == true) {
           error = bundle.getString("error1");
