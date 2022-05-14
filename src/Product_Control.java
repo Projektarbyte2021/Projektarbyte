@@ -22,8 +22,8 @@ public class Product_Control extends JFrame implements ActionListener {
   private JLabel name, category, price, info, inventory, number;
   private String electronic, mechanic, social, services, error = "non";
   private boolean test1, test2, test3, test4, test5, check = false;
-  private JMenu filemenu, helpmenu, lookmenu;
-  private JMenuItem exit, save, open, infomenu, motif, system, metal;
+  private JMenu filemenu, helpmenu;
+  private JMenuItem exit, save, open, infomenu;
 
   public Product_Control(Locale StartLanguage) {
     this.locale = StartLanguage;
@@ -51,25 +51,13 @@ public class Product_Control extends JFrame implements ActionListener {
     infomenu = new JMenuItem("Info");
     helpmenu.add(infomenu);
 
-    lookmenu = new JMenu(bundle.getString("look"));
-    motif = new JMenuItem("Motif");
-    metal = new JMenuItem("Metal");
-    system = new JMenuItem("System");
-    lookmenu.add(motif);
-    lookmenu.add(metal);
-    lookmenu.add(system);
-
     mb.add(filemenu);
     mb.add(helpmenu);
-    mb.add(lookmenu);
     this.setJMenuBar(mb);
     open.addActionListener(this);
     save.addActionListener(this);
     exit.addActionListener(this);
     infomenu.addActionListener(this);
-    motif.addActionListener(this);
-    metal.addActionListener(this);
-    system.addActionListener(this);
 
     // JTextAreas and JScrollPanes
     nproduct = new JTextArea();
@@ -555,11 +543,9 @@ public class Product_Control extends JFrame implements ActionListener {
     }
 
     if (e.getSource() == infomenu) {
-      final String aboutText= bundle.getString("about");
+      final String aboutText = bundle.getString("about");
       JOptionPane.showMessageDialog(Product_Control.this, aboutText, bundle.getString("abouttitle"), JOptionPane.INFORMATION_MESSAGE);
-    }
-
-    if(e.getSource() == motif) {
     }
   }
 }
+

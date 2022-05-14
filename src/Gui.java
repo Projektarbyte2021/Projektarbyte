@@ -11,7 +11,10 @@ public class Gui extends JFrame{
   private JComboBox c;
 
   public Gui() {
-
+    try {
+      UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+    } catch(Exception ex) {
+    }
     setTitle("Easy to Manage - GUI");
     JLabel l = new JLabel("Welcome to Easy to Manage");
     l.setFont(new Font("Serif", Font.ITALIC, 35));
