@@ -32,7 +32,7 @@ public class Splash extends JWindow {
     setLocationRelativeTo(null);
     setVisible(true);
 
-    JProgressBar progress = new JProgressBar(0, 50);
+    JProgressBar progress = new JProgressBar(0, 50); // The second value specifies how fast the processbar should run through
 
     progress.setSize(486, 20);
 
@@ -44,7 +44,7 @@ public class Splash extends JWindow {
 
     container.add(panel);
 
-    for (int i = 0; i <= progress.getMaximum(); i++) {
+    for (int i = 0; i <= progress.getMaximum(); i++) { // The for loop runs until the end of the frame
       progress.setValue(i);
       try {
         Thread.sleep(15);

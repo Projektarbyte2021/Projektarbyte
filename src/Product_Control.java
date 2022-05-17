@@ -22,7 +22,7 @@ public class Product_Control extends JFrame implements ActionListener {
   private JLabel name, category, price, info, inventory, number;
   private String electronic, mechanic, social, services, error = "non";
   private boolean test1, test2, test3, test4, test5, check = false;
-  private JMenu filemenu, helpmenu;
+  private JMenu filemenu, helpmenu, languagemenu;
   private JMenuItem exit, save, open, infomenu;
 
   public Product_Control(Locale StartLanguage) {
@@ -31,11 +31,10 @@ public class Product_Control extends JFrame implements ActionListener {
     this.setTitle(bundle.getString("title"));
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setExtendedState(JFrame.MAXIMIZED_BOTH);
-    setVisible(true);
     Container cp = getContentPane();
     cp.setLayout(null);
 
-    // JMenu
+    // Initilizing JMenu
     JMenuBar mb =  new JMenuBar();
     JSeparator sep = new JSeparator();
     filemenu = new JMenu(bundle.getString("filemenu"));
@@ -59,7 +58,7 @@ public class Product_Control extends JFrame implements ActionListener {
     exit.addActionListener(this);
     infomenu.addActionListener(this);
 
-    // JTextAreas and JScrollPanes
+    // Initilizing JTextAreas and JScrollPanes
     nproduct = new JTextArea();
     nproductScrollPane = new JScrollPane(nproduct);
     nproductScrollPane.setBounds(200, 27, 168, 44);
@@ -96,7 +95,7 @@ public class Product_Control extends JFrame implements ActionListener {
     readScrollPane.setBounds(680, 27, 600, 600);
     cp.add(readScrollPane);
 
-    // JLabels
+    // Initilizing JLabels
     name = new JLabel(bundle.getString("name"));
     name.setBounds(16, 34, 150, 20);
     cp.add(name);
@@ -145,18 +144,18 @@ public class Product_Control extends JFrame implements ActionListener {
     alldelete.setBounds(420, 300, 200, 50);
     this.add(alldelete);
 
-    // JRadioButton
+    // Initilizing JRadioButton
     donoff = new JRadioButton(bundle.getString("doff"));
     donoff.setBounds(420, 50, 200, 20);
     cp.add(donoff);
 
-    // ActionListener for JRadioButton 
+    // Initilizing ActionListener for JRadioButton
     donoff.addActionListener(d -> {
-      ;
-      if (check == false) {
+
+      if (check == false) { // If the security variable check is false, the caption on.
         donoff.setText(bundle.getString("don"));
         nproduct.setText(bundle.getString("name"));
-        test1 = true;
+        test1 = true; // The variables test ... are further safety variables
         test2 = true;
         test3 = true;
         test4 = true;
@@ -166,7 +165,7 @@ public class Product_Control extends JFrame implements ActionListener {
         inventoryproduct.setText(bundle.getString("inventory"));
         iproduct.setText(bundle.getString("info"));
         check = true;
-      } else if (check == true) {
+      } else if (check == true) { // If the security variable check is true, the caption is off
         donoff.setText(bundle.getString("doff"));
         nproduct.setText(" ");
         test1 = false;
@@ -190,7 +189,7 @@ public class Product_Control extends JFrame implements ActionListener {
     c.addItemListener(ia -> {
 
       if (c.getSelectedItem().equals(bundle.getString("select"))) {
-        if (test1 == true) {
+        if (test1 == true) { // If the security variable is true, the caption is written in to file
           error = bundle.getString("error1");
           electronic = "";
           mechanic = "";
@@ -198,7 +197,7 @@ public class Product_Control extends JFrame implements ActionListener {
           services = "";
         } // end of if
 
-        if (test1 == false) {
+        if (test1 == false) { // If the security variable is false, the caption is not written in to file
           error = bundle.getString("error2");
           electronic = "";
           mechanic = "";
@@ -290,26 +289,26 @@ public class Product_Control extends JFrame implements ActionListener {
     });
 
     add.addActionListener(c -> {
-      JFileChooser fc = new JFileChooser();
-      filter = new FileNameExtensionFilter(bundle.getString("file"), "txt");
+      JFileChooser fc = new JFileChooser(); // Declaration FileChooser
+      filter = new FileNameExtensionFilter(bundle.getString("file"), "txt"); // Initializing filenamefilter
       fc.addChoosableFileFilter(filter);
-      int i = fc.showSaveDialog(null);
+      int i = fc.showSaveDialog(null); // show Save Dialog
       if (i == JFileChooser.APPROVE_OPTION) {
         try {
           boolean neu = false;
           File file;
           file = fc.getSelectedFile();
-          if (!file.exists()) {
+          if (!file.exists()) { // If File not existing it will be created new and set neu = true
             file.createNewFile();
             neu = true;
           }
           BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
-          if (!neu) {
+          if (!neu) { // If File not new it will be written Paragraphs to file
             bw.write("\n");
             bw.write("\n");
           } // end of if
           bw.write("");
-          bw.write(nproduct.getText());
+          bw.write(nproduct.getText()); // with command bw.write it will be write datas of TextAreas
           bw.write("\n");
           if (error == bundle.getString("error2")) {
             bw.write(error);
@@ -355,15 +354,15 @@ public class Product_Control extends JFrame implements ActionListener {
             try {
               BufferedReader br = new BufferedReader(new FileReader(filepath));
               String s1 = "", s2 = "";
-              while ((s1 = br.readLine()) != null) {
+              while ((s1 = br.readLine()) != null) { // The system checks which lines have been written and then moves on to the next line.
                 s2 += s1 + "\n";
               }
               read.setText(s2);
               br.close();
-            } catch (Exception e) {
+            } catch (Exception e) { //
               // e.printStackTrace();
               ErrorDialog error = new ErrorDialog();
-              error.setOpenError();
+              error.setOpenError(); // If an error occurs, an error dialog is displayed
             }
           }
         } catch (IOException e) {
@@ -385,7 +384,7 @@ public class Product_Control extends JFrame implements ActionListener {
       if (i == JFileChooser.APPROVE_OPTION) {
         File f = fc.getSelectedFile();
         String filepath = f.getPath();
-        try {
+        try { // Each line in the file is read individually and written to the TextArea one after the other.
           BufferedReader br = new BufferedReader(new FileReader(filepath));
           String s1 = "", s2 = "";
           while ((s1 = br.readLine()) != null) {
@@ -410,7 +409,7 @@ public class Product_Control extends JFrame implements ActionListener {
         File f = fc.getSelectedFile();
         String filepath = f.getPath();
         BufferedWriter bw = new BufferedWriter(new FileWriter(file));
-        bw.write("");
+        bw.write(""); // The whole file is overwritten with leeward characters
         bw.flush();
         BufferedReader br = new BufferedReader(new FileReader(filepath));
         String s1 = "", s2 = "";
@@ -426,6 +425,8 @@ public class Product_Control extends JFrame implements ActionListener {
         error.setWriteError();*/
       }
     });
+
+    setVisible(true);
   }
 
 
@@ -548,4 +549,3 @@ public class Product_Control extends JFrame implements ActionListener {
     }
   }
 }
-
