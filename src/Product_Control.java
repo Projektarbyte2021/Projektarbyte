@@ -1,16 +1,17 @@
 // Imports
 import java.awt.*;
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Product_Control extends JFrame implements ActionListener {
+  // Anfang Attribute
   private FileFilter filter;
   public Locale locale;
   public static ResourceBundle bundle;
@@ -24,6 +25,7 @@ public class Product_Control extends JFrame implements ActionListener {
   private boolean test1, test2, test3, test4, test5, check = false;
   private JMenu filemenu, helpmenu, languagemenu;
   private JMenuItem exit, save, open, infomenu;
+  // Ende Attribute
 
   public Product_Control(Locale StartLanguage) {
     this.locale = StartLanguage;
@@ -379,11 +381,10 @@ public class Product_Control extends JFrame implements ActionListener {
       filter = new FileNameExtensionFilter(bundle.getString("file"), "txt");
       JFileChooser fc = new JFileChooser();
       fc.addChoosableFileFilter(filter);
-      int i = fc.showOpenDialog(this);
+      fc.showOpenDialog(this);
 
-      if (i == JFileChooser.APPROVE_OPTION) {
-        File f = fc.getSelectedFile();
-        String filepath = f.getPath();
+      File f = fc.getSelectedFile();
+      String filepath = f.getPath();
         try { // Each line in the file is read individually and written to the TextArea one after the other.
           BufferedReader br = new BufferedReader(new FileReader(filepath));
           String s1 = "", s2 = "";
@@ -397,7 +398,7 @@ public class Product_Control extends JFrame implements ActionListener {
           ErrorDialog error = new ErrorDialog();
           error.setOpenError();
         }
-      }
+
     });
 
     alldelete.addActionListener(e -> {
@@ -428,6 +429,9 @@ public class Product_Control extends JFrame implements ActionListener {
 
     setVisible(true);
   }
+    // Anfang Komponenten
+    // Ende Komponenten
+  // Anfang Methoden
 
 
   @Override
@@ -548,4 +552,5 @@ public class Product_Control extends JFrame implements ActionListener {
       JOptionPane.showMessageDialog(Product_Control.this, aboutText, bundle.getString("abouttitle"), JOptionPane.INFORMATION_MESSAGE);
     }
   }
+  // Ende Methoden
 }
