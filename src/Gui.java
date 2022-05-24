@@ -30,7 +30,7 @@ public class Gui extends JFrame{
     a.setBounds(550, 375, 200, 50);
 
     // Menu
-    String[] languagesList = {"English", "Deutsch"};
+    String[] languagesList = {"English", "Deutsch", "Fran\u00E7ais"};
 
 
     JComboBox c = new JComboBox(languagesList);
@@ -61,15 +61,24 @@ public class Gui extends JFrame{
         b.setText("Choose Language");
         a.setText("Cancel");
       }
+      if (c.getSelectedItem().equals("Fran\u00E7ais")) {
+        l.setText("Bienvenue \u00E0 Easy to Manage");
+        setTitle("Easy to Manage - GUI");
+        b.setText("Choisir la langue");
+        a.setText("Annuler");
+      }
     });
 
     b.addActionListener(e -> {
       if (c.getSelectedItem().equals("Deutsch")) {
-          new Product_Control(Locale.GERMAN);
+        new Product_Control(Locale.GERMAN);
       }
       if (c.getSelectedItem().equals("English")) {
-          new Product_Control(Locale.ENGLISH);
-        }
+        new Product_Control(Locale.ENGLISH);
+      }
+      if(c.getSelectedItem().equals("Fran\u00E7ais")) {
+        new Product_Control(Locale.FRENCH);                                                
+      } 
       dispose();
     });
 
