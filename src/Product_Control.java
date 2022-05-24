@@ -552,9 +552,11 @@ public class Product_Control extends JFrame implements ActionListener {
       String username = System.getProperty("user.name");
       String osversion = System.getProperty("os.name");
       String jdkversion = System.getProperty("java.version");
+      String processor = String.valueOf(Runtime.getRuntime().availableProcessors());
       aboutText = aboutText.replace("$USER_NAME$", username);
       aboutText = aboutText.replace("$OS_NAME$", osversion);
       aboutText = aboutText.replace("$JDK_VERSION$", jdkversion);
+      aboutText = aboutText.replace("$PROCESSOR_CORES$", processor);
       JOptionPane.showMessageDialog(Product_Control.this, aboutText, bundle.getString("abouttitle"), JOptionPane.INFORMATION_MESSAGE);
     }
   }
