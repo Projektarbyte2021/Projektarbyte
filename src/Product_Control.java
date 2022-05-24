@@ -548,7 +548,11 @@ public class Product_Control extends JFrame implements ActionListener {
     }
 
     if (e.getSource() == infomenu) {
-      final String aboutText = bundle.getString("about");
+      String aboutText = bundle.getString("about");
+      String osversion = System.getProperty("os.name");
+      String jdkversion = System.getProperty("java.version");
+      aboutText = aboutText.replace("$OS_NAME$", osversion);
+      aboutText = aboutText.replace("$JDK_VERSION$", jdkversion);
       JOptionPane.showMessageDialog(Product_Control.this, aboutText, bundle.getString("abouttitle"), JOptionPane.INFORMATION_MESSAGE);
     }
   }
