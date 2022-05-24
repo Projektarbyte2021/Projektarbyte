@@ -560,5 +560,13 @@ public class Product_Control extends JFrame implements ActionListener {
       JOptionPane.showMessageDialog(Product_Control.this, aboutText, bundle.getString("abouttitle"), JOptionPane.INFORMATION_MESSAGE);
     }
   }
-  // Ende Methoden
+
+  public static void main(String[] args) {
+	new Splash().showSplash();
+	try {
+		new Product_Control(Locale.getDefault());
+	} catch(Exception ex) {
+		new Product_Control(Locale.ENGLISH);
+	}
+  }
 }
