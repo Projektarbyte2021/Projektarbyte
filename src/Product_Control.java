@@ -124,7 +124,7 @@ public class Product_Control extends JFrame implements ActionListener {
 
     // JButtons
     close = new JButton(bundle.getString("close"));
-    close.setBounds(100, 500, 200, 50);
+    close.setBounds(250, 500, 200, 50);
     cp.add(close);
 
     add = new JButton(bundle.getString("add"));
