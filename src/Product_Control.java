@@ -15,7 +15,7 @@ public class Product_Control extends JFrame implements ActionListener {
   private FileFilter filter;
   public Locale locale;
   public static ResourceBundle bundle;
-  private JButton close, back, add, show, alldelete;
+  private JButton close, add, show, alldelete;
   private JRadioButton donoff;
   private JTextArea nproduct, pproduct, iproduct, inventoryproduct, read, productnumber;
   private JComboBox c;
@@ -126,10 +126,6 @@ public class Product_Control extends JFrame implements ActionListener {
     close = new JButton(bundle.getString("close"));
     close.setBounds(100, 500, 200, 50);
     cp.add(close);
-
-    back = new JButton(bundle.getString("back"));
-    back.setBounds(350, 500, 200, 50);
-    cp.add(back);
 
     add = new JButton(bundle.getString("add"));
     add.setBounds(420, 100, 200, 50);
@@ -283,11 +279,6 @@ public class Product_Control extends JFrame implements ActionListener {
     // ActionListeners
     close.addActionListener(a -> {
       System.exit(0);
-    });
-
-    back.addActionListener(b -> {
-      this.dispose();
-      new Gui();
     });
 
     add.addActionListener(c -> {
