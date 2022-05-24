@@ -23,7 +23,7 @@ public class Product_Control extends JFrame implements ActionListener {
   private JLabel name, category, price, info, inventory, number;
   private String electronic, mechanic, social, services, error = "non";
   private boolean test1, test2, test3, test4, test5, check = false;
-  private JMenu filemenu, helpmenu, languagemenu;
+  private JMenu filemenu, helpmenu;
   private JMenuItem exit, save, open, infomenu;
   // Ende Attribute
 
@@ -124,7 +124,7 @@ public class Product_Control extends JFrame implements ActionListener {
 
     // JButtons
     close = new JButton(bundle.getString("close"));
-    close.setBounds(250, 500, 200, 50);
+    close.setBounds(250, 400, 200, 50);
     cp.add(close);
 
     add = new JButton(bundle.getString("add"));
@@ -552,7 +552,12 @@ public class Product_Control extends JFrame implements ActionListener {
     }
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+    try {
+      UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+    } catch(Exception ex) {
+      UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+    }
 	new Splash().showSplash();
 	try {
 		new Product_Control(Locale.getDefault());
