@@ -1,0 +1,148 @@
+JSG: true
+FontName: Segoe UI
+FontSize: 12
+FontColor: -16777208
+- Kind: Algorithm
+  SwitchWithCaseLine: false
+  RectPos|0 0 562 1652 407 486
+  Abfrage der Sicherheitsvariablen um einen Reibungslosen Ablauf zu bieten|0 0 562 27 5 2
+    if: 
+      c.getSelectedItem().equals(bundle.getString("select"))|0 27 562 352 134 27
+      then list head|0 52 403 352 5 54
+      if: 
+        test1 == true|0 52 403 202 214 52
+        then list head|0 77 286 202 5 79
+        error = bundle.getString("error1")|0 77 286 102 5 79
+        electronic = ""|0 102 286 127 5 104
+        mechanic = ""|0 127 286 152 5 129
+        social = ""|0 152 286 177 5 154
+        services = ""|0 177 286 202 5 179
+      else:
+        else list head|286 77 403 202 291 79
+        |286 77 403 202 291 79
+      if: 
+        test1 == false|0 202 403 352 211 202
+        then list head|0 227 286 352 5 229
+        error = bundle.getString("error2")|0 227 286 252 5 229
+        electronic = ""|0 252 286 277 5 254
+        mechanic = ""|0 277 286 302 5 279
+        social = ""|0 302 286 327 5 304
+        services = ""|0 327 286 352 5 329
+      else:
+        else list head|286 227 403 352 291 229
+        |286 227 403 352 291 229
+    else:
+      else list head|403 52 562 352 408 54
+      |403 52 562 352 408 54
+    if: 
+      c.getSelectedItem().equals(bundle.getString("el"))|0 352 562 677 155 352
+      then list head|0 377 407 677 5 379
+      if: 
+        test2 == true|0 377 407 527 219 377
+        then list head|0 402 292 527 5 404
+        error = ""|0 402 292 427 5 404
+        electronic = bundle.getString("cel")|0 427 292 452 5 429
+        mechanic = ""|0 452 292 477 5 454
+        social = ""|0 477 292 502 5 479
+        services = ""|0 502 292 527 5 504
+      else:
+        else list head|292 402 407 527 297 404
+        |292 402 407 527 297 404
+      if: 
+        test2 == false|0 527 407 677 213 527
+        then list head|0 552 288 677 5 554
+        error = ""|0 552 288 577 5 554
+        electronic = bundle.getString("el")|0 577 288 602 5 579
+        mechanic = ""|0 602 288 627 5 604
+        social = ""|0 627 288 652 5 629
+        services = ""|0 652 288 677 5 654
+      else:
+        else list head|288 552 407 677 293 554
+        |288 552 407 677 293 554
+    else:
+      else list head|407 377 562 677 412 379
+      |407 377 562 677 412 379
+    if: 
+      c.getSelectedItem().equals(bundle.getString("me"))|0 677 562 1002 149 677
+      then list head|0 702 411 1002 5 704
+      if: 
+        test3 == true|0 702 411 852 224 702
+        then list head|0 727 298 852 5 729
+        error = ""|0 727 298 752 5 729
+        electronic = ""|0 752 298 777 5 754
+        mechanic = bundle.getString("cme")|0 777 298 802 5 779
+        social = ""|0 802 298 827 5 804
+        services = ""|0 827 298 852 5 829
+      else:
+        else list head|298 727 411 852 303 729
+        |298 727 411 852 303 729
+      if: 
+        test3 == false|0 852 411 1002 218 852
+        then list head|0 877 294 1002 5 879
+        error = ""|0 877 294 902 5 879
+        electronic = ""|0 902 294 927 5 904
+        mechanic = bundle.getString("me")|0 927 294 952 5 929
+        social = ""|0 952 294 977 5 954
+        services = ""|0 977 294 1002 5 979
+      else:
+        else list head|294 877 411 1002 299 879
+        |294 877 411 1002 299 879
+    else:
+      else list head|411 702 562 1002 416 704
+      |411 702 562 1002 416 704
+    if: 
+      c.getSelectedItem().equals(bundle.getString("so"))|0 1002 562 1327 148 1002
+      then list head|0 1027 395 1327 5 1029
+      if: 
+        test4 == true|0 1027 395 1177 203 1027
+        then list head|0 1052 273 1177 5 1054
+        error = ""|0 1052 273 1077 5 1054
+        electronic = ""|0 1077 273 1102 5 1079
+        mechanic = ""|0 1102 273 1127 5 1104
+        social = bundle.getString("cso")|0 1127 273 1152 5 1129
+        services = ""|0 1152 273 1177 5 1154
+      else:
+        else list head|273 1052 395 1177 278 1054
+        |273 1052 395 1177 278 1054
+      if: 
+        test4 == false|0 1177 395 1327 197 1177
+        then list head|0 1202 269 1327 5 1204
+        error = ""|0 1202 269 1227 5 1204
+        electronic = ""|0 1227 269 1252 5 1229
+        mechanic = ""|0 1252 269 1277 5 1254
+        social = bundle.getString("so")|0 1277 269 1302 5 1279
+        services = ""|0 1302 269 1327 5 1304
+      else:
+        else list head|269 1202 395 1327 274 1204
+        |269 1202 395 1327 274 1204
+    else:
+      else list head|395 1027 562 1327 400 1029
+      |395 1027 562 1327 400 1029
+    if: 
+      c.getSelectedItem().equals(bundle.getString("se"))|0 1327 562 1652 151 1327
+      then list head|0 1352 402 1652 5 1354
+      if: 
+        test5 == true|0 1352 402 1502 213 1352
+        then list head|0 1377 285 1502 5 1379
+        error = ""|0 1377 285 1402 5 1379
+        electronic = ""|0 1402 285 1427 5 1404
+        mechanic = ""|0 1427 285 1452 5 1429
+        social = ""|0 1452 285 1477 5 1454
+        services = bundle.getString("cse")|0 1477 285 1502 5 1479
+      else:
+        else list head|285 1377 402 1502 290 1379
+        |285 1377 402 1502 290 1379
+      if: 
+        test5 == false|0 1502 402 1652 207 1502
+        then list head|0 1527 281 1652 5 1529
+        error = ""|0 1527 281 1552 5 1529
+        electronic = ""|0 1552 281 1577 5 1554
+        mechanic = ""|0 1577 281 1602 5 1579
+        social = ""|0 1602 281 1627 5 1604
+        services = bundle.getString("se")|0 1627 281 1652 5 1629
+      else:
+        else list head|281 1527 402 1652 286 1529
+        |281 1527 402 1652 286 1529
+    else:
+      else list head|402 1352 562 1652 407 1354
+      |402 1352 562 1652 407 1354

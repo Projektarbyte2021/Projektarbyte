@@ -4,12 +4,12 @@ FontSize: 12
 FontColor: -16777208
 - Kind: Algorithm
   SwitchWithCaseLine: false
-  RectPos|0 0 291 212 245 304
-  Show Product|0 0 291 23 5 2
-    fc: JFileChooser\r\nfc.showOpenDialog(this)|0 23 291 65 5 25
-    br: BufferedReader(FileReader(filepath))\r\ns1: Text\r\ns2: Text|0 65 291 128 5 67
+  RectPos|0 0 289 252 242 300
+  Show Product|0 0 289 27 5 2
+    fc: JFileChooser\r\nfc.showOpenDialog(this)|0 27 289 77 5 29
+    br: BufferedReader(FileReader(filepath))\r\ns1: Text\r\ns2: Text|0 77 289 152 5 79
     while: 
-      solange (s1 = br.readLine()) nicht null ist|0 128 291 170 5 130
-      while head|22 149 291 170 27 151
-      s2 += s1 + "\n"|22 149 291 170 27 151
-    TextArea read = s2\r\nbr.close()|0 170 291 212 5 172
+      solange (s1 = br.readLine()) nicht null ist|0 152 289 202 5 154
+      while head|22 177 289 202 27 179
+      s2 += s1 + "\n"|22 177 289 202 27 179
+    TextArea read = s2\r\nbr.close()|0 202 289 252 5 204

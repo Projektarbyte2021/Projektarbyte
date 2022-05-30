@@ -1,0 +1,44 @@
+JSG: true
+FontName: Segoe UI
+FontSize: 12
+FontColor: -16777208
+- Kind: Algorithm
+  SwitchWithCaseLine: false
+  RectPos|0 0 863 377 100 150
+  Beschriftung der einzelnen TextAreas an/ausschalten|0 0 863 27 5 2
+    if: 
+      check == false|0 27 863 377 343 27
+      then list head|0 52 394 377 5 54
+      donoff.setText(bundle.getString("don"))|0 52 394 77 5 54
+      nproduct.setText(bundle.getString("name"))|0 77 394 102 5 79
+      test1 = true|0 102 394 127 5 104
+      test2 = true|0 127 394 152 5 129
+      test3 = true|0 152 394 177 5 154
+      test4 = true|0 177 394 202 5 179
+      test5 = true|0 202 394 227 5 204
+      productnumber.setText(bundle.getString("number"))|0 227 394 252 5 229
+      pproduct.setText(bundle.getString("price"))|0 252 394 277 5 254
+      inventoryproduct.setText(bundle.getString("inventory"))|0 277 394 302 5 279
+      iproduct.setText(bundle.getString("info"))|0 302 394 327 5 304
+      check = true|0 327 394 377 5 329
+    else:
+      else list head|394 52 863 377 399 54
+      if: 
+        check == true|394 52 863 377 612 52
+        then list head|394 77 676 377 399 79
+        donoff.setText(bundle.getString("doff"))|394 77 676 102 399 79
+        nproduct.setText(" ")|394 102 676 127 399 104
+        test1 = false|394 127 676 152 399 129
+        test2 = false|394 152 676 177 399 154
+        test3 = false|394 177 676 202 399 179
+        test4 = false|394 202 676 227 399 204
+        test5 = false|394 227 676 252 399 229
+        productnumber.setText(" ")|394 252 676 277 399 254
+        pproduct.setText(" ")|394 277 676 302 399 279
+        inventoryproduct.setText(" ")|394 302 676 327 399 304
+        iproduct.setText(" ")|394 327 676 352 399 329
+        check = false|394 352 676 377 399 354
+      else:
+        else list head|676 77 863 377 681 79
+        error = new ErrorDialog()|676 77 863 102 681 79
+        error.setLabelError()|676 102 863 377 681 104
