@@ -9,41 +9,41 @@ public class Splash extends JWindow {
   public JLabel infoLabel;
   public JPanel panel;
 
-    public Splash() {
+  public Splash() {
     infoLabel = new JLabel("Easy to Manage 1.0.0");
     URL iconurl = getClass().getResource("Pencil.png");
     ImageIcon logo = new ImageIcon(iconurl);
     container = this.getContentPane();
     container.setLayout(new BorderLayout());
-
+    
     label = new JLabel(logo);
-
+    
     panel = new JPanel(new BorderLayout());
-
+    
     panel.setBorder(BorderFactory.createLineBorder(Color.black));
-
+    
     panel.add(label, BorderLayout.CENTER);
     panel.add(infoLabel, BorderLayout.SOUTH);
-
+    
     container.add(panel);
-
-
+    
+    
     setBounds(30, 80, 486, 486);
     setLocationRelativeTo(null);
     setVisible(true);
-
+    
     JProgressBar progress = new JProgressBar(0, 150); // The second value specifies how fast the processbar should run through
-
+    
     progress.setSize(486, 20);
-
+    
     progress.setValue(0);
-
+    
     progress.setStringPainted(true);
-
+    
     panel.add(progress);
-
+    
     container.add(panel);
-
+    
     for (int i = 0; i <= progress.getMaximum(); i++) { // The for loop runs until the end of the frame
       progress.setValue(i);
       try {
@@ -51,8 +51,8 @@ public class Splash extends JWindow {
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
-
-        }
+      
+    }
   }
 
   public void showSplash() {
