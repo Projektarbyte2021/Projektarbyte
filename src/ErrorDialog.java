@@ -5,7 +5,7 @@ import java.awt.*;
 public class ErrorDialog  {
   private JDialog error;
   private JLabel cwrite;
-  private JButton ok, cancel;
+  private JButton ok;
   
   public void setWriteError() {
     error = new JDialog();
