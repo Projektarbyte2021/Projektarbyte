@@ -2,24 +2,16 @@ import java.awt.*;
 import java.net.URL;
 import javax.swing.*;
 
-public class Splash extends JWindow {
-
-  public Container container;
-  public JLabel label;
-  public JLabel infoLabel;
-  public JPanel panel;
+public class Splash extends Variables{
 
   public Splash() {
-    infoLabel = new JLabel("Easy to Manage 1.0.0");
+    infoLabel.setText("Easy to Manage 1.0.0");
     URL iconurl = getClass().getResource("Pencil.png");
-    ImageIcon logo = new ImageIcon(iconurl);
-    container = this.getContentPane();
+    logo = new ImageIcon(iconurl);
+    container = window.getContentPane();
     container.setLayout(new BorderLayout());
-    
     label = new JLabel(logo);
-    
-    panel = new JPanel(new BorderLayout());
-    
+
     panel.setBorder(BorderFactory.createLineBorder(Color.black));
     
     panel.add(label, BorderLayout.CENTER);
@@ -28,11 +20,9 @@ public class Splash extends JWindow {
     container.add(panel);
     
     
-    setBounds(30, 80, 486, 486);
-    setLocationRelativeTo(null);
-    setVisible(true);
-    
-    JProgressBar progress = new JProgressBar(0, 150); // The second value specifies how fast the processbar should run through
+    window.setBounds(30, 80, 486, 486);
+    window.setLocationRelativeTo(null);
+    window.setVisible(true);
     
     progress.setSize(486, 20);
     
@@ -44,7 +34,7 @@ public class Splash extends JWindow {
     
     container.add(panel);
     
-    for (int i = 0; i <= progress.getMaximum(); i++) { // The for loop runs until the end of the frame
+    for (int i = 0; i <= progress.getMaximum(); i++) { // The for loop runs until the end of the progressbar
       progress.setValue(i);
       try {
         Thread.sleep(15);
@@ -56,8 +46,8 @@ public class Splash extends JWindow {
   }
 
   public void showSplash() {
-    setVisible(true);
-    dispose();
+    window.setVisible(true);
+    window.dispose();
   }
 
   public void updateInfoLabel(String info) {
