@@ -1,5 +1,4 @@
 // Imports
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
@@ -7,37 +6,21 @@ import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import javax.swing.*;
-import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class Product_Control extends JFrame implements ActionListener {
-  // Anfang Attribute
-  private FileFilter filter;
-  public Locale locale;
-  public static ResourceBundle bundle;
-  private JButton close, add, show, alldelete;
-  private JRadioButton donoff;
-  private JTextArea nproduct, pproduct, iproduct, inventoryproduct, read, productnumber;
-  private JComboBox c;
-  private JScrollPane nproductScrollPane, pproductScrollPane, iproductScrollPane, inventoryScrollPane, readScrollPane, productnumberScrollPane;
-  private JLabel name, category, price, info, inventory, number;
-  private String electronic, mechanic, social, services, error = "non";
-  private boolean test1, test2, test3, test4, test5, check = false;
-  private JMenu filemenu, helpmenu;
-  private JMenuItem exit, save, open, infomenu;
-  // Ende Attribute
+public class Product_Control extends Variables implements ActionListener {
   
   public Product_Control(Locale StartLanguage) {
     this.locale = StartLanguage;
     this.bundle = ResourceBundle.getBundle("Bundle_" + locale, locale);
-    this.setTitle(bundle.getString("title"));
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setExtendedState(JFrame.MAXIMIZED_BOTH);
-    Container cp = getContentPane();
-    cp.setLayout(null);
+    frame.setTitle(bundle.getString("title"));
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    frame.isMinimumSizeSet();
+    /*Container cp = getContentPane();
+    cp.setLayout(null);*/
     
     // Initilizing JMenu
-    JMenuBar mb =  new JMenuBar();
     JSeparator sep = new JSeparator();
     filemenu = new JMenu(bundle.getString("filemenu"));
     open = new JMenuItem(bundle.getString("open"));
@@ -54,98 +37,87 @@ public class Product_Control extends JFrame implements ActionListener {
     
     mb.add(filemenu);
     mb.add(helpmenu);
-    this.setJMenuBar(mb);
+    frame.setJMenuBar(mb);
     open.addActionListener(this);
     save.addActionListener(this);
     exit.addActionListener(this);
     infomenu.addActionListener(this);
     
     // Initilizing JTextAreas and JScrollPanes
-    nproduct = new JTextArea();
     nproductScrollPane = new JScrollPane(nproduct);
     nproductScrollPane.setBounds(200, 27, 168, 44);
-    cp.add(nproductScrollPane);
+    frame.add(nproductScrollPane);
     
     String[] categoryList = {bundle.getString("select"), bundle.getString("el"), bundle.getString("me"), bundle.getString("so"), bundle.getString("se")};
     c = new JComboBox(categoryList);
     c.setBounds(200, 80, 168, 44);
-    cp.add(c);
+    frame.add(c);
     
-    productnumber = new JTextArea();
-    productnumberScrollPane = new JScrollPane(productnumber);
     productnumberScrollPane.setBounds(200, 137, 168, 44);
-    cp.add(productnumberScrollPane);
+    frame.add(productnumberScrollPane);
     
-    pproduct = new JTextArea();
-    pproductScrollPane = new JScrollPane(pproduct);
     pproductScrollPane.setBounds(200, 194, 168, 44);
-    cp.add(pproductScrollPane);
+    frame.add(pproductScrollPane);
     
-    inventoryproduct = new JTextArea();
-    inventoryScrollPane = new JScrollPane(inventoryproduct);
     inventoryScrollPane.setBounds(200, 258, 168, 44);
-    cp.add(inventoryScrollPane);
+    frame.add(inventoryScrollPane);
     
-    iproduct = new JTextArea();
-    iproductScrollPane = new JScrollPane(iproduct);
     iproductScrollPane.setBounds(200, 340, 168, 44);
-    cp.add(iproductScrollPane);
+    frame.add(iproductScrollPane);
     
-    read = new JTextArea();
     read.setEditable(false);
-    readScrollPane = new JScrollPane(read);
     readScrollPane.setBounds(680, 27, 600, 600);
-    cp.add(readScrollPane);
+    frame.add(readScrollPane);
     
     // Initilizing JLabels
     name = new JLabel(bundle.getString("name"));
     name.setBounds(16, 34, 150, 20);
-    cp.add(name);
+    frame.add(name);
     
     category = new JLabel(bundle.getString("category"));
     category.setBounds(16, 90, 150, 20);
-    cp.add(category);
+    frame.add(category);
     
     number = new JLabel(bundle.getString("number"));
     number.setBounds(16, 150, 150, 20);
-    cp.add(number);
+    frame.add(number);
     
     inventory = new JLabel(bundle.getString("inventory"));
     inventory.setBounds(16, 271, 150, 20);
-    cp.add(inventory);
+    frame.add(inventory);
     
     price = new JLabel(bundle.getString("price"));
     price.setBounds(16, 211, 150, 20);
-    cp.add(price);
+    frame.add(price);
     
     info = new JLabel(bundle.getString("info"));
     info.setBounds(16, 350, 150, 20);
-    cp.add(info);
+    frame.add(info);
     
     // JButtons
     close = new JButton(bundle.getString("close"));
     close.setBounds(250, 400, 200, 50);
-    cp.add(close);
+    frame.add(close);
     
     add = new JButton(bundle.getString("add"));
     add.setBounds(420, 100, 200, 50);
-    cp.add(add);
+    frame.add(add);
     
     URL iconURL1 = getClass().getResource("Open.png");
     // iconURL is null when not found
     ImageIcon icon1 = new ImageIcon(iconURL1);
     show = new JButton(icon1);
     show.setBounds(420, 200, 200, 50);
-    cp.add(show);
+    frame.add(show);
     
     alldelete = new JButton(bundle.getString("dall"));
     alldelete.setBounds(420, 300, 200, 50);
-    this.add(alldelete);
+    frame.add(alldelete);
     
     // Initilizing JRadioButton
     donoff = new JRadioButton(bundle.getString("doff"));
     donoff.setBounds(420, 50, 200, 20);
-    cp.add(donoff);
+    frame.add(donoff);
     
     // Initilizing ActionListener for JRadioButton
     donoff.addActionListener(d -> {
@@ -372,7 +344,7 @@ public class Product_Control extends JFrame implements ActionListener {
       filter = new FileNameExtensionFilter(bundle.getString("file"), "txt");
       JFileChooser fc = new JFileChooser();
       fc.addChoosableFileFilter(filter);
-      fc.showOpenDialog(this);
+      fc.showOpenDialog(frame);
       
       File f = fc.getSelectedFile();
       String filepath = f.getPath();
@@ -418,7 +390,7 @@ public class Product_Control extends JFrame implements ActionListener {
       }
     });
     
-    setVisible(true);
+    frame.setVisible(true);
   }
     // Anfang Komponenten
     // Ende Komponenten
@@ -517,7 +489,7 @@ public class Product_Control extends JFrame implements ActionListener {
       filter = new FileNameExtensionFilter(bundle.getString("file"), "txt");
       JFileChooser fc = new JFileChooser();
       fc.addChoosableFileFilter(filter);
-      int i = fc.showOpenDialog(this);
+      int i = fc.showOpenDialog(frame);
       
       if (i == JFileChooser.APPROVE_OPTION) {
         File f = fc.getSelectedFile();
@@ -548,7 +520,7 @@ public class Product_Control extends JFrame implements ActionListener {
       aboutText = aboutText.replace("$OS_NAME$", osversion);
       aboutText = aboutText.replace("$JDK_VERSION$", jdkversion);
       aboutText = aboutText.replace("$PROCESSOR_CORES$", processor);
-      JOptionPane.showMessageDialog(Product_Control.this, aboutText, bundle.getString("abouttitle"), JOptionPane.INFORMATION_MESSAGE);
+      JOptionPane.showMessageDialog(Product_Control.frame, aboutText, bundle.getString("abouttitle"), JOptionPane.INFORMATION_MESSAGE);
     }
   }
 
