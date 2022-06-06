@@ -3,7 +3,7 @@ import java.awt.*;
 import java.util.*;
 import javax.swing.filechooser.FileFilter;
 
-public class Variables { 
+public class Variables extends JFrame { 
         
 public JLabel infoLabel, label, name, category, price, info, inventory, number;
 public JWindow window;
@@ -11,7 +11,6 @@ public Container container;
 public JPanel panel;
 public ImageIcon logo;
 public JProgressBar progress;
-public static JFrame frame;
 public FileFilter filter;
 public Locale locale;
 public static ResourceBundle bundle;
@@ -36,7 +35,6 @@ public Variables() {
         panel = new JPanel(new BorderLayout());
         progress = new JProgressBar(0, 100); // The second value specifies how fast the processbar should run through
         // Attributes for Product_Control
-        frame = new JFrame();
         close = new JButton();
         add = new JButton();
         show = new JButton();

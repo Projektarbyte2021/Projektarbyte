@@ -1,4 +1,5 @@
 // Imports
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
@@ -13,12 +14,11 @@ public class Product_Control extends Variables implements ActionListener {
   public Product_Control(Locale StartLanguage) {
     this.locale = StartLanguage;
     this.bundle = ResourceBundle.getBundle("Bundle_" + locale, locale);
-    frame.setTitle(bundle.getString("title"));
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-    frame.isMinimumSizeSet();
-    /*Container cp = getContentPane();
-    cp.setLayout(null);*/
+    setTitle(bundle.getString("title"));
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setExtendedState(JFrame.MAXIMIZED_BOTH);
+    Container cp = getContentPane();
+    cp.setLayout(null);
     
     // Initilizing JMenu
     JSeparator sep = new JSeparator();
@@ -37,7 +37,7 @@ public class Product_Control extends Variables implements ActionListener {
     
     mb.add(filemenu);
     mb.add(helpmenu);
-    frame.setJMenuBar(mb);
+    this.setJMenuBar(mb);
     open.addActionListener(this);
     save.addActionListener(this);
     exit.addActionListener(this);
@@ -46,78 +46,78 @@ public class Product_Control extends Variables implements ActionListener {
     // Initilizing JTextAreas and JScrollPanes
     nproductScrollPane = new JScrollPane(nproduct);
     nproductScrollPane.setBounds(200, 27, 168, 44);
-    frame.add(nproductScrollPane);
+    this.add(nproductScrollPane);
     
     String[] categoryList = {bundle.getString("select"), bundle.getString("el"), bundle.getString("me"), bundle.getString("so"), bundle.getString("se")};
     c = new JComboBox(categoryList);
     c.setBounds(200, 80, 168, 44);
-    frame.add(c);
+    this.add(c);
     
     productnumberScrollPane.setBounds(200, 137, 168, 44);
-    frame.add(productnumberScrollPane);
+    this.add(productnumberScrollPane);
     
     pproductScrollPane.setBounds(200, 194, 168, 44);
-    frame.add(pproductScrollPane);
+    this.add(pproductScrollPane);
     
     inventoryScrollPane.setBounds(200, 258, 168, 44);
-    frame.add(inventoryScrollPane);
+    this.add(inventoryScrollPane);
     
     iproductScrollPane.setBounds(200, 340, 168, 44);
-    frame.add(iproductScrollPane);
+    this.add(iproductScrollPane);
     
     read.setEditable(false);
     readScrollPane.setBounds(680, 27, 600, 600);
-    frame.add(readScrollPane);
+    this.add(readScrollPane);
     
     // Initilizing JLabels
     name = new JLabel(bundle.getString("name"));
     name.setBounds(16, 34, 150, 20);
-    frame.add(name);
+    cp.add(name);
     
     category = new JLabel(bundle.getString("category"));
     category.setBounds(16, 90, 150, 20);
-    frame.add(category);
+    cp.add(category);
     
     number = new JLabel(bundle.getString("number"));
     number.setBounds(16, 150, 150, 20);
-    frame.add(number);
+    cp.add(number);
     
     inventory = new JLabel(bundle.getString("inventory"));
     inventory.setBounds(16, 271, 150, 20);
-    frame.add(inventory);
+    cp.add(inventory);
     
     price = new JLabel(bundle.getString("price"));
     price.setBounds(16, 211, 150, 20);
-    frame.add(price);
+    cp.add(price);
     
     info = new JLabel(bundle.getString("info"));
     info.setBounds(16, 350, 150, 20);
-    frame.add(info);
+    cp.add(info);
     
     // JButtons
     close = new JButton(bundle.getString("close"));
     close.setBounds(250, 400, 200, 50);
-    frame.add(close);
+    cp.add(close);
     
     add = new JButton(bundle.getString("add"));
     add.setBounds(420, 100, 200, 50);
-    frame.add(add);
+    cp.add(add);
     
     URL iconURL1 = getClass().getResource("Open.png");
     // iconURL is null when not found
     ImageIcon icon1 = new ImageIcon(iconURL1);
     show = new JButton(icon1);
     show.setBounds(420, 200, 200, 50);
-    frame.add(show);
+    cp.add(show);
     
     alldelete = new JButton(bundle.getString("dall"));
     alldelete.setBounds(420, 300, 200, 50);
-    frame.add(alldelete);
+    cp.add(alldelete);
     
     // Initilizing JRadioButton
     donoff = new JRadioButton(bundle.getString("doff"));
     donoff.setBounds(420, 50, 200, 20);
-    frame.add(donoff);
+    cp.add(donoff);
     
     // Initilizing ActionListener for JRadioButton
     donoff.addActionListener(d -> {
@@ -344,7 +344,7 @@ public class Product_Control extends Variables implements ActionListener {
       filter = new FileNameExtensionFilter(bundle.getString("file"), "txt");
       JFileChooser fc = new JFileChooser();
       fc.addChoosableFileFilter(filter);
-      fc.showOpenDialog(frame);
+      fc.showOpenDialog(this);
       
       File f = fc.getSelectedFile();
       String filepath = f.getPath();
@@ -390,7 +390,7 @@ public class Product_Control extends Variables implements ActionListener {
       }
     });
     
-    frame.setVisible(true);
+    setVisible(true);
   }
     // Anfang Komponenten
     // Ende Komponenten
@@ -489,7 +489,7 @@ public class Product_Control extends Variables implements ActionListener {
       filter = new FileNameExtensionFilter(bundle.getString("file"), "txt");
       JFileChooser fc = new JFileChooser();
       fc.addChoosableFileFilter(filter);
-      int i = fc.showOpenDialog(frame);
+      int i = fc.showOpenDialog(this);
       
       if (i == JFileChooser.APPROVE_OPTION) {
         File f = fc.getSelectedFile();
@@ -520,7 +520,7 @@ public class Product_Control extends Variables implements ActionListener {
       aboutText = aboutText.replace("$OS_NAME$", osversion);
       aboutText = aboutText.replace("$JDK_VERSION$", jdkversion);
       aboutText = aboutText.replace("$PROCESSOR_CORES$", processor);
-      JOptionPane.showMessageDialog(Product_Control.frame, aboutText, bundle.getString("abouttitle"), JOptionPane.INFORMATION_MESSAGE);
+      JOptionPane.showMessageDialog(Product_Control.this, aboutText, bundle.getString("abouttitle"), JOptionPane.INFORMATION_MESSAGE);
     }
   }
 
