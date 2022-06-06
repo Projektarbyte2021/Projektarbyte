@@ -9,9 +9,9 @@ import java.util.ResourceBundle;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class Product_Control extends Variables implements ActionListener {
+public class GUI extends Variables implements ActionListener {
   
-  public Product_Control(Locale StartLanguage) {
+  public GUI(Locale StartLanguage) {
     this.locale = StartLanguage;
     this.bundle = ResourceBundle.getBundle("Bundle_" + locale, locale);
     setTitle(bundle.getString("title"));
@@ -520,7 +520,7 @@ public class Product_Control extends Variables implements ActionListener {
       aboutText = aboutText.replace("$OS_NAME$", osversion);
       aboutText = aboutText.replace("$JDK_VERSION$", jdkversion);
       aboutText = aboutText.replace("$PROCESSOR_CORES$", processor);
-      JOptionPane.showMessageDialog(Product_Control.this, aboutText, bundle.getString("abouttitle"), JOptionPane.INFORMATION_MESSAGE);
+      JOptionPane.showMessageDialog(GUI.this, aboutText, bundle.getString("abouttitle"), JOptionPane.INFORMATION_MESSAGE);
     }
   }
 
@@ -532,9 +532,9 @@ public class Product_Control extends Variables implements ActionListener {
     }
     new Splash().showSplash();
     try {
-      new Product_Control(Locale.getDefault());
+      new GUI(Locale.getDefault());
     } catch(Exception ex) {
-      new Product_Control(Locale.ENGLISH);
+      new GUI(Locale.ENGLISH);
     }
   }
 }
