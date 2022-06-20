@@ -3,7 +3,7 @@ import java.awt.*;
 import java.util.*;
 import javax.swing.filechooser.FileFilter;
 
-public class Variables extends JFrame { 
+public abstract class Variables extends JFrame { 
         
 public JLabel infoLabel, label, name, category, price, info, inventory, number;
 public JWindow window;
