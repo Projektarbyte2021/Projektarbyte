@@ -20,10 +20,11 @@ public JTextArea nproduct, pproduct, iproduct, inventoryproduct, read, productnu
 public JComboBox c;
 public JScrollPane nproductScrollPane, pproductScrollPane, iproductScrollPane, inventoryScrollPane, readScrollPane, productnumberScrollPane;
 public String electronic, mechanic, social, services, error = "non";
-public boolean test1, test2, test3, test4, test5, check = false;
+public boolean test1, test2, test3, test4, test5, check = false, zv1, zv2, zv3, zv4, zv5, zv6;
 public JMenu filemenu, helpmenu;
 public JMenuItem exit, save, open, infomenu;
 public JMenuBar mb;
+public JFileChooser fc;
 
 public Variables() {
         // Atributes for Splash
@@ -45,6 +46,7 @@ public Variables() {
         iproduct = new JTextArea();
         inventoryproduct = new JTextArea();
         read = new JTextArea();
+        fc = new JFileChooser();
         productnumber = new JTextArea();
         nproductScrollPane = new JScrollPane(nproduct);
         pproductScrollPane = new JScrollPane(pproduct);

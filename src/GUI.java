@@ -254,147 +254,31 @@ public class GUI extends Variables implements ActionListener {
     });
     
     add.addActionListener(c -> {
-      JFileChooser fc = new JFileChooser(); // Declaration FileChooser
-      filter = new FileNameExtensionFilter(bundle.getString("file"), "txt"); // Initializing filenamefilter
-      fc.addChoosableFileFilter(filter);
-      int i = fc.showSaveDialog(null); // show Save Dialog
-      if (i == JFileChooser.APPROVE_OPTION) {
-        try {
-          boolean neu = false;
-          File file;
-          file = fc.getSelectedFile();
-          if (!file.exists()) { // If File not existing it will be created new and set neu = true
-            file.createNewFile();
-            neu = true;
-          }
-          BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
-          if (!neu) { // If File not new it will be written Paragraphs to file
-            bw.write("\n");
-            bw.write("\n");
-          } // end of if
-          bw.write("");
-          bw.write(nproduct.getText()); // with command bw.write it will be write datas of TextAreas
-          bw.write("\n");
-          if (error == bundle.getString("error2")) {
-            bw.write(error);
-          } else if (error == bundle.getString("error1")) {
-              bw.write(error);
-            }
-          
-          if (electronic == bundle.getString("el")) {
-            bw.write(electronic);
-          } else if (electronic == bundle.getString("cel")) {
-              bw.write(electronic);
-            }
-          
-          if (mechanic == bundle.getString("me")) {
-            bw.write(mechanic);
-          } else if (mechanic == bundle.getString("cme")) {
-              bw.write(mechanic);
-            }
-          
-          if (social == bundle.getString("so")) {
-            bw.write(social);
-          } else if (social == bundle.getString("cso")) {
-              bw.write(social);
-            }
-          
-          if (services == bundle.getString("se")) {
-            bw.write(services);
-          } else if (services == bundle.getString("cse")) {
-              bw.write(services);
-            }
-          bw.write("\n");
-          bw.write(productnumber.getText());
-          bw.write("\n");
-          bw.write(pproduct.getText());
-          bw.write("\n");
-          bw.write(inventoryproduct.getText());
-          bw.write("\n");
-          bw.write(iproduct.getText());
-          bw.flush();
-          if (i == JFileChooser.APPROVE_OPTION) {
-            File f = fc.getSelectedFile();
-            String filepath = f.getPath();
-            try {
-              BufferedReader br = new BufferedReader(new FileReader(filepath));
-              String s1 = "", s2 = "";
-              while ((s1 = br.readLine()) != null) { // The system checks which lines have been written and then moves on to the next line.
-                s2 += s1 + "\n";
-              }
-              read.setText(s2);
-              br.close();
-            } catch (Exception e) { //
-              // e.printStackTrace();
-              ErrorDialog error = new ErrorDialog();
-              error.setOpenError(); // If an error occurs, an error dialog is displayed
-            }
-          }
-        } catch (IOException e) {
-          // e.printStackTrace();
-          ErrorDialog error = new ErrorDialog();
-          error.setWriteError();
-        }
-      }
-      /*ErrorDialog sucessfully = new ErrorDialog();
-      sucessfully.setSucessfully();*/
+      String name = nproduct.getText();
+      String number = productnumber.getText();
+      String price = pproduct.getText();
+      String inventory = inventoryproduct.getText();
+      String information = iproduct.getText();
+      Control obj = new Control();
+      obj.Transfer1(error, electronic, mechanic, social, services, name, number, price, inventory, information);
+      obj.Add_Product();
+      read.setText(obj.Back());
     });
     
     show.addActionListener(d -> {
-      filter = new FileNameExtensionFilter(bundle.getString("file"), "txt");
-      JFileChooser fc = new JFileChooser();
-      fc.addChoosableFileFilter(filter);
-      fc.showOpenDialog(this);
-      
-      File f = fc.getSelectedFile();
-      String filepath = f.getPath();
-      try { // Each line in the file is read individually and written to the TextArea one after the other.
-        BufferedReader br = new BufferedReader(new FileReader(filepath));
-        String s1 = "", s2 = "";
-        while ((s1 = br.readLine()) != null) {
-          s2 += s1 + "\n";
-        }
-        read.setText(s2);
-        br.close();
-      } catch (Exception e) {
-        // e.printStackTrace();
-        ErrorDialog error = new ErrorDialog();
-        error.setOpenError();
-      }
-      
+      Control obj = new Control();
+      obj.ShowProduct();
+      read.setText(obj.Back());
     });
     
     alldelete.addActionListener(e -> {
-      try {
-        File file;
-        JFileChooser fc = new JFileChooser();
-        fc.showSaveDialog(null);
-        file = fc.getSelectedFile();
-        File f = fc.getSelectedFile();
-        String filepath = f.getPath();
-        BufferedWriter bw = new BufferedWriter(new FileWriter(file));
-        bw.write(""); // The whole file is overwritten with leeward characters
-        bw.flush();
-        BufferedReader br = new BufferedReader(new FileReader(filepath));
-        String s1 = "", s2 = "";
-        while ((s1 = br.readLine()) != null) {
-          s2 += s1 + "\n";
-        }
-        read.setText(s2);
-        br.close();
-        
-      } catch (Exception ex) {
-        // e.printStackTrace();
-        /*ErrorDialog error = new ErrorDialog();
-        error.setWriteError();*/
-      }
+      Control obj = new Control();
+      obj.All_Delete();
+      read.setText(obj.Back());
     });
     
     setVisible(true);
   }
-    // Anfang Komponenten
-    // Ende Komponenten
-  // Anfang Methoden
 
 
   @Override
@@ -402,112 +286,21 @@ public class GUI extends Variables implements ActionListener {
     if (e.getSource() == exit)
       System.exit(0);
     if (e.getSource() == save) {
-      JFileChooser fc = new JFileChooser();
-      filter = new FileNameExtensionFilter(bundle.getString("file"), "txt");
-      fc.addChoosableFileFilter(filter);
-      int i = fc.showSaveDialog(null);
-      if (i == JFileChooser.APPROVE_OPTION) {
-        try {
-          boolean neu = false;
-          File file;
-          file = fc.getSelectedFile();
-          if (!file.exists()) {
-            file.createNewFile();
-            neu = true;
-          }
-          BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
-          if (!neu) {
-            bw.write("\n");
-            bw.write("\n");
-          } // end of if
-          bw.write("");
-          bw.write(nproduct.getText());
-          bw.write("\n");
-          if (error == bundle.getString("error2")) {
-            bw.write(error);
-          } else if (error == bundle.getString("error1")) {
-              bw.write(error);
-            }
-          
-          if (electronic == bundle.getString("el")) {
-            bw.write(electronic);
-          } else if (electronic == bundle.getString("cel")) {
-              bw.write(electronic);
-            }
-          
-          if (mechanic == bundle.getString("me")) {
-            bw.write(mechanic);
-          } else if (mechanic == bundle.getString("cme")) {
-              bw.write(mechanic);
-            }
-          
-          if (social == bundle.getString("so")) {
-            bw.write(social);
-          } else if (social == bundle.getString("cso")) {
-              bw.write(social);
-            }
-          
-          if (services == bundle.getString("se")) {
-            bw.write(services);
-          } else if (services == bundle.getString("cse")) {
-              bw.write(services);
-            }
-          bw.write("\n");
-          bw.write(productnumber.getText());
-          bw.write("\n");
-          bw.write(pproduct.getText());
-          bw.write("\n");
-          bw.write(inventoryproduct.getText());
-          bw.write("\n");
-          bw.write(iproduct.getText());
-          bw.flush();
-          if (i == JFileChooser.APPROVE_OPTION) {
-            File f = fc.getSelectedFile();
-            String filepath = f.getPath();
-            try {
-              BufferedReader br = new BufferedReader(new FileReader(filepath));
-              String s1 = "", s2 = "";
-              while ((s1 = br.readLine()) != null) {
-                s2 += s1 + "\n";
-              }
-              read.setText(s2);
-              br.close();
-            } catch (Exception ex) {
-              // e.printStackTrace();
-              ErrorDialog error = new ErrorDialog();
-              error.setOpenError();
-            }
-          }
-        } catch (IOException ex) {
-          // e.printStackTrace();
-          ErrorDialog error = new ErrorDialog();
-          error.setWriteError();
-        }
+      String name = nproduct.getText();
+      String number = productnumber.getText();
+      String price = pproduct.getText();
+      String inventory = inventoryproduct.getText();
+      String information = iproduct.getText();
+      Control obj = new Control();
+      obj.Transfer1(error, electronic, mechanic, social, services, name, number, price, inventory, information);
+      obj.Add_Product();
+      read.setText(obj.Back());
       }
-    }
+
     if (e.getSource() == open) {
-      filter = new FileNameExtensionFilter(bundle.getString("file"), "txt");
-      JFileChooser fc = new JFileChooser();
-      fc.addChoosableFileFilter(filter);
-      int i = fc.showOpenDialog(this);
-      
-      if (i == JFileChooser.APPROVE_OPTION) {
-        File f = fc.getSelectedFile();
-        String filepath = f.getPath();
-        try {
-          BufferedReader br = new BufferedReader(new FileReader(filepath));
-          String s1 = "", s2 = "";
-          while ((s1 = br.readLine()) != null) {
-            s2 += s1 + "\n";
-          }
-          read.setText(s2);
-          br.close();
-        } catch (Exception ex) {
-          // e.printStackTrace();
-          ErrorDialog error = new ErrorDialog();
-          error.setOpenError();
-        }
-      }
+      Control obj = new Control();
+      obj.ShowProduct();
+      read.setText(obj.Back());
     }
     
     if (e.getSource() == infomenu) {
@@ -537,4 +330,5 @@ public class GUI extends Variables implements ActionListener {
       new GUI(Locale.ENGLISH);
     }
   }
+  
 }
