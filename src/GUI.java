@@ -13,16 +13,16 @@ public class GUI extends Variables implements ActionListener {
   
   public GUI(Locale StartLanguage) {
     this.locale = StartLanguage;
-    this.bundle = ResourceBundle.getBundle("Bundle_" + locale, locale);
-    setTitle(bundle.getString("title"));
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setExtendedState(JFrame.MAXIMIZED_BOTH);
-    Container cp = getContentPane();
-    cp.setLayout(null);
+    this.bundle = ResourceBundle.getBundle("Bundle_" + locale, locale); // Sucht nach Bundles die mit Bundle_ und wählt als Locale die Startsprache aus
+    setTitle(bundle.getString("title")); // Setzt den Titel des Fensters und sucht im Bundle den Schlüssel 'title' und verwendet den dahinterstehenden Text 
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // aktiviert das Schließen über das Kreuz
+    setExtendedState(JFrame.MAXIMIZED_BOTH); // Öffnet Fenster im Vollbildmodus
+    Container cp = getContentPane(); // Erstellt ein Container auf dem alle Elemente angezeigt werden 
+    cp.setLayout(null); // Setzt Container auf Null
     
+    JSeparator sep = new JSeparator(); // Erstellt ein Trenner
     // Initilizing JMenu
-    JSeparator sep = new JSeparator();
-    filemenu = new JMenu(bundle.getString("filemenu"));
+    filemenu = new JMenu(bundle.getString("filemenu")); 
     open = new JMenuItem(bundle.getString("open"));
     save = new JMenuItem(bundle.getString("save"));
     exit = new JMenuItem(bundle.getString("exit"));
@@ -38,6 +38,7 @@ public class GUI extends Variables implements ActionListener {
     mb.add(filemenu);
     mb.add(helpmenu);
     this.setJMenuBar(mb);
+    // ActionListener zu JMenu hinzufügen
     open.addActionListener(this);
     save.addActionListener(this);
     exit.addActionListener(this);
@@ -122,10 +123,10 @@ public class GUI extends Variables implements ActionListener {
     // Initilizing ActionListener for JRadioButton
     donoff.addActionListener(d -> {
       
-      if (check == false) { // If the security variable check is false, the caption on.
-        donoff.setText(bundle.getString("don"));
-        nproduct.setText(bundle.getString("name"));
-        test1 = true; // The variables test ... are further safety variables
+      if (check == false) { // Wenn check false ist ist der Radiobutton deaktiviert
+        donoff.setText(bundle.getString("don")); 
+        nproduct.setText(bundle.getString("name")); // JTextArea bekommt neuen Wert
+        test1 = true; // test Variebalen werden auf True gesetzt
         test2 = true;
         test3 = true;
         test4 = true;
@@ -134,7 +135,7 @@ public class GUI extends Variables implements ActionListener {
         pproduct.setText(bundle.getString("price"));
         inventoryproduct.setText(bundle.getString("inventory"));
         iproduct.setText(bundle.getString("info"));
-        check = true;
+        check = true; // Check wird auf True gesetzt, da Beschriftung aktiviert
       } else if (check == true) { // If the security variable check is true, the caption is off
           donoff.setText(bundle.getString("doff"));
           nproduct.setText(" ");
@@ -149,6 +150,7 @@ public class GUI extends Variables implements ActionListener {
           iproduct.setText(" ");
           check = false;
         } else {
+          // Wenn etwas nicht Funktioniert hat erscheint ein Fehlerdialog
           ErrorDialog error = new ErrorDialog();
           error.setLabelError();
         }
@@ -159,7 +161,7 @@ public class GUI extends Variables implements ActionListener {
     c.addItemListener(ia -> {
       
       if (c.getSelectedItem().equals(bundle.getString("select"))) {
-        if (test1 == true) { // If the security variable is true, the caption is written in to file
+        if (test1 == true) { // Wenn Test Variable auf true dann werden die Beschriftungen in die Datei geschrieben
           error = bundle.getString("error1");
           electronic = "";
           mechanic = "";
@@ -167,7 +169,7 @@ public class GUI extends Variables implements ActionListener {
           services = "";
         } // end of if
         
-        if (test1 == false) { // If the security variable is false, the caption is not written in to file
+        if (test1 == false) { // Wenn Test Variable false ist wird keine Beschriftung in die Datei geschrieben
           error = bundle.getString("error2");
           electronic = "";
           mechanic = "";
@@ -250,11 +252,11 @@ public class GUI extends Variables implements ActionListener {
     });
     // ActionListeners
     close.addActionListener(a -> {
-      System.exit(0);
+      System.exit(0); // Schließt das Fenster
     });
     
     add.addActionListener(c -> {
-      String name = nproduct.getText();
+      String name = nproduct.getText(); // Text wird aus JTextArea ausgelesen und in Variable gespeichert, die dann mit OOP in die Klasse OOP versendet wird
       String number = productnumber.getText();
       String price = pproduct.getText();
       String inventory = inventoryproduct.getText();
@@ -304,30 +306,30 @@ public class GUI extends Variables implements ActionListener {
     }
     
     if (e.getSource() == infomenu) {
-      String aboutText = bundle.getString("about");
-      String username = System.getProperty("user.name");
-      String osversion = System.getProperty("os.name");
-      String jdkversion = System.getProperty("java.version");
-      String processor = String.valueOf(Runtime.getRuntime().availableProcessors());
-      aboutText = aboutText.replace("$USER_NAME$", username);
-      aboutText = aboutText.replace("$OS_NAME$", osversion);
-      aboutText = aboutText.replace("$JDK_VERSION$", jdkversion);
-      aboutText = aboutText.replace("$PROCESSOR_CORES$", processor);
-      JOptionPane.showMessageDialog(GUI.this, aboutText, bundle.getString("abouttitle"), JOptionPane.INFORMATION_MESSAGE);
+      String aboutText = bundle.getString("about"); // Setzt Text
+      String username = System.getProperty("user.name"); // Zeigt den Benutzername an
+      String osversion = System.getProperty("os.name"); // Zeigt das Betriebssystem an
+      String jdkversion = System.getProperty("java.version"); // Zeigt die Java-Version an
+      String processor = String.valueOf(Runtime.getRuntime().availableProcessors()); // Zeigt wie viele Prozessorkerne vorhanden sind
+      aboutText = aboutText.replace("$USER_NAME$", username); // Erstzt den Text im Bundle
+      aboutText = aboutText.replace("$OS_NAME$", osversion); // Erstzt den Text im Bundle
+      aboutText = aboutText.replace("$JDK_VERSION$", jdkversion); // Erstzt den Text im Bundle
+      aboutText = aboutText.replace("$PROCESSOR_CORES$", processor); // Erstzt den Text im Bundle
+      JOptionPane.showMessageDialog(GUI.this, aboutText, bundle.getString("abouttitle"), JOptionPane.INFORMATION_MESSAGE); // Erstellt Dialog und setzt den Text
     }
   }
 
   public static void main(String[] args) throws UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException {
     try {
-      UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+      UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); // Benutzt Systemthema
     } catch(Exception ex) {
-      UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+      UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel"); // Falls Systemthema nicht ermittelt werden kann wird Standard Java Thema verwendet
     }
-    new Splash().showSplash();
+    new Splash().showSplash(); // Stellt Verbindung zu Splashscrenn her
     try {
-      new GUI(Locale.getDefault());
+      new GUI(Locale.getDefault()); // Verwendet Systemsprache
     } catch(Exception ex) {
-      new GUI(Locale.ENGLISH);
+      new GUI(Locale.ENGLISH); // Kann Systemsprache nicht ermittelt werden wird Englisch verwendet
     }
   }
   
