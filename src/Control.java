@@ -7,7 +7,8 @@ public class Control extends Variables{
     String error, electronic, mechanic, social ,services, name, number, price, inventory, information, s3;
 
     public void Transfer1(String error, String electronic, String mechanic, String social, String services, String name, String number, String price, String inventory, String information) {
-        this.error = error;
+      // Werte die von der GUI gesendet wurden werden über Parameter empfangen und in Variablen gespeichert  
+      this.error = error;
         this.electronic = electronic;
         this.mechanic = mechanic;
         this.social = social;
@@ -20,27 +21,26 @@ public class Control extends Variables{
     }
 
     public void Add_Product() {
-      filter = new FileNameExtensionFilter(bundle.getString("file"), "txt"); // Initializing filenamefilter
-      fc.addChoosableFileFilter(filter);
-      int i = fc.showSaveDialog(null); // show Save Dialog
-      if (i == JFileChooser.APPROVE_OPTION) {
+      filter = new FileNameExtensionFilter(bundle.getString("file"), "txt"); // filenamefilter initialisieren 
+      fc.addChoosableFileFilter(filter); // Filter wird zum FileChooser hinzugefügt
+      fc.showSaveDialog(null); // Save Dialog wird angezeigt
         try {
           boolean neu = false;
           File file;
           file = fc.getSelectedFile();
-          if (!file.exists()) { // If File not existing it will be created new and set neu = true
+          if (!file.exists()) { // Existiert die Datei noch nicht so wird die Datei erstellt und die Variable neu auf true gesetzt
             file.createNewFile();
             neu = true;
           }
-          BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
-          if (!neu) { // If File not new it will be written Paragraphs to file
+          BufferedWriter bw = new BufferedWriter(new FileWriter(file, true)); // BufferedWriter wird deklariert
+          if (!neu) { // Ist die Datei nicht neu so wird ein Zeilenumbruch reingeschrieben
             bw.write("\n");
             bw.write("\n");
           } // end of if
           bw.write("");
-          bw.write(name); // with command bw.write it will be write datas of TextAreas
+          bw.write(name); // Mit dem Befehl bw.write(Parameter von JTextArea) wird der Inhalt von JTextArea reingeschrieben
           bw.write("\n");
-          if (error == bundle.getString("error2")) {
+          if (error == bundle.getString("error2")) { // Es wird abgefragt ob die Beschriftung ausgewählt wurde oder nicht
             bw.write(error);
           } else if (error == bundle.getString("error1")) {
               bw.write(error);
@@ -78,49 +78,45 @@ public class Control extends Variables{
           bw.write("\n");
           bw.write(information);
           bw.flush();
-          if (i == JFileChooser.APPROVE_OPTION) {
-            File f = fc.getSelectedFile();
-            String filepath = f.getPath();
+            File f = fc.getSelectedFile(); // Es wird ein Attribut f vom Typ File erstellt und den Wert vom FileChooser zugewiesen
+            String filepath = f.getPath(); // Es wird ein Attribut filepath vom Typ String erstellt den Pfad der Datei zugewiesen
             try {
-              BufferedReader br = new BufferedReader(new FileReader(filepath));
-              String s1 = "", s2 = "";
-              while ((s1 = br.readLine()) != null) { // The system checks which lines have been written and then moves on to the next line.
+              BufferedReader br = new BufferedReader(new FileReader(filepath)); // Ein BufferedReader wird erstellt, diesem wird ein FileReader hinzugefügt der den Dateipfad bekommt um herauszufinden um welche Datei es sich handelt 
+              String s1 = "", s2 = ""; // Es werden zwei Variablen s1 und s2 erstellt
+              while ((s1 = br.readLine()) != null) { // s1 wird der BufferedReader zugewisen, solange dieser nicht null ist erhält s2 den Wert von s1 und bekommt nach jeder Zeile ein Zeilenumbruch
                 s2 += s1 + "\n";
               }
-              s3 = s2;
-              br.close();
-            } catch (Exception e) { //
+              s3 = s2; // Der Wert von s2 wird in s3 geschrieben uum diese später an die GUI zurückzuversenden
+              br.close(); // Beendet den BufferedReader
+            } catch (Exception e) { 
               // e.printStackTrace();
               ErrorDialog error = new ErrorDialog();
-              error.setOpenError(); // If an error occurs, an error dialog is displayed
+              error.setOpenError(); // Wenn ein Fehler auftritt wird ein Fehler Dialog geöffnet
             }
-          }
+          
         } catch (IOException e) {
           // e.printStackTrace();
           ErrorDialog error = new ErrorDialog();
           error.setWriteError();
         }
       }
-      /*ErrorDialog sucessfully = new ErrorDialog();
-      sucessfully.setSucessfully();*/
     
-    }
-
+      
     public void ShowProduct() {
-        filter = new FileNameExtensionFilter(bundle.getString("file"), "txt");
-      fc.addChoosableFileFilter(filter);
-      fc.showOpenDialog(null);
+      filter = new FileNameExtensionFilter(bundle.getString("file"), "txt"); // Der Dateifilter wird deklariert und initialisiert
+      fc.addChoosableFileFilter(filter); // Dem JFileChooser wird der Filter hinzugefügt
+      fc.showOpenDialog(null); // Erstellt Open Dialog
 
       File f = fc.getSelectedFile();
       String filepath = f.getPath();
-      try { // Each line in the file is read individually and written to the TextArea one after the other.
-        BufferedReader br = new BufferedReader(new FileReader(filepath));
-        String s1 = "", s2 = "";
-        while ((s1 = br.readLine()) != null) {
-          s2 += s1 + "\n";
+      try { 
+        BufferedReader br = new BufferedReader(new FileReader(filepath));// Ein BufferedReader wird erstellt, diesem wird ein FileReader hinzugefügt der den Dateipfad bekommt um herauszufinden um welche Datei es sich handelt 
+        String s1 = "", s2 = ""; // Es werden zwei Variablen s1 und s2 erstellt
+        while ((s1 = br.readLine()) != null) { // s1 wird der BufferedReader zugewisen, solange dieser nicht null ist 
+          s2 += s1 + "\n"; // erhält s2 den Wert von s1 und bekommt nach jeder Zeile ein Zeilenumbruch
         }
-        s3 = s2;
-        br.close();
+        s3 = s2; // Der Wert von s2 wird in s3 geschrieben uum diese später an die GUI zurückzuversenden
+        br.close(); // Beendet den BufferedReader
       } catch (Exception e) {
         // e.printStackTrace();
         ErrorDialog error = new ErrorDialog();
@@ -130,15 +126,14 @@ public class Control extends Variables{
 
     public void All_Delete() {
         try {
-            File file;
-            JFileChooser fc = new JFileChooser();
-            fc.showSaveDialog(null);
-            file = fc.getSelectedFile();
-            File f = fc.getSelectedFile();
-            String filepath = f.getPath();
-            BufferedWriter bw = new BufferedWriter(new FileWriter(file));
-            bw.write(""); // The whole file is overwritten with leeward characters
-            bw.flush();
+            File file; // Erstellt Attribut file vom Typ File
+            fc.showSaveDialog(null); // Erstellt Save Dialog
+            file = fc.getSelectedFile(); // file bekommt Wert von JFileChooser
+            String filepath = file.getPath(); // Attribut vom Typ String wird erstellt und den Pfad von file zugewiesen
+            BufferedWriter bw = new BufferedWriter(new FileWriter(file)); // BufferedWriter wird erstellt und erhält einen FileWriter der den Wert von file bekommt
+            bw.write(""); // Die gesamte Datei wird mit Leerzeichen überschrieben
+            bw.flush(); // Inhalt von Puffer wird in Ausgabestrom geleert
+            // Siehe Kommentare von Show Product
             BufferedReader br = new BufferedReader(new FileReader(filepath));
             String s1 = "", s2 = "";
             while ((s1 = br.readLine()) != null) {
@@ -155,7 +150,7 @@ public class Control extends Variables{
     }
 
     public String Back() {
-        return s3;
+        return s3; // s3 wird an GUI zurückgesendet
     }
     
 }

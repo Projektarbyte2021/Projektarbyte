@@ -4,7 +4,8 @@ import java.util.*;
 import javax.swing.filechooser.FileFilter;
 
 public abstract class Variables extends JFrame { 
-        
+
+// Deklaration
 public JLabel infoLabel, label, name, category, price, info, inventory, number;
 public JWindow window;
 public Container container;
@@ -25,6 +26,7 @@ public JMenu filemenu, helpmenu;
 public JMenuItem exit, save, open, infomenu;
 public JMenuBar mb;
 public JFileChooser fc;
+// Ende von Deklaration
 
 public Variables() {
         // Atributes for Splash
