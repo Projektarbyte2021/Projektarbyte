@@ -1,0 +1,33 @@
+﻿[Files]
+File0=C:\users\fynnfederer\Documents\TGI12\IFT\Projektarbeit\Projektarbyte\src\Control.java
+File1=C:\users\fynnfederer\Documents\TGI12\IFT\Projektarbeit\Projektarbyte\src\ErrorDialog.java
+File2=C:\users\fynnfederer\Documents\TGI12\IFT\Projektarbeit\Projektarbyte\src\GUI.java
+File3=C:\users\fynnfederer\Documents\TGI12\IFT\Projektarbeit\Projektarbyte\src\Splash.java
+File4=C:\users\fynnfederer\Documents\TGI12\IFT\Projektarbeit\Projektarbyte\src\Variables.java
+
+[Box:  - GUI]
+X=20
+Y=40
+MinVis=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=1
+FontSize=12
+FontName=Segoe UI
+
+[Diagram]
+comments=0
+OffsetX=0
+OffsetY=0
+Visibility=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=1
+ShowConnections=0
+Fontname=Segoe UI
+Fontsize=12
+ShowObjectDiagram=0
+
+[Interactive]
+I0=
+
