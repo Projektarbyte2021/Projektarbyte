@@ -48,7 +48,7 @@ public class Splash extends JWindow {
     for (int i = 0; i <= progress.getMaximum(); i++) { // Die Schleife läuft solange bis der MaximaleWert von progress erreicht wurde
       progress.setValue(i); // progress bekommt immer den Wert von i
       try {
-        Thread.sleep(15); // Dient zur Geschwindigkeit von prgress
+        Thread.sleep(15); // Dient zur Geschwindigkeit von progress
       } catch (InterruptedException e) {
         e.printStackTrace(); // Falls ein Fehler auftritt wird dieser in der Konsole ausgegeben
       }

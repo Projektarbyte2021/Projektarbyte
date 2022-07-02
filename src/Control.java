@@ -93,7 +93,7 @@ public class Control {
               while ((s1 = br.readLine()) != null) { // s1 wird der BufferedReader zugewisen, solange dieser nicht null ist erhält s2 den Wert von s1 und bekommt nach jeder Zeile ein Zeilenumbruch
                 s2 += s1 + "\n";
               }
-              s3 = s2; // Der Wert von s2 wird in s3 geschrieben uum diese später an die GUI zurückzuversenden
+              s3 = s2; // Der Wert von s2 wird in s3 geschrieben um diese später an die GUI zurückzuversenden
               br.close(); // Beendet den BufferedReader
             } catch (Exception e) { 
               // e.printStackTrace();
