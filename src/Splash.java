@@ -2,9 +2,24 @@ import java.awt.*;
 import java.net.URL;
 import javax.swing.*;
 
-public class Splash extends Variables{
-
+public class Splash extends JWindow {
+  public JLabel infoLabel, label;
+  public JWindow window;
+  public Container container;
+  public JPanel panel;
+  public ImageIcon logo;
+  public JProgressBar progress;
   public Splash() {
+    // Initialisierung
+    logo = new ImageIcon();
+    infoLabel = new JLabel();
+    label = new JLabel();
+    window = new JWindow();
+    container = new Container();
+    panel = new JPanel(new BorderLayout());
+    // Ende von Initialisierung
+
+    progress = new JProgressBar(0, 100); // The second value specifies how fast the processbar should run through
     infoLabel.setText("Easy to Manage 1.0.0"); // Dem Attribut infoLabel vom Typ JLabel wird ein Text zugewiesen
     URL iconurl = getClass().getResource("Pencil.png"); // Das Attribut iconurl vom Typ URL bekommt das Bild Pencil.png 
     logo = new ImageIcon(iconurl); // Dem Attribut logo vom Typ ImageIcon wird das Bild aus iconurl zugewiesen

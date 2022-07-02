@@ -1,10 +1,16 @@
+import java.awt.*;
 import java.io.*;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class Control extends Variables{
+public class Control {
 
     String error, electronic, mechanic, social ,services, name, number, price, inventory, information, s3;
+    public FileFilter filter;
+    public JFileChooser fc;
 
     public void Transfer1(String error, String electronic, String mechanic, String social, String services, String name, String number, String price, String inventory, String information) {
       // Werte die von der GUI gesendet wurden werden über Parameter empfangen und in Variablen gespeichert  
@@ -21,7 +27,8 @@ public class Control extends Variables{
     }
 
     public void Add_Product() {
-      filter = new FileNameExtensionFilter(bundle.getString("file"), "txt"); // filenamefilter initialisieren 
+        fc = new JFileChooser();
+      filter = new FileNameExtensionFilter(GUI.bundle.getString("file"), "txt"); // filenamefilter initialisieren
       fc.addChoosableFileFilter(filter); // Filter wird zum FileChooser hinzugefügt
       fc.showSaveDialog(null); // Save Dialog wird angezeigt
         try {
@@ -40,33 +47,33 @@ public class Control extends Variables{
           bw.write("");
           bw.write(name); // Mit dem Befehl bw.write(Parameter von JTextArea) wird der Inhalt von JTextArea reingeschrieben
           bw.write("\n");
-          if (error == bundle.getString("error2")) { // Es wird abgefragt ob die Beschriftung ausgewählt wurde oder nicht
+          if (error == GUI.bundle.getString("error2")) { // Es wird abgefragt ob die Beschriftung ausgewählt wurde oder nicht
             bw.write(error);
-          } else if (error == bundle.getString("error1")) {
+          } else if (error == GUI.bundle.getString("error1")) {
               bw.write(error);
             }
           
-          if (electronic == bundle.getString("el")) {
+          if (electronic == GUI.bundle.getString("el")) {
             bw.write(electronic);
-          } else if (electronic == bundle.getString("cel")) {
+          } else if (electronic == GUI.bundle.getString("cel")) {
               bw.write(electronic);
             }
           
-          if (mechanic == bundle.getString("me")) {
+          if (mechanic == GUI.bundle.getString("me")) {
             bw.write(mechanic);
-          } else if (mechanic == bundle.getString("cme")) {
+          } else if (mechanic == GUI.bundle.getString("cme")) {
               bw.write(mechanic);
             }
           
-          if (social == bundle.getString("so")) {
+          if (social == GUI.bundle.getString("so")) {
             bw.write(social);
-          } else if (social == bundle.getString("cso")) {
+          } else if (social == GUI.bundle.getString("cso")) {
               bw.write(social);
             }
           
-          if (services == bundle.getString("se")) {
+          if (services == GUI.bundle.getString("se")) {
             bw.write(services);
-          } else if (services == bundle.getString("cse")) {
+          } else if (services == GUI.bundle.getString("cse")) {
               bw.write(services);
             }
           bw.write("\n");
@@ -103,7 +110,8 @@ public class Control extends Variables{
     
       
     public void ShowProduct() {
-      filter = new FileNameExtensionFilter(bundle.getString("file"), "txt"); // Der Dateifilter wird deklariert und initialisiert
+        fc = new JFileChooser();
+      filter = new FileNameExtensionFilter(GUI.bundle.getString("file"), "txt"); // Der Dateifilter wird deklariert und initialisiert
       fc.addChoosableFileFilter(filter); // Dem JFileChooser wird der Filter hinzugefügt
       fc.showOpenDialog(null); // Erstellt Open Dialog
 
@@ -126,6 +134,7 @@ public class Control extends Variables{
 
     public void All_Delete() {
         try {
+            fc = new JFileChooser();
             File file; // Erstellt Attribut file vom Typ File
             fc.showSaveDialog(null); // Erstellt Save Dialog
             file = fc.getSelectedFile(); // file bekommt Wert von JFileChooser

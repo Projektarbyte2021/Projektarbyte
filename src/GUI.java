@@ -1,17 +1,53 @@
 // Imports
-import java.awt.Container;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.*;
+import java.awt.*;
+import java.awt.event.*;
 import java.net.URL;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import java.util.*;
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class GUI extends Variables implements ActionListener {
-  
+public class GUI extends JFrame implements ActionListener {
+  public JLabel name, category, price, info, inventory, number;
+  public Locale locale;
+  public static ResourceBundle bundle;
+  public JButton close, add, show, alldelete;
+  public JRadioButton donoff;
+  public JTextArea nproduct, pproduct, iproduct, inventoryproduct, read, productnumber;
+  public JComboBox c;
+  public JScrollPane nproductScrollPane, pproductScrollPane, iproductScrollPane, inventoryScrollPane, readScrollPane, productnumberScrollPane;
+  public String electronic, mechanic, social, services, error = "non";
+  public boolean test1, test2, test3, test4, test5, check = false;
+  public JMenu filemenu, helpmenu;
+  public JMenuItem exit, save, open, infomenu;
+  public JMenuBar mb;
+  public JFileChooser fc;
   public GUI(Locale StartLanguage) {
+    // Initialisierung
+    close = new JButton();
+    add = new JButton();
+    show = new JButton();
+    alldelete = new JButton();
+    donoff = new JRadioButton();
+    nproduct = new JTextArea();
+    pproduct = new JTextArea();
+    iproduct = new JTextArea();
+    inventoryproduct = new JTextArea();
+    read = new JTextArea();
+    fc = new JFileChooser();
+    productnumber = new JTextArea();
+    nproductScrollPane = new JScrollPane(nproduct);
+    pproductScrollPane = new JScrollPane(pproduct);
+    iproductScrollPane = new JScrollPane(iproduct);
+    inventoryScrollPane = new JScrollPane(inventoryproduct);
+    productnumberScrollPane = new JScrollPane(productnumber);
+    readScrollPane = new JScrollPane(read);
+    name = new JLabel();
+    category = new JLabel();
+    price = new JLabel();
+    info = new JLabel();
+    inventory = new JLabel();
+    number = new JLabel();
+    mb =  new JMenuBar();
+    // Ende Initialisierung
     this.locale = StartLanguage;
     this.bundle = ResourceBundle.getBundle("Bundle_" + locale, locale); // Sucht nach Bundles die mit Bundle_ und wählt als Locale die Startsprache aus
     setTitle(bundle.getString("title")); // Setzt den Titel des Fensters und sucht im Bundle den Schlüssel 'title' und verwendet den dahinterstehenden Text 
