@@ -1,0 +1,15 @@
+JSG: true
+FontName: Segoe UI
+FontSize: 12
+FontColor: -16777208
+- Kind: Algorithm
+  SwitchWithCaseLine: false
+  RectPos|0 0 289 252 242 300
+  Show Product|0 0 289 27 5 2
+    fc: JFileChooser\r\nfc.showOpenDialog(this)|0 27 289 77 5 29
+    br: BufferedReader(FileReader(filepath))\r\ns1: Text\r\ns2: Text|0 77 289 152 5 79
+    while: 
+      solange (s1 = br.readLine()) nicht null ist|0 152 289 202 5 154
+      while head|22 177 289 202 27 179
+      s2 += s1 + "\n"|22 177 289 202 27 179
+    TextArea read = s2\r\nbr.close()|0 202 289 252 5 204
