@@ -4,7 +4,7 @@ FontSize: 12
 FontColor: -16777208
 - Kind: Algorithm
   SwitchWithCaseLine: false
-  RectPos|0 0 572 1388 407 475
+  RectPos|0 0 572 1388 407 -71
   Abfrage ob Beschriftung angeschaltet oder eingeschaltet ist|0 0 572 23 5 2
     if: 
       c.getSelectedItem().equals(bundle.getString("select"))|0 23 572 296 135 23
