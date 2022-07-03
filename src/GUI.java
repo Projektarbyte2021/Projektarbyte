@@ -172,7 +172,7 @@ public class GUI extends JFrame implements ActionListener {
         inventoryproduct.setText(bundle.getString("inventory"));
         iproduct.setText(bundle.getString("info"));
         check = true; // Check wird auf True gesetzt, da Beschriftung aktiviert
-      } else if (check == true) { // If the security variable check is true, the caption is off
+      } else if (check == true) { // Wenn die Variable check true ist, dann ist die Beschriftung angeschaltet
           donoff.setText(bundle.getString("doff"));
           nproduct.setText(" ");
           test1 = false;
@@ -361,7 +361,7 @@ public class GUI extends JFrame implements ActionListener {
     } catch(Exception ex) {
       UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel"); // Falls Systemthema nicht ermittelt werden kann wird Standard Java Thema verwendet
     }
-    new Splash().showSplash(); // Stellt Verbindung zu Splashscrenn her
+    new Splash().showSplash(); // Stellt Verbindung zu Splashscreen her
     try {
       new GUI(Locale.getDefault()); // Verwendet Systemsprache
     } catch(Exception ex) {
